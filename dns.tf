@@ -1,5 +1,9 @@
+resource "cloudflare_zone" "ractf-root-domain" {
+    zone = "${vars.RACTF_DOMAIN}"
+}
+
 resource "cloudflare_record" "homepage" {
-  zone_id = "${vars.RACTF_ZONE_ID}"
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "@"
   value   = "${vars.RACTF_HOST}"
   type    = "A"
@@ -7,7 +11,7 @@ resource "cloudflare_record" "homepage" {
 }
 
 resource "cloudflare_record" "files" {
-  zone_id = "${vars.RACTF_ZONE_ID}"
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "files"
   value   = "${aws_s3_bucket.frontend_bucket.website_endpoint}"
   type    = "A"
@@ -15,7 +19,7 @@ resource "cloudflare_record" "files" {
 }
 
 resource "cloudflare_record" "2020" {
-  zone_id = "${vars.RACTF_ZONE_ID}"
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "2020"
   value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
   type    = "A"
