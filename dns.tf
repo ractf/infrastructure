@@ -12,6 +12,7 @@ resource "cloudflare_record" "homepage" {
   value   = "${vars.RACTF_HOST}"
   type    = "A"
   ttl     = 3600
+  proxied = true
 }
 
 resource "cloudflare_record" "files" {
@@ -20,6 +21,7 @@ resource "cloudflare_record" "files" {
   value   = "${aws_s3_bucket.frontend_bucket.website_endpoint}"
   type    = "A"
   ttl     = 3600
+  proxied = true
 }
 
 resource "cloudflare_record" "frontend" {
@@ -28,6 +30,7 @@ resource "cloudflare_record" "frontend" {
   value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
   type    = "A"
   ttl     = 3600
+  proxied = false
 }
 
 resource "cloudflare_record" "shortener" {
@@ -36,4 +39,5 @@ resource "cloudflare_record" "shortener" {
   value   = "${vars.RACTF_HOST}"
   type    = "A"
   ttl     = 3600
+  proxied = true
 }
