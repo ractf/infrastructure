@@ -30,7 +30,7 @@ resource "cloudflare_record" "2020" {
   ttl     = 3600
 }
 
-resource "cloudflare_record" "homepage" {
+resource "cloudflare_record" "shortener" {
   zone_id = "${cloudflare_zone.ractf-shortener-domain.id}"
   name    = "@"
   value   = "${vars.RACTF_HOST}"
