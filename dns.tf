@@ -14,3 +14,10 @@ resource "cloudflare_record" "files" {
   ttl     = 3600
 }
 
+resource "cloudflare_record" "2020" {
+  zone_id = "${vars.RACTF_ZONE_ID}"
+  name    = "2020"
+  value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
+  type    = "A"
+  ttl     = 3600
+}
