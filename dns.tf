@@ -22,7 +22,7 @@ resource "cloudflare_record" "files" {
   ttl     = 3600
 }
 
-resource "cloudflare_record" "2020" {
+resource "cloudflare_record" "frontend" {
   zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "2020"
   value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
