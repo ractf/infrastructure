@@ -46,7 +46,7 @@ resource "cloudflare_record" "frontend" {
   zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "2020"
   value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
-  type    = "A"
+  type    = "CNAME"
   ttl     = 3600
   proxied = false
 }
