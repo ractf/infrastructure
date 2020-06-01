@@ -53,10 +53,34 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "mail" {
   zone_id = "${cloudflare_zone.ractf-root-domain.id}"
-  value   = "${vars.RACTF_HOST}"
+  value   = "${vars.RACTF_MAIL_HOST}"
   type    = "MX"
   ttl     = 3600
 }
+
+resource "cloudflare_record" "github" {
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
+  name    = "_github-challenge"
+  value   = "${vars.GITHUB_TOKEN}"
+  type    = "TXT"
+  ttl     = 3600
+}
+
+
+resource "cloudflare_record" "spf" {
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
+  value   = "v=spf1 a mx ip4:${vars.RACTF_MAIL_HOST} -all"
+  type    = "TXT"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "google-verify" {
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
+  value   = "${vars.GOOGLE_TOKEN}"
+  type    = "TXT"
+  ttl     = 3600
+}
+
 
 resource "cloudflare_record" "shortener" {
   zone_id = "${cloudflare_zone.ractf-shortener-domain.id}"
