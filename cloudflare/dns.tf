@@ -51,6 +51,13 @@ resource "cloudflare_record" "frontend" {
   proxied = false
 }
 
+resource "cloudflare_record" "mail" {
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
+  value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
+  type    = "MAX"
+  ttl     = 3600
+}
+
 resource "cloudflare_record" "shortener" {
   zone_id = "${cloudflare_zone.ractf-shortener-domain.id}"
   name    = "@"
