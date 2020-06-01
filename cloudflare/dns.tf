@@ -81,7 +81,6 @@ resource "cloudflare_record" "google-verify" {
   ttl     = 3600
 }
 
-
 resource "cloudflare_record" "shortener" {
   zone_id = "${cloudflare_zone.ractf-shortener-domain.id}"
   name    = "@"
