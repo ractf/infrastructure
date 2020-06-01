@@ -53,7 +53,7 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "mail" {
   zone_id = "${cloudflare_zone.ractf-root-domain.id}"
-  value   = "${aws_cloudfront_distribution.frontend_distribution.domain_name}"
+  value   = "${vars.RACTF_HOST}"
   type    = "MX"
   ttl     = 3600
 }
