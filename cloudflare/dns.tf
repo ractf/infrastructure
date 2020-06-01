@@ -15,6 +15,15 @@ resource "cloudflare_record" "homepage" {
   proxied = true
 }
 
+resource "cloudflare_record" "api" {
+  zone_id = "${cloudflare_zone.ractf-root-domain.id}"
+  name    = "@"
+  value   = "${vars.RACTF_HOST}"
+  type    = "A"
+  ttl     = 3600
+  proxied = true
+}
+
 resource "cloudflare_record" "files" {
   zone_id = "${cloudflare_zone.ractf-root-domain.id}"
   name    = "files"
