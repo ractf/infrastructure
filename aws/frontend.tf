@@ -19,15 +19,15 @@ data "aws_iam_policy_document" "frontend_distribution" {
     actions = ["s3:GetObject"]
     principals {
       type        = "AWS"
-      identifiers = ["${aws_cloudfront_origin_access_identity.frontend_distribution.iam_arn}"]
+      identifiers = [aws_cloudfront_origin_access_identity.frontend_distribution.iam_arn]
     }
     resources = ["${aws_s3_bucket.frontend_bucket.arn}/*"]
   }
 }
 
 resource "aws_s3_bucket_policy" "frontend_distribution" {
-  bucket = "${aws_s3_bucket.frontend_bucket.id}"
-  policy = "${data.aws_iam_policy_document.frontend_distribution.json}"
+  bucket = aws_s3_bucket.frontend_bucket.id
+  policy = data.aws_iam_policy_document.frontend_distribution.json
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
@@ -45,11 +45,11 @@ locals {
 
 resource "aws_cloudfront_distribution" "frontend_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.frontend_bucket.bucket_regional_domain_name}"
-    origin_id   = "${local.s3_origin_id}"
+    domain_name = aws_s3_bucket.frontend_bucket.bucket_regional_domain_name
+    origin_id   = local.s3_origin_id
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.frontend_distribution.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.frontend_distribution.cloudfront_access_identity_path
     }
   }
 
@@ -63,7 +63,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${local.s3_origin_id}"
+    target_origin_id = local.s3_origin_id
 
     forwarded_values {
       query_string = false
@@ -90,7 +90,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${aws_acm_certificate.cert.arn}"
+    acm_certificate_arn = aws_acm_certificate.cert.arn
   }
 
   custom_error_response {
