@@ -1,4 +1,4 @@
 module "frontend" {
     source = "./modules/aws/frontend"
-    deployment_name = vars.RACTF_DOMAIN
+    deployment_name = var.RACTF_DOMAIN
 }
