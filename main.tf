@@ -1,7 +1,7 @@
 module "frontend" {
     source = "./modules/aws/frontend"
     deployment_name = var.RACTF_DOMAIN
-    certificate = certificate.arn
+    certificate = module.certificate.arn
 }
 
 module "certificate" {
