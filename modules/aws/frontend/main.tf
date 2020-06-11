@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cert.arn
+    acm_certificate_arn = var.certificate
   }
 
   custom_error_response {
