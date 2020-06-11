@@ -6,7 +6,7 @@ module "frontend" {
 
 module "certificate" {
     source = "./modules/aws/certificate"
-    deployment_name = var.RACTF_DOMAIN
+    domain = var.RACTF_DOMAIN
     providers = {
         aws = aws.cert
     }
