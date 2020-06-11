@@ -3,6 +3,6 @@ module "frontend" {
     deployment_name = var.RACTF_DOMAIN
     providers = {
         aws = aws
-        aws_useast1 = aws.useast1
+        aws.cert = aws.useast1
     }
 }
