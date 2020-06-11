@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cert" {
-  domain_name       = variables.deployment_name
+  domain_name       = var.deployment_name
   validation_method = "DNS"
 
   tags = {
@@ -31,7 +31,7 @@ resource "aws_s3_bucket_policy" "frontend_distribution" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = variables.deployment_name
+  bucket = var.deployment_name
   acl    = "private"
 
   tags = {
@@ -58,7 +58,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   comment             = "RACTF Frontend"
   default_root_object = "index.html"
 
-  aliases = [variables.deployment_name]
+  aliases = [var.deployment_name]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
