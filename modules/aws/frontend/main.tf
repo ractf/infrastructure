@@ -1,7 +1,7 @@
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.deployment_name
   validation_method = "DNS"
-  provider = aws.useast1
+  provider = aws_useast1
 
   tags = {
     Environment = "production"
