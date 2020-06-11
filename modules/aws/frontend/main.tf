@@ -1,3 +1,9 @@
+provider "aws" {}
+
+provider "aws" {
+  alias = "useast1"
+}
+
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.deployment_name
   validation_method = "DNS"
