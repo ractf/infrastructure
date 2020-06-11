@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cert" {
-  domain_name       = var.deployment_name
+  domain_name       = "asd"
   validation_method = "DNS"
   provider = aws.cert
 
