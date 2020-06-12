@@ -33,3 +33,7 @@ module "shortener_dns" {
   domain   = var.ractf_shortener_domain
   endpoint = var.shortener_endpoint
 }
+
+module "github_repos" {
+  source   = "./modules/github/repos"
+}
