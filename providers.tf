@@ -16,6 +16,6 @@ provider "cloudflare" {
 }
 
 provider "github" {
-  token        = "${var.github_login_token}"
-  organization = "${var.github_organization}"
+  token        = var.github_login_token
+  organization = var.github_organization
 }
