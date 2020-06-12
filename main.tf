@@ -37,3 +37,11 @@ module "shortener_dns" {
 module "github_repos" {
   source   = "./modules/github/repos"
 }
+
+module "github_ci" {
+  source   = "./modules/github/ci"
+  shell_repo = module.github_repos.shell_repo
+  shell_deploy_id = module.frontend.shell_deploy_id
+  shell_deploy_key = module.frontend.shell_deploy_key
+  shell_bucket = module.frontend.s3_bucket
+}
