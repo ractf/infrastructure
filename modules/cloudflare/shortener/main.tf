@@ -1,5 +1,5 @@
 resource "cloudflare_zone" "ractf-shortener-domain" {
-  zone = vars.domain
+  zone = var.domain
 }
 
 resource "cloudflare_record" "shortener" {

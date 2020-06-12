@@ -1,5 +1,5 @@
 resource "cloudflare_zone" "ractf-root-domain" {
-  zone = vars.domain
+  zone = var.domain
 }
 
 resource "cloudflare_record" "homepage" {
