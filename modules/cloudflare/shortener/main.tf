@@ -1,11 +1,11 @@
 resource "cloudflare_zone" "ractf-shortener-domain" {
-    zone = vars.RACTF_SHORTENER_DOMAIN
+    zone = vars.domain
 }
 
 resource "cloudflare_record" "shortener" {
   zone_id = cloudflare_zone.ractf-shortener-domain.id
   name    = "@"
-  value   = vars.shortener_endpoint
+  value   = vars.endpoint
   type    = "A"
   ttl     = 3600
   proxied = true

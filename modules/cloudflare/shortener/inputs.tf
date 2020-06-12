@@ -1,9 +1,9 @@
-variable "ractf_shortener_domain" {
+variable "domain" {
     type = string
     description = "The domain RACTF is being deployed on"
 }
 
-variable "shortener_endpoint" {
+variable "endpoint" {
     type = string
     description = "The IP of the host the RACTF shortener is running on"
 }

@@ -1,14 +1,14 @@
-variable "ractf_domain" {
+variable "domain" {
     type = string
     description = "The domain RACTF is being deployed on"
 }
 
-variable "ractf_host" {
+variable "backend_endpoint" {
     type = string
     description = "The IP of the host the RACTF backend is running on"
 }
 
-variable "ractf_mail_host" {
+variable "mail_endpoint" {
     type = string
     description = "The IP of the host the RACTF mail service is running on"
 }
@@ -28,7 +28,7 @@ variable "github_token" {
     description = "The verification token for GitHub"
 }
 
-variable "github_token" {
+variable "google_token" {
     type = string
     description = "The verification token for Google"
 }

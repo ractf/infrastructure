@@ -1,11 +1,11 @@
 resource "cloudflare_zone" "ractf-root-domain" {
-    zone = vars.RACTF_DOMAIN
+    zone = vars.domain
 }
 
 resource "cloudflare_record" "homepage" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "@"
-  value   = vars.ractf_host
+  value   = vars.backend_endpoint
   type    = "A"
   ttl     = 3600
   proxied = true
@@ -14,7 +14,7 @@ resource "cloudflare_record" "homepage" {
 resource "cloudflare_record" "www" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "www"
-  value   = vars.ractf_host
+  value   = vars.backend_endpoint
   type    = "A"
   ttl     = 3600
   proxied = true
@@ -23,7 +23,7 @@ resource "cloudflare_record" "www" {
 resource "cloudflare_record" "api" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "api"
-  value   = vars.ractf_host
+  value   = vars.backend_endpoint
   type    = "A"
   ttl     = 3600
   proxied = true
@@ -49,7 +49,7 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "mail" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  value   = vars.ractf_mail_host
+  value   = vars.mail_endpoint
   type    = "MX"
   ttl     = 3600
 }
@@ -65,7 +65,7 @@ resource "cloudflare_record" "github" {
 
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  value   = "v=spf1 a mx ip4:${vars.RACTF_MAIL_HOST} -all"
+  value   = "v=spf1 a mx ip4:${vars.mail_endpoint} -all"
   type    = "TXT"
   ttl     = 3600
 }
