@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "static_files" {
-  bucket = vars.bucket_name
+  bucket = var.bucket_name
   acl    = "public-read"
 
   website {
