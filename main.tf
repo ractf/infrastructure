@@ -22,8 +22,8 @@ module "dns" {
   domain            = var.RACTF_DOMAIN
   backend_endpoint  = var.ractf_host
   mail_endpoint     = var.mail_host
-  files_endpoint    = modules.static.bucket_endpoint
-  frontend_endpoint = "COME BACK"
+  files_endpoint    = module.static.bucket_endpoint
+  frontend_endpoint = module.frontend.endpoint
   github_token      = var.github_token
   google_token      = var.google_token
 }
