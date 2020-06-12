@@ -13,14 +13,14 @@ module "certificate" {
 }
 
 module "static" {
-    source = "./modules/aws/static"
-    bucket_name = "files.${var.RACTF_DOMAIN}"
+  source      = "./modules/aws/static"
+  bucket_name = "files.${var.RACTF_DOMAIN}"
 }
 
 module "frontend" {
-    source = "./modules/aws/frontend"
-    deployment_name = var.RACTF_DOMAIN
-    certificate = module.certificate.arn
+  source          = "./modules/aws/frontend"
+  deployment_name = var.RACTF_DOMAIN
+  certificate     = module.certificate.arn
 }
 
 module "dns" {
