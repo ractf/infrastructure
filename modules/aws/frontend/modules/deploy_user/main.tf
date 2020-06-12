@@ -9,7 +9,7 @@ resource "aws_iam_user" "shell_deploy" {
 
 resource "aws_iam_user_policy" "lb_ro" {
   name = "test"
-  user = "${aws_iam_user.shell_deploy.name}"
+  user = aws_iam_user.shell_deploy.name
 
   policy = <<EOF
 {
