@@ -88,7 +88,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 }
 
 module "deploy_user" {
-  source = "./modules/deploy_user"
+  source      = "./modules/deploy_user"
   bucket_name = aws_s3_bucket.frontend_bucket.id
-  bucket_arn = aws_s3_bucket.frontend_bucket.arn
+  bucket_arn  = aws_s3_bucket.frontend_bucket.arn
 }
