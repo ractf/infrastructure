@@ -1,16 +1,3 @@
-resource "aws_acm_certificate" "cert" {
-  domain_name       = "*.ractf.co.uk"
-  validation_method = "DNS"
-
-  tags = {
-    Environment = "production"
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 resource "aws_cloudfront_origin_access_identity" "frontend_distribution" {
 }
 
@@ -31,7 +18,7 @@ resource "aws_s3_bucket_policy" "frontend_distribution" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = "ractf.co.uk"
+  bucket = var.deployment_name
   acl    = "private"
 
   tags = {
@@ -58,7 +45,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   comment             = "RACTF Frontend"
   default_root_object = "index.html"
 
-  aliases = ["2020.ractf.co.uk"]
+  aliases = [var.deployment_name]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -90,7 +77,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cert.arn
+    acm_certificate_arn = var.certificate
   }
 
   custom_error_response {

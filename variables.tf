@@ -1,15 +1,42 @@
-variable "RACTF_DOMAIN" {
-    type = string
+variable "ractf_domain" {
+  type    = string
+  default = "2020.ractf.co.uk"
 }
 
-variable "RACTF_SHORTENER_DOMAIN" {
-    type = string
+variable "ractf_shortener_domain" {
+  type    = string
+  default = "ractf.xyz"
 }
 
-variable "CLOUDFLARE_EMAIL" {
-    type = string
+variable "cloudflare_email" {
+  type = string
 }
 
-variable "CLOUDFLARE_API_KEY" {
-    type = string
+variable "cloudflare_api_key" {
+  type = string
+}
+
+variable "shortener_endpoint" {
+  type        = string
+  description = "The IP of the host the RACTF shortener is running on"
+}
+
+variable "ractf_host" {
+  type        = string
+  description = "The IP of the host the RACTF backend is running on"
+}
+
+variable "mail_host" {
+  type        = string
+  description = "The IP of the host the RACTF email services are running on"
+}
+
+variable "google_token" {
+  type        = string
+  description = "Google verification token"
+}
+
+variable "github_token" {
+  type        = string
+  description = "GitHub verification token"
 }
