@@ -1,12 +1,12 @@
 module "frontend" {
   source          = "./modules/aws/frontend"
-  deployment_name = var.RACTF_DOMAIN
+  deployment_name = var.ractf_domain
   certificate     = module.certificate.arn
 }
 
 module "certificate" {
   source = "./modules/aws/certificate"
-  domain = var.RACTF_DOMAIN
+  domain = var.ractf_domain
   providers = {
     aws = aws.cert
   }
@@ -14,12 +14,12 @@ module "certificate" {
 
 module "static" {
   source      = "./modules/aws/static"
-  bucket_name = "files.${var.RACTF_DOMAIN}"
+  bucket_name = "files.${var.ractf_domain}"
 }
 
 module "dns" {
   source            = "./modules/cloudflare/dns"
-  domain            = var.RACTF_DOMAIN
+  domain            = var.ractf_domain
   backend_endpoint  = var.ractf_host
   mail_endpoint     = var.mail_host
   files_endpoint    = module.static.bucket_endpoint
@@ -30,6 +30,6 @@ module "dns" {
 
 module "shortener_dns" {
   source   = "./modules/cloudflare/shortener"
-  domain   = var.RACTF_SHORTENER_DOMAIN
+  domain   = var.ractf_shortener_domain
   endpoint = var.shortener_endpoint
 }

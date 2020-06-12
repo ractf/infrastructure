@@ -1,18 +1,18 @@
-variable "RACTF_DOMAIN" {
+variable "ractf_domain" {
   type    = string
   default = "2020.ractf.co.uk"
 }
 
-variable "RACTF_SHORTENER_DOMAIN" {
+variable "ractf_shortener_domain" {
   type    = string
   default = "ractf.xyz"
 }
 
-variable "CLOUDFLARE_EMAIL" {
+variable "cloudflare_email" {
   type = string
 }
 
-variable "CLOUDFLARE_API_KEY" {
+variable "cloudflare_api_key" {
   type = string
 }
 

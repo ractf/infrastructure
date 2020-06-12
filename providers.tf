@@ -11,6 +11,6 @@ provider "aws" {
 
 provider "cloudflare" {
   version = "~> 2.0"
-  email   = var.CLOUDFLARE_EMAIL
-  api_key = var.CLOUDFLARE_API_KEY
+  email   = var.cloudflare_email
+  api_key = var.cloudflare_api_key
 }
