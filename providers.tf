@@ -5,7 +5,7 @@ provider "aws" {
 
 provider "aws" {
   version = "~> 2.0"
-  alias = "cert"
+  alias   = "cert"
   region  = "us-east-1"
 }
 
