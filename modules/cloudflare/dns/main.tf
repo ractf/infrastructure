@@ -49,6 +49,7 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "mail" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
   value   = var.mail_endpoint
   type    = "MX"
   ttl     = 3600
@@ -65,6 +66,7 @@ resource "cloudflare_record" "github" {
 
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
   value   = "v=spf1 a mx ip4:${var.mail_endpoint} -all"
   type    = "TXT"
   ttl     = 3600
@@ -72,6 +74,7 @@ resource "cloudflare_record" "spf" {
 
 resource "cloudflare_record" "google-verify" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
   value   = var.google_token
   type    = "TXT"
   ttl     = 3600
