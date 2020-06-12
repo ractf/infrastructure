@@ -14,3 +14,8 @@ provider "cloudflare" {
   email   = var.cloudflare_email
   api_key = var.cloudflare_api_key
 }
+
+provider "github" {
+  token        = "${var.github_login_token}"
+  organization = "${var.github_organization}"
+}

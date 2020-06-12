@@ -40,3 +40,13 @@ variable "github_token" {
   type        = string
   description = "GitHub verification token"
 }
+
+variable "github_login_token" {
+  type = string
+  description = "Token to login to GitHub"
+}
+
+variable "github_organisation" {
+  type = string
+  description = "GitHub organisation name"
+}
