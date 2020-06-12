@@ -31,3 +31,12 @@ variable "mail_host" {
   description = "The IP of the host the RACTF email services are running on"
 }
 
+variable "google_token" {
+  type        = string
+  description = "Google verification token"
+}
+
+variable "github_token" {
+  type        = string
+  description = "GitHub verification token"
+}
