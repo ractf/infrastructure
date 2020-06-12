@@ -17,6 +17,12 @@ module "static" {
     bucket_name = "files.${var.RACTF_DOMAIN}"
 }
 
+module "frontend" {
+    source = "./modules/aws/frontend"
+    deployment_name = var.RACTF_DOMAIN
+    certificate = module.certificate.arn
+}
+
 module "dns" {
   source            = "./modules/cloudflare/dns"
   domain            = var.RACTF_DOMAIN
