@@ -14,6 +14,6 @@ resource "aws_s3_bucket_object" "static_homepage" {
   source = "${path.module}/index.html"
   etag   = filemd5("${path.module}/index.html")
   metadata = {
-    "Content-Type": "text/html"
+    "Content-Type" : "text/html"
   }
 }
