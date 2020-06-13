@@ -33,7 +33,7 @@ resource "cloudflare_record" "files" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "files"
   value   = var.files_endpoint
-  type    = "A"
+  type    = "CNAME"
   ttl     = 1
   proxied = true
 }
