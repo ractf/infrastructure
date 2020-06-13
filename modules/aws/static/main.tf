@@ -9,11 +9,9 @@ resource "aws_s3_bucket" "static_files" {
 }
 
 resource "aws_s3_bucket_object" "static_homepage" {
-  bucket = aws_s3_bucket.static_files.id
-  key    = "index.html"
-  source = "${path.module}/index.html"
-  etag   = filemd5("${path.module}/index.html")
-  metadata = {
-    "content-type" : "text/html"
-  }
+  bucket       = aws_s3_bucket.static_files.id
+  key          = "index.html"
+  source       = "${path.module}/index.html"
+  etag         = filemd5("${path.module}/index.html")
+  content_type = "text/html"
 }
