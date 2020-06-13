@@ -7,6 +7,6 @@ resource "cloudflare_record" "shortener" {
   name    = "@"
   value   = var.endpoint
   type    = "A"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
