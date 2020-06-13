@@ -7,7 +7,7 @@ resource "cloudflare_record" "homepage" {
   name    = "@"
   value   = var.backend_endpoint
   type    = "A"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
@@ -16,7 +16,7 @@ resource "cloudflare_record" "www" {
   name    = "www"
   value   = var.backend_endpoint
   type    = "A"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
@@ -25,7 +25,7 @@ resource "cloudflare_record" "api" {
   name    = "api"
   value   = var.backend_endpoint
   type    = "A"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
@@ -34,7 +34,7 @@ resource "cloudflare_record" "files" {
   name    = "files"
   value   = var.files_endpoint
   type    = "A"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
