@@ -11,25 +11,22 @@ data "cloudflare_ip_ranges" "cloudflare" {}
 
 resource "aws_s3_bucket_policy" "static_files_cloudflare" {
   bucket = aws_s3_bucket.static_files.id
-
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Id": "files-cloudflare-only",
-  "Statement": [
-    {
-      "Sid": "CloudFlareAllow",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "${aws_s3_bucket.static_files.arn}/*",
-      "Condition": {
-         "IpAddress": {"aws:SourceIp": ${jsonencode(data.cloudflare_ip_ranges.cloudflare.cidr_blocks)}
-      }
-    }
-  ]
+  policy = aws_iam_policy_document.static_files_cloudflare.json
 }
-POLICY
+
+data "aws_iam_policy_document" "static_files_cloudflare" {
+  policy_id = "static_files_cloudflare"
+  statement {
+    sid       = "CloudflareAllow"
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.static_files.arn}/*"]
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values   = [data.cloudflare_ip_ranges.cloudflare.cidr_blocks]
+    }
+  }
 }
 
 resource "aws_s3_bucket_object" "static_homepage" {
