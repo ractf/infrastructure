@@ -7,3 +7,8 @@ variable "certificate" {
   type        = string
   description = "The ARN of the certificate to use when deploying the frontend"
 }
+
+variable "deploy_account" {
+  type = string
+  description = "The ARN of the S3 deploy account"
+}

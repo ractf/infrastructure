@@ -15,9 +15,23 @@ data "aws_iam_policy_document" "frontend_distribution" {
     actions = ["s3:ListBucket"]
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.frontend_distribution.iam_arn]
+      identifiers = [aws_cloudfront_origin_access_identity.frontend_distribution.iam_arn, var.deploy_account]
     }
     resources = [aws_s3_bucket.frontend_bucket.arn]
+  }
+
+  statement {
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:PutObjectAcl",
+      "s3:DeleteObject"
+    ]
+    principals {
+      type        = "AWS"
+      identifiers = [var.deploy_account]
+    }
+    resources = ["${aws_s3_bucket.frontend_bucket.arn}/*"]
   }
 }
 
