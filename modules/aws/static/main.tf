@@ -24,7 +24,7 @@ resource "aws_s3_bucket_policy" "static_files_cloudflare" {
       "Action": "s3:GetObject",
       "Resource": "${aws_s3_bucket.static_files.arn}/*",
       "Condition": {
-         "IpAddress": {"aws:SourceIp": ['${join("', '", data.cloudflare_ip_ranges.cloudflare.cidr_blocks)}']}
+         "IpAddress": {"aws:SourceIp": ${jsonencode(data.cloudflare_ip_ranges.cloudflare.cidr_blocks)}
       }
     }
   ]
