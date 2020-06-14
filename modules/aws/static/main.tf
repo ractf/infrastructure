@@ -1,10 +1,31 @@
 resource "aws_s3_bucket" "static_files" {
   bucket = var.bucket_name
-  acl    = "public-read"
 
   website {
     index_document = "index.html"
     error_document = "index.html"
+  }
+}
+
+data "cloudflare_ip_ranges" "cloudflare" {}
+
+resource "aws_s3_bucket_policy" "static_files_cloudflare" {
+  bucket = aws_s3_bucket.static_files.id
+  policy = data.aws_iam_policy_document.static_files_cloudflare.json
+}
+
+data "aws_iam_policy_document" "static_files_cloudflare" {
+  policy_id = "static_files_cloudflare"
+  statement {
+    sid       = "CloudflareAllow"
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.static_files.arn}/*"]
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values   = data.cloudflare_ip_ranges.cloudflare.cidr_blocks
+    }
   }
 }
 
