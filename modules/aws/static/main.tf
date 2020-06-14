@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "static_files" {
 data "cloudflare_ip_ranges" "cloudflare" {}
 
 resource "aws_s3_bucket_policy" "static_files_cloudflare" {
-  bucket = "${aws_s3_bucket.static_files.id}"
+  bucket = aws_s3_bucket.static_files.id
 
   policy = <<POLICY
 {
