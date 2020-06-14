@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "static_files_cloudflare" {
     effect    = "Allow"
     actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.static_files.arn}/*"]
-    principals = {
+    principals {
       type = "*"
       identifiers = ["*"]
     }
