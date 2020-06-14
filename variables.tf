@@ -1,11 +1,13 @@
 variable "ractf_domain" {
-  type    = string
-  default = "2020.ractf.co.uk"
+  type = string
+}
+
+variable "ractf_frontend_domain" {
+  type = string
 }
 
 variable "ractf_shortener_domain" {
-  type    = string
-  default = "ractf.xyz"
+  type = string
 }
 
 variable "cloudflare_email" {
