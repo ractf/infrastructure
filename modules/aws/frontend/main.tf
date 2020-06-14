@@ -97,4 +97,3 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     response_page_path = "/index.html"
   }
 }
-
