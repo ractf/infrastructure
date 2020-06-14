@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "frontend_distribution" {
       type        = "AWS"
       identifiers = [var.deploy_account]
     }
-    resources = [aws_s3_bucket.frontend_bucket.arn]
+    resources = ["${aws_s3_bucket.frontend_bucket.arn}/*"]
   }
 }
 
