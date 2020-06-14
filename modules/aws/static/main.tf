@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "static_files_cloudflare" {
     condition {
       test     = "IpAddress"
       variable = "aws:SourceIp"
-      values   = [data.cloudflare_ip_ranges.cloudflare.cidr_blocks]
+      values   = data.cloudflare_ip_ranges.cloudflare.cidr_blocks
     }
   }
 }
