@@ -10,6 +10,15 @@ data "aws_iam_policy_document" "frontend_distribution" {
     }
     resources = ["${aws_s3_bucket.frontend_bucket.arn}/*"]
   }
+
+  statement {
+    actions = ["s3:ListBucket"]
+    principals {
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.frontend_distribution.iam_arn]
+    }
+    resources = [aws_s3_bucket.frontend_bucket.arn]
+  }
 }
 
 resource "aws_s3_bucket_policy" "frontend_distribution" {
