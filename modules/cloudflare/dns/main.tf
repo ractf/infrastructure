@@ -29,6 +29,15 @@ resource "cloudflare_record" "api" {
   proxied = true
 }
 
+resource "cloudflare_record" "staging" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "api"
+  value   = var.staging_endpoint
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "files" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "files"
@@ -47,6 +56,15 @@ resource "cloudflare_record" "frontend" {
   proxied = false
 }
 
+resource "cloudflare_record" "status" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "status"
+  value   = var.status_endpoint
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "mail" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
@@ -63,6 +81,13 @@ resource "cloudflare_record" "github" {
   ttl     = 3600
 }
 
+resource "cloudflare_record" "github_secondary" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "_github-challenge-ractf"
+  value   = var.github_token
+  type    = "TXT"
+  ttl     = 3600
+}
 
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
@@ -76,6 +101,22 @@ resource "cloudflare_record" "google-verify" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
   value   = var.google_token
+  type    = "TXT"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "production-h1" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
+  value   = var.h1_token_production
+  type    = "TXT"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "staging-h1" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "staging"
+  value   = var.h1_token_staging
   type    = "TXT"
   ttl     = 3600
 }
