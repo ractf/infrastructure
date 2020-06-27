@@ -32,3 +32,23 @@ variable "google_token" {
   type        = string
   description = "The verification token for Google"
 }
+
+variable "staging_endpoint" {
+  type        = string
+  description = "The IP of the staging server"
+}
+
+variable "status_endpoint" {
+  type        = string
+  description = "The DNS name of the statuspage"
+}
+
+variable "h1_token_production" {
+  type        = string
+  description = "HackerOne verification token for Production"
+}
+
+variable "h1_token_staging" {
+  type        = string
+  description = "HackerOne verification token for Staging"
+}
