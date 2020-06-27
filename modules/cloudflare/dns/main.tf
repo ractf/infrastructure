@@ -52,7 +52,6 @@ resource "cloudflare_record" "frontend" {
   name    = "2020"
   value   = var.frontend_endpoint
   type    = "CNAME"
-  ttl     = 3600
   proxied = false
 }
 
@@ -70,7 +69,6 @@ resource "cloudflare_record" "mail" {
   name    = var.domain
   value   = var.mail_endpoint
   type    = "MX"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "github" {
@@ -78,7 +76,6 @@ resource "cloudflare_record" "github" {
   name    = "_github-challenge"
   value   = var.github_token
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "github_secondary" {
@@ -86,7 +83,6 @@ resource "cloudflare_record" "github_secondary" {
   name    = "_github-challenge-ractf"
   value   = var.github_token
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "spf" {
@@ -94,7 +90,6 @@ resource "cloudflare_record" "spf" {
   name    = var.domain
   value   = "v=spf1 a mx ip4:${var.mail_endpoint} -all"
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "google-verify" {
@@ -102,7 +97,6 @@ resource "cloudflare_record" "google-verify" {
   name    = var.domain
   value   = var.google_token
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "production-h1" {
@@ -110,7 +104,6 @@ resource "cloudflare_record" "production-h1" {
   name    = var.domain
   value   = var.h1_token_production
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "staging-h1" {
@@ -118,5 +111,4 @@ resource "cloudflare_record" "staging-h1" {
   name    = "staging"
   value   = var.h1_token_staging
   type    = "TXT"
-  ttl     = 3600
 }
