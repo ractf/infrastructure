@@ -11,7 +11,7 @@ resource "cloudflare_record" "shortener" {
   proxied = true
 }
 
-resource "cloudflare_record" "shortener" {
+resource "cloudflare_record" "shortener-www" {
   zone_id = cloudflare_zone.ractf-shortener-domain.id
   name    = "www"
   value   = var.endpoint
