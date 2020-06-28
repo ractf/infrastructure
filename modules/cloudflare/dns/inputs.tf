@@ -57,3 +57,8 @@ variable "h1_token_staging" {
   type        = string
   description = "HackerOne verification token for Staging"
 }
+
+variable "ses_dkim_records" {
+  type        = string
+  description = "DKIM keys from SES"
+}
