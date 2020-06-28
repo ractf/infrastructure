@@ -61,7 +61,7 @@ resource "cloudflare_record" "status" {
   value   = var.status_endpoint
   type    = "CNAME"
   ttl     = 1
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "mail" {
