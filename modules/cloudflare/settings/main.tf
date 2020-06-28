@@ -11,6 +11,12 @@ resource "cloudflare_zone_settings_override" "settings" {
     zero_rtt                 = "on"
     websockets               = "on"
     opportunistic_onion      = "on"
+    rocket_loader            = "on"
+    minify {
+      css = "on"
+      js = "on"
+      html = "on"
+    }
   }
 }
 
