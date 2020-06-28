@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "ractf_backend" {
 resource "aws_ses_identity_policy" "ractf_backend" {
   identity = aws_ses_domain_identity.ractf.arn
   name     = "ractf_backend_mail"
-  policy   = "${data.aws_iam_policy_document.ractf_backend.json}"
+  policy   = data.aws_iam_policy_document.ractf_backend.json
 }
 
 data "aws_iam_user" "backend_ses" {
