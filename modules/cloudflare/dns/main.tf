@@ -31,7 +31,7 @@ resource "cloudflare_record" "api" {
 
 resource "cloudflare_record" "staging" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "api"
+  name    = "staging"
   value   = var.staging_endpoint
   type    = "A"
   ttl     = 1
