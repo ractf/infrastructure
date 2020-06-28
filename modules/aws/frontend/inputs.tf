@@ -9,6 +9,6 @@ variable "certificate" {
 }
 
 variable "deploy_account" {
-  type = string
+  type        = string
   description = "The ARN of the S3 deploy account"
 }
