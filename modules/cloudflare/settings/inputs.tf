@@ -1,6 +1,6 @@
-variable "domain" {
-  type        = string
-  description = "The domain being edited"
+variable "zone" {
+  type        = number
+  description = "The zone ID being edited"
 }
 
 variable "shortener" {

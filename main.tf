@@ -41,11 +41,11 @@ module "shortener_dns" {
 
 module "dns_settings" {
   source = "./modules/cloudflare/settings"
-  domain = var.ractf_domain
+  zone = module.dns.zone
 }
 
 module "shortener_settings" {
   source    = "./modules/cloudflare/settings"
-  domain    = var.ractf_shortener_domain
+  domain    = module.shortener_dns.zone
   shortener = true
 }
