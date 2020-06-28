@@ -59,6 +59,6 @@ variable "h1_token_staging" {
 }
 
 variable "ses_dkim_records" {
-  type        = string
+  type        = list(string)
   description = "DKIM keys from SES"
 }
