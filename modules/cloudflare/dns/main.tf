@@ -88,7 +88,7 @@ resource "cloudflare_record" "github_secondary" {
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
-  value   = "v=spf1 a mx ip4:${var.mail_endpoint} -all"
+  value   = "v=spf1 a mx a:${var.mail_endpoint} -all"
   type    = "TXT"
 }
 
