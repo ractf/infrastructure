@@ -1,9 +1,5 @@
-resource "cloudflare_zone" "domain" {
-  zone = var.domain
-}
-
 resource "cloudflare_zone_settings_override" "settings" {
-  zone_id = cloudflare_zone.domain.id
+  zone_id = var.zone
   settings {
     ssl                      = var.shortener ? "flexible" : "full"
     always_use_https         = "on"
@@ -20,7 +16,7 @@ resource "cloudflare_zone_settings_override" "settings" {
 }
 
 resource "cloudflare_page_rule" "files_ssl" {
-  zone_id  = cloudflare_zone.domain.id
+  zone_id  = var.zone
   target   = "files.${var.domain}/*"
   priority = 1
 
