@@ -29,6 +29,15 @@ resource "cloudflare_record" "api" {
   proxied = true
 }
 
+resource "cloudflare_record" "staging" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "staging"
+  value   = var.staging_endpoint
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "files" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "files"
@@ -43,8 +52,16 @@ resource "cloudflare_record" "frontend" {
   name    = "2020"
   value   = var.frontend_endpoint
   type    = "CNAME"
-  ttl     = 3600
   proxied = false
+}
+
+resource "cloudflare_record" "status" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "status"
+  value   = var.status_endpoint
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "mail" {
@@ -52,7 +69,6 @@ resource "cloudflare_record" "mail" {
   name    = var.domain
   value   = var.mail_endpoint
   type    = "MX"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "github" {
@@ -60,16 +76,20 @@ resource "cloudflare_record" "github" {
   name    = "_github-challenge"
   value   = var.github_token
   type    = "TXT"
-  ttl     = 3600
 }
 
+resource "cloudflare_record" "github_secondary" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "_github-challenge-ractf"
+  value   = var.github_token
+  type    = "TXT"
+}
 
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
   value   = "v=spf1 a mx ip4:${var.mail_endpoint} -all"
   type    = "TXT"
-  ttl     = 3600
 }
 
 resource "cloudflare_record" "google-verify" {
@@ -77,7 +97,20 @@ resource "cloudflare_record" "google-verify" {
   name    = var.domain
   value   = var.google_token
   type    = "TXT"
-  ttl     = 3600
+}
+
+resource "cloudflare_record" "production-h1" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
+  value   = var.h1_token_production
+  type    = "TXT"
+}
+
+resource "cloudflare_record" "staging-h1" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "staging"
+  value   = var.h1_token_staging
+  type    = "TXT"
 }
 
 resource "cloudflare_record" "ses-verify" {
