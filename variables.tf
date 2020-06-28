@@ -10,6 +10,11 @@ variable "ractf_shortener_domain" {
   type = string
 }
 
+variable "aws_region" {
+  type        = string
+  description = "Region to deploy AWS resources to"
+}
+
 variable "cloudflare_email" {
   type = string
 }
