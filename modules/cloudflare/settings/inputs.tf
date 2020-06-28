@@ -1,5 +1,5 @@
 variable "zone" {
-  type        = number
+  type        = string
   description = "The zone ID being edited"
 }
 
