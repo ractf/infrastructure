@@ -5,7 +5,6 @@ resource "cloudflare_zone_settings_override" "settings" {
     always_use_https         = "on"
     opportunistic_encryption = "on"
     automatic_https_rewrites = "on"
-    tls_1_3                  = "on"
     brotli                   = "on"
     http3                    = "on"
     zero_rtt                 = "on"
