@@ -32,3 +32,8 @@ variable "google_token" {
   type        = string
   description = "The verification token for Google"
 }
+
+variable "ses_token" {
+  type        = string
+  description = "The verification token for Amazon SES"
+}

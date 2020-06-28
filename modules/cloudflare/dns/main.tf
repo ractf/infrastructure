@@ -79,3 +79,10 @@ resource "cloudflare_record" "google-verify" {
   type    = "TXT"
   ttl     = 3600
 }
+
+resource "cloudflare_record" "ses-verify" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
+  value   = varses_token
+  type    = "TXT"
+}
