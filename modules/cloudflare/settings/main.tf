@@ -7,7 +7,6 @@ resource "cloudflare_zone_settings_override" "settings" {
     automatic_https_rewrites = "on"
     tls_1_3                  = "on"
     brotli                   = "on"
-    http2                    = "on"
     http3                    = "on"
     zero_rtt                 = "on"
     websockets               = "on"
