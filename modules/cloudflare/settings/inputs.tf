@@ -6,4 +6,5 @@ variable "domain" {
 variable "shortener" {
   type        = bool
   description = "Whether the domain is a shortener"
+  default     = false
 }
