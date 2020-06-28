@@ -3,5 +3,5 @@ resource "aws_ses_domain_identity" "ractf" {
 }
 
 resource "aws_ses_domain_dkim" "ractf" {
-  domain = "${aws_ses_domain_identity.ractf.domain}"
+  domain = aws_ses_domain_identity.ractf.domain
 }
