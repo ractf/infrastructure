@@ -24,6 +24,7 @@ resource "aws_ses_identity_policy" "ractf_backend" {
   policy   = data.aws_iam_policy_document.ractf_backend.json
 }
 
-data "aws_iam_user" "backend_ses" {
-  user_name = "backend_ses_user"
+resource "aws_iam_user" "backend_ses" {
+  name = "backend_ses_user"
+  path = "/system/"
 }
