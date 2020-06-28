@@ -41,7 +41,7 @@ module "shortener_dns" {
 
 module "dns_settings" {
   source = "./modules/cloudflare/settings"
-  zone = module.dns.zone
+  zone   = module.dns.zone
 }
 
 module "shortener_settings" {
