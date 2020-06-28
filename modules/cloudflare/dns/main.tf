@@ -67,8 +67,8 @@ resource "cloudflare_record" "status" {
 resource "cloudflare_record" "ses_dkim" {
   count   = 3
   zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "${element(var.ses_dkim_records.dkim_tokens, count.index)}._domainkey"
-  value   = ["${element(var.ses_dkim_records.dkim_tokens, count.index)}.dkim.amazonses.com"]
+  name    = "${element(var.ses_dkim_records, count.index)}._domainkey"
+  value   = ["${element(var.ses_dkim_records, count.index)}.dkim.amazonses.com"]
   type    = "CNAME"
   ttl     = 1
   proxied = false
