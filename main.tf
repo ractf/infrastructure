@@ -19,7 +19,7 @@ module "static" {
 }
 
 module "ses" {
-  source      = "./modules/aws/ses"
+  source = "./modules/aws/ses"
   domain = var.ractf_domain
 }
 
@@ -36,7 +36,7 @@ module "dns" {
   status_endpoint     = var.status_endpoint
   h1_token_production = var.h1_token_production
   h1_token_staging    = var.h1_token_staging
-  ses_token         = module.ses.domain_token
+  ses_token           = module.ses.domain_token
 }
 
 module "shortener_dns" {
