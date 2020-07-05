@@ -129,3 +129,10 @@ resource "cloudflare_record" "ses-verify" {
   value   = var.ses_token
   type    = "TXT"
 }
+
+resource "cloudflare_record" "dkim" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "dkim._domainkey"
+  value   = var.dkim_key
+  type    = "TXT"
+}

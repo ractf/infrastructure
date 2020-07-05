@@ -38,6 +38,7 @@ module "dns" {
   h1_token_staging    = var.h1_token_staging
   ses_token           = module.ses.domain_token
   ses_dkim_records    = module.ses.dkim_records
+  dkim_key            = var.dkim_key
 }
 
 module "shortener_dns" {

@@ -72,3 +72,8 @@ variable "h1_token_staging" {
   type        = string
   description = "HackerOne verification token for Staging"
 }
+
+variable "dkim_key" {
+  type        = string
+  description = "DKIM token from mail server"
+}

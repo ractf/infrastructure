@@ -62,3 +62,8 @@ variable "ses_dkim_records" {
   type        = list(string)
   description = "DKIM keys from SES"
 }
+
+variable "dkim_key" {
+  type        = string
+  description = "DKIM token from mail server"
+}
