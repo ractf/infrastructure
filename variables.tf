@@ -10,6 +10,11 @@ variable "ractf_shortener_domain" {
   type = string
 }
 
+variable "aws_region" {
+  type        = string
+  description = "Region to deploy AWS resources to"
+}
+
 variable "cloudflare_email" {
   type = string
 }
@@ -66,4 +71,9 @@ variable "h1_token_production" {
 variable "h1_token_staging" {
   type        = string
   description = "HackerOne verification token for Staging"
+}
+
+variable "dkim_key" {
+  type        = string
+  description = "DKIM token from mail server"
 }

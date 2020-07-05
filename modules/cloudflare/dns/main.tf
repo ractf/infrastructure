@@ -64,6 +64,16 @@ resource "cloudflare_record" "status" {
   proxied = false
 }
 
+resource "cloudflare_record" "ses_dkim" {
+  count   = 3
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "${element(var.ses_dkim_records, count.index)}._domainkey"
+  value   = "${element(var.ses_dkim_records, count.index)}.dkim.amazonses.com"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = false
+}
+
 resource "cloudflare_record" "mail" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
@@ -88,7 +98,7 @@ resource "cloudflare_record" "github_secondary" {
 resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = var.domain
-  value   = "v=spf1 a mx a:${var.mail_endpoint} -all"
+  value   = "v=spf1 a mx a:${var.mail_endpoint} include:amazonses.com -all"
   type    = "TXT"
 }
 
@@ -110,5 +120,19 @@ resource "cloudflare_record" "staging-h1" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "staging"
   value   = var.h1_token_staging
+  type    = "TXT"
+}
+
+resource "cloudflare_record" "ses-verify" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = var.domain
+  value   = var.ses_token
+  type    = "TXT"
+}
+
+resource "cloudflare_record" "dkim" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "dkim._domainkey"
+  value   = var.dkim_key
   type    = "TXT"
 }

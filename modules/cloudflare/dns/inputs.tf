@@ -33,6 +33,11 @@ variable "google_token" {
   description = "The verification token for Google"
 }
 
+variable "ses_token" {
+  type        = string
+  description = "The verification token for Amazon SES"
+}
+
 variable "staging_endpoint" {
   type        = string
   description = "The IP of the staging server"
@@ -51,4 +56,14 @@ variable "h1_token_production" {
 variable "h1_token_staging" {
   type        = string
   description = "HackerOne verification token for Staging"
+}
+
+variable "ses_dkim_records" {
+  type        = list(string)
+  description = "DKIM keys from SES"
+}
+
+variable "dkim_key" {
+  type        = string
+  description = "DKIM token from mail server"
 }
