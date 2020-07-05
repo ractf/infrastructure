@@ -46,3 +46,16 @@ module "shortener_dns" {
   domain   = var.ractf_shortener_domain
   endpoint = var.shortener_endpoint
 }
+
+module "dns_settings" {
+  source = "./modules/cloudflare/settings"
+  zone   = module.dns.zone
+  domain = var.ractf_domain
+}
+
+module "shortener_settings" {
+  source    = "./modules/cloudflare/settings"
+  zone      = module.shortener_dns.zone
+  domain    = var.ractf_shortener_domain
+  shortener = true
+}
