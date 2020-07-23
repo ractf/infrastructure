@@ -5,9 +5,24 @@ module "frontend" {
   deploy_account  = var.deploy_account
 }
 
+module "elite-frontend" {
+  source          = "./modules/aws/frontend"
+  deployment_name = var.ractf_elite_domain
+  certificate     = module.elite-certificate.arn
+  deploy_account  = var.deploy_account
+}
+
 module "certificate" {
   source = "./modules/aws/certificate"
   domain = var.ractf_frontend_domain
+  providers = {
+    aws = aws.cert
+  }
+}
+
+module "elite-certificate" {
+  source = "./modules/aws/certificate"
+  domain = var.ractf_elite_domain
   providers = {
     aws = aws.cert
   }
