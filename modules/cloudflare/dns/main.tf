@@ -75,7 +75,7 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "elite-frontend" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "2020"
+  name    = "elite"
   value   = var.elite_frontend_endpoint
   type    = "CNAME"
   proxied = false
