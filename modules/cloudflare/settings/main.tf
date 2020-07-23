@@ -12,8 +12,8 @@ resource "cloudflare_zone_settings_override" "settings" {
     opportunistic_onion      = "on"
     rocket_loader            = "on"
     minify {
-      css = "on"
-      js = "on"
+      css  = "on"
+      js   = "on"
       html = "on"
     }
   }
