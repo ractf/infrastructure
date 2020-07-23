@@ -56,7 +56,7 @@ resource "cloudflare_record" "files" {
   proxied = true
 }
 
-resource "cloudflare_record" "elitefiles" {
+resource "cloudflare_record" "elite-files" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "files"
   value   = var.elite_files_endpoint
