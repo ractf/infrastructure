@@ -8,6 +8,11 @@ variable "backend_endpoint" {
   description = "The IP of the host the RACTF backend is running on"
 }
 
+variable "elite_backend_endpoint" {
+  type        = string
+  description = "The IP of the host the RACTF Elite backend is running on"
+}
+
 variable "mail_endpoint" {
   type        = string
   description = "The IP of the host the RACTF mail service is running on"
@@ -18,9 +23,19 @@ variable "files_endpoint" {
   description = "The domain of the S3 files bucket hosting challenges"
 }
 
+variable "elite_files_endpoint" {
+  type        = string
+  description = "The domain of the S3 files bucket hosting Elite challenges"
+}
+
 variable "frontend_endpoint" {
   type        = string
   description = "The domain of the Cloudfront distribution with the RACTF frontend"
+}
+
+variable "elite_frontend_endpoint" {
+  type        = string
+  description = "The domain of the Cloudfront distribution with the RACTF Elite frontend"
 }
 
 variable "github_token" {
