@@ -29,6 +29,15 @@ resource "cloudflare_record" "api" {
   proxied = true
 }
 
+resource "cloudflare_record" "elite-api" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "elite-api"
+  value   = var.elite_backend_endpoint
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "staging" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "staging"
@@ -47,10 +56,27 @@ resource "cloudflare_record" "files" {
   proxied = true
 }
 
+resource "cloudflare_record" "elitefiles" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "files"
+  value   = var.elite_files_endpoint
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "frontend" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "2020"
   value   = var.frontend_endpoint
+  type    = "CNAME"
+  proxied = false
+}
+
+resource "cloudflare_record" "elite-frontend" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "2020"
+  value   = var.elite_frontend_endpoint
   type    = "CNAME"
   proxied = false
 }
