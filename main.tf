@@ -35,7 +35,7 @@ module "static" {
 
 module "elite-static" {
   source      = "./modules/aws/static"
-  bucket_name = "files-elite.${var.ractf_domain}"
+  bucket_name = "elite-files.${var.ractf_domain}"
 }
 
 module "ses" {
