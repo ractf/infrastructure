@@ -12,8 +12,8 @@ resource "cloudflare_zone_settings_override" "settings" {
     opportunistic_onion      = "on"
     rocket_loader            = "on"
     minify {
-      css = "on"
-      js = "on"
+      css  = "on"
+      js   = "on"
       html = "on"
     }
   }
@@ -21,7 +21,7 @@ resource "cloudflare_zone_settings_override" "settings" {
 
 resource "cloudflare_page_rule" "files_ssl" {
   zone_id  = var.zone
-  target   = "files.${var.domain}/*"
+  target   = "files*.${var.domain}/*"
   priority = 1
 
   actions {
