@@ -18,6 +18,11 @@ module "static" {
   bucket_name = "files.${var.ractf_domain}"
 }
 
+module "elite-static" {
+  source      = "./modules/aws/static"
+  bucket_name = "files-elite.${var.ractf_domain}"
+}
+
 module "ses" {
   source = "./modules/aws/ses"
   domain = var.ractf_domain
