@@ -47,9 +47,12 @@ module "dns" {
   source              = "./modules/cloudflare/dns"
   domain              = var.ractf_domain
   backend_endpoint    = var.ractf_host
+  elite_backend_endpoint    = var.ractf_host
   mail_endpoint       = var.mail_host
   files_endpoint      = module.static.bucket_endpoint
+  elite_files_endpoint      = module.elite-static.bucket_endpoint
   frontend_endpoint   = module.frontend.endpoint
+  elite_frontend_endpoint   = module.elite-frontend.endpoint
   github_token        = var.github_token
   google_token        = var.google_token
   staging_endpoint    = var.staging_endpoint
