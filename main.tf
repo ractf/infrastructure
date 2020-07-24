@@ -1,5 +1,5 @@
 module "homepage" {
-  source          = "./modules/aws/frontend"
+  source          = "./modules/ractf/modules/frontend"
   deployment_name = "www"
   certificate     = module.homepage-certificate.arn
   deploy_account  = var.deploy_account
@@ -20,7 +20,7 @@ module "elite" {
 }
 
 module "ses" {
-  source = "./modules/aws/ses"
+  source = "./modules/support/ses"
   domain = var.ractf_domain
 }
 
