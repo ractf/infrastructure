@@ -19,30 +19,6 @@ module "elite-frontend" {
   deploy_account  = var.deploy_account
 }
 
-module "certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_frontend_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "homepage-certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "elite-certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_elite_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
 module "static" {
   source      = "./modules/aws/static"
   bucket_name = "files.${var.ractf_domain}"

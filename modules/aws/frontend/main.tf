@@ -68,7 +68,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   comment             = "RACTF Frontend"
   default_root_object = "index.html"
 
-  aliases = [var.deployment_name]
+  aliases = ["${var.deployment_name}.ractf.co.uk"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -98,6 +98,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
+    Deployment = var.deployment_name
   }
 
   viewer_certificate {
@@ -111,4 +112,9 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     response_code      = "200"
     response_page_path = "/index.html"
   }
+}
+
+module "certificate" {
+  source = "./modules/certificate"
+  domain = "${var.deployment_name}.ractf.co.uk"
 }
