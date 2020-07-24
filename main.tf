@@ -1,3 +1,10 @@
+module "homepage" {
+  source          = "./modules/aws/frontend"
+  deployment_name = var.ractf_domain
+  certificate     = module.homepage-certificate.arn
+  deploy_account  = var.deploy_account
+}
+
 module "frontend" {
   source          = "./modules/aws/frontend"
   deployment_name = var.ractf_frontend_domain
@@ -15,6 +22,14 @@ module "elite-frontend" {
 module "certificate" {
   source = "./modules/aws/certificate"
   domain = var.ractf_frontend_domain
+  providers = {
+    aws = aws.cert
+  }
+}
+
+module "homepage-certificate" {
+  source = "./modules/aws/certificate"
+  domain = var.ractf_domain
   providers = {
     aws = aws.cert
   }
@@ -46,6 +61,7 @@ module "ses" {
 module "dns" {
   source                  = "./modules/cloudflare/dns"
   domain                  = var.ractf_domain
+  homepage_endpoint       = module.homepage.endpoint
   backend_endpoint        = var.ractf_host
   elite_backend_endpoint  = var.ractf_host
   mail_endpoint           = var.mail_host

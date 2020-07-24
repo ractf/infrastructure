@@ -3,6 +3,11 @@ variable "domain" {
   description = "The domain RACTF is being deployed on"
 }
 
+variable "homepage_endpoint" {
+  type        = string
+  description = "The IP of the host the RACTF backend is running on"
+}
+
 variable "backend_endpoint" {
   type        = string
   description = "The IP of the host the RACTF backend is running on"
