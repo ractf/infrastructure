@@ -40,3 +40,8 @@ resource "aws_s3_bucket_object" "static_homepage" {
   etag         = filemd5("${path.module}/index.html")
   content_type = "text/html"
 }
+
+module "dns" {
+  source = "./modules/dns"
+  deployment_name = var.deployment_name  
+}

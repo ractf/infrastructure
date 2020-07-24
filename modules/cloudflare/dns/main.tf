@@ -47,24 +47,6 @@ resource "cloudflare_record" "staging" {
   proxied = true
 }
 
-resource "cloudflare_record" "files" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "files"
-  value   = var.files_endpoint
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "elite-files" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "elite-files"
-  value   = var.elite_files_endpoint
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 resource "cloudflare_record" "status" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "status"
