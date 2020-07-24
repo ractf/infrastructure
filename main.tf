@@ -5,7 +5,7 @@ module "homepage" {
   deploy_account  = var.deploy_account
 }
 
-module "2020" {
+module "r2020" {
   source = "./modules/ractf"
   deployment_name = "2020"
   root_domain = var.ractf_domain
