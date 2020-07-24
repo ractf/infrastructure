@@ -5,28 +5,18 @@ module "homepage" {
   deploy_account  = var.deploy_account
 }
 
-module "frontend" {
-  source          = "./modules/aws/frontend"
+module "2020" {
+  source = "./modules/ractf"
   deployment_name = "2020"
-  certificate     = module.certificate.arn
-  deploy_account  = var.deploy_account
+  root_domain = var.ractf_domain
+  backend_endpoint = var.ractf_host
 }
 
-module "elite-frontend" {
-  source          = "./modules/aws/frontend"
+module "elite" {
+  source = "./modules/ractf"
   deployment_name = "elite"
-  certificate     = module.elite-certificate.arn
-  deploy_account  = var.deploy_account
-}
-
-module "static" {
-  source      = "./modules/aws/static"
-  bucket_name = "files.${var.ractf_domain}"
-}
-
-module "elite-static" {
-  source      = "./modules/aws/static"
-  bucket_name = "elite-files.${var.ractf_domain}"
+  root_domain = var.ractf_domain
+  backend_endpoint = var.ractf_host
 }
 
 module "ses" {
@@ -35,13 +25,9 @@ module "ses" {
 }
 
 module "dns" {
-  source                  = "./modules/cloudflare/dns"
+  source                  = "./modules/support/dns"
   domain                  = var.ractf_domain
-  backend_endpoint        = var.ractf_host
-  elite_backend_endpoint  = var.ractf_host
   mail_endpoint           = var.mail_host
-  files_endpoint          = module.static.bucket_endpoint
-  elite_files_endpoint    = module.elite-static.bucket_endpoint
   github_token            = var.github_token
   google_token            = var.google_token
   staging_endpoint        = var.staging_endpoint
@@ -54,19 +40,19 @@ module "dns" {
 }
 
 module "shortener_dns" {
-  source   = "./modules/cloudflare/shortener"
+  source   = "./modules/support/shortener"
   domain   = var.ractf_shortener_domain
   endpoint = var.shortener_endpoint
 }
 
 module "dns_settings" {
-  source = "./modules/cloudflare/settings"
+  source = "./modules/support/settings"
   zone   = module.dns.zone
   domain = var.ractf_domain
 }
 
 module "shortener_settings" {
-  source    = "./modules/cloudflare/settings"
+  source    = "./modules/support/settings"
   zone      = module.shortener_dns.zone
   domain    = var.ractf_shortener_domain
   shortener = true

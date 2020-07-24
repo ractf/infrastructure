@@ -41,7 +41,7 @@ resource "aws_s3_bucket_policy" "frontend_distribution" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = var.deployment_name
+  bucket = "${var.deployment_name}.${var.root_domain}"
   acl    = "private"
 
   tags = {
@@ -68,7 +68,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   comment             = "RACTF Frontend"
   default_root_object = "index.html"
 
-  aliases = ["${var.deployment_name}.ractf.co.uk"]
+  aliases = ["${var.deployment_name}.${var.root_domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -102,7 +102,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = var.certificate
+    acm_certificate_arn      = module.certificate.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2018"
   }
@@ -116,7 +116,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
 module "certificate" {
   source = "./modules/certificate"
-  domain = "${var.deployment_name}.ractf.co.uk"
+  domain = "${var.deployment_name}.${var.root_domain}"
 }
 
 module "dns" {
