@@ -5,7 +5,7 @@ resource "cloudflare_zone" "ractf-root-domain" {
 resource "cloudflare_record" "homepage" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "@"
-  value   = var.backend_endpoint
+  value   = var.homepage_endpoint
   type    = "A"
   ttl     = 1
   proxied = true
