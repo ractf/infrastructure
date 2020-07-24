@@ -6,7 +6,7 @@ resource "cloudflare_record" "homepage" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "@"
   value   = var.homepage_endpoint
-  type    = "A"
+  type    = "CNAME"
   ttl     = 1
   proxied = false
 }
