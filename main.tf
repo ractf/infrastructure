@@ -1,20 +1,20 @@
 module "homepage" {
   source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_domain
+  deployment_name = "www"
   certificate     = module.homepage-certificate.arn
   deploy_account  = var.deploy_account
 }
 
 module "frontend" {
   source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_frontend_domain
+  deployment_name = "2020"
   certificate     = module.certificate.arn
   deploy_account  = var.deploy_account
 }
 
 module "elite-frontend" {
   source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_elite_domain
+  deployment_name = "elite"
   certificate     = module.elite-certificate.arn
   deploy_account  = var.deploy_account
 }
@@ -37,14 +37,11 @@ module "ses" {
 module "dns" {
   source                  = "./modules/cloudflare/dns"
   domain                  = var.ractf_domain
-  homepage_endpoint       = module.homepage.endpoint
   backend_endpoint        = var.ractf_host
   elite_backend_endpoint  = var.ractf_host
   mail_endpoint           = var.mail_host
   files_endpoint          = module.static.bucket_endpoint
   elite_files_endpoint    = module.elite-static.bucket_endpoint
-  frontend_endpoint       = module.frontend.endpoint
-  elite_frontend_endpoint = module.elite-frontend.endpoint
   github_token            = var.github_token
   google_token            = var.google_token
   staging_endpoint        = var.staging_endpoint
