@@ -118,3 +118,9 @@ module "certificate" {
   source = "./modules/certificate"
   domain = "${var.deployment_name}.ractf.co.uk"
 }
+
+module "dns" {
+  source = "./modules/dns"
+  endpoint = aws_cloudfront_distribution.frontend_distribution.domain_name
+  deployment_name = var.deployment_name
+}

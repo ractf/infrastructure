@@ -65,22 +65,6 @@ resource "cloudflare_record" "elite-files" {
   proxied = true
 }
 
-resource "cloudflare_record" "frontend" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "2020"
-  value   = var.frontend_endpoint
-  type    = "CNAME"
-  proxied = false
-}
-
-resource "cloudflare_record" "elite-frontend" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "elite"
-  value   = var.elite_frontend_endpoint
-  type    = "CNAME"
-  proxied = false
-}
-
 resource "cloudflare_record" "status" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "status"
