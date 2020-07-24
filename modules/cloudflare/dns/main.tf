@@ -8,7 +8,7 @@ resource "cloudflare_record" "homepage" {
   value   = var.homepage_endpoint
   type    = "A"
   ttl     = 1
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "www" {
