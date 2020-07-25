@@ -6,18 +6,10 @@ module "homepage" {
   zone            = module.dns.zone
 }
 
-module "r2020" {
+module "ractf" {
+  count            = length(var.deployments)
   source           = "./modules/ractf"
-  deployment_name  = "2020"
-  root_domain      = var.root_domain
-  backend_endpoint = var.ractf_host
-  deploy_account   = var.deploy_account
-  zone             = module.dns.zone
-}
-
-module "elite" {
-  source           = "./modules/ractf"
-  deployment_name  = "elite"
+  deployment_name  = var.deployments[count.index]["name"]
   root_domain      = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account

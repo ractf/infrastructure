@@ -81,3 +81,8 @@ variable "dkim_key" {
   type        = string
   description = "DKIM token from mail server"
 }
+
+variable "deployments" {
+  type        = list(map(string))
+  description = "A list of the RACTF deployments and their details"
+}
