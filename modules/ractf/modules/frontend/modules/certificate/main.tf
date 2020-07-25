@@ -3,7 +3,7 @@ resource "cloudflare_zone" "root-domain" {
 }
 
 resource "aws_acm_certificate" "certificate" {
-  domain_name       = "${var.domain}.${var.base_domain}"
+  domain_name       = "${var.deployment_name}.${var.root_domain}"
   validation_method = "DNS"
 
   tags = {

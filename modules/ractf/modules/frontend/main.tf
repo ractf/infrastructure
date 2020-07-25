@@ -116,7 +116,8 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
 module "certificate" {
   source = "./modules/certificate"
-  domain = "${var.deployment_name}.${var.root_domain}"
+  root_domain = var.root_domain
+  deployment_name = var.deployment_name
 }
 
 module "dns" {
