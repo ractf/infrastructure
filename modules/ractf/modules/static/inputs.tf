@@ -1,8 +1,3 @@
-variable "bucket_name" {
-  type        = string
-  description = "The name of the bucket for storing challenge files"
-}
-
 variable "root_domain" {
   type = string
   description = "The root domain for the RACTF deployment"
