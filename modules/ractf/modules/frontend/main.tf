@@ -123,4 +123,5 @@ module "dns" {
   source = "./modules/dns"
   endpoint = aws_cloudfront_distribution.frontend_distribution.domain_name
   deployment_name = var.deployment_name
+  root_domain = var.root_domain
 }
