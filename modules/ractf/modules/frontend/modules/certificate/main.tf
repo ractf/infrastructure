@@ -8,6 +8,7 @@ resource "aws_acm_certificate" "certificate" {
 
   tags = {
     Environment = "production"
+    Deployment = var.deployment_name
   }
 
   lifecycle {

@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "frontend_bucket" {
   acl    = "private"
 
   tags = {
-    Name = "RACTF Frontend"
+    Deployment = var.deployment_name
   }
 }
 
@@ -65,7 +65,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "RACTF Frontend"
+  comment             = var.deployment_name
   default_root_object = "index.html"
 
   aliases = ["${var.deployment_name}.${var.root_domain}"]
