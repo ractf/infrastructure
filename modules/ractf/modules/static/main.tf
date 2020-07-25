@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "static_files" {
-  bucket = var.bucket_name
+  bucket = "files-${var.deployment_name}.${var.root_domain}"
 
   website {
     index_document = "index.html"
@@ -39,4 +39,14 @@ resource "aws_s3_bucket_object" "static_homepage" {
   source       = "${path.module}/index.html"
   etag         = filemd5("${path.module}/index.html")
   content_type = "text/html"
+  tags = {
+    Deployment = var.deployment_name
+  }
+}
+
+module "dns" {
+  source          = "./modules/dns"
+  deployment_name = var.deployment_name
+  bucket_endpoint = aws_s3_bucket.static_files.website_endpoint
+  root_domain     = var.root_domain
 }

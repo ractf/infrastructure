@@ -41,11 +41,11 @@ resource "aws_s3_bucket_policy" "frontend_distribution" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = var.deployment_name
+  bucket = "${var.deployment_name}.${var.root_domain}"
   acl    = "private"
 
   tags = {
-    Name = "RACTF Frontend"
+    Deployment = var.deployment_name
   }
 }
 
@@ -65,10 +65,10 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "RACTF Frontend"
+  comment             = var.deployment_name
   default_root_object = "index.html"
 
-  aliases = [var.deployment_name]
+  aliases = ["${var.deployment_name}.${var.root_domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -98,10 +98,11 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
+    Deployment  = var.deployment_name
   }
 
   viewer_certificate {
-    acm_certificate_arn      = var.certificate
+    acm_certificate_arn      = module.certificate.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2018"
   }
@@ -111,4 +112,17 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     response_code      = "200"
     response_page_path = "/index.html"
   }
+}
+
+module "certificate" {
+  source = "./modules/certificate"
+  root_domain = var.root_domain
+  deployment_name = var.deployment_name
+}
+
+module "dns" {
+  source          = "./modules/dns"
+  endpoint        = aws_cloudfront_distribution.frontend_distribution.domain_name
+  deployment_name = var.deployment_name
+  root_domain     = var.root_domain
 }

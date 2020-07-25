@@ -1,99 +1,60 @@
 module "homepage" {
-  source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_domain
-  certificate     = module.homepage-certificate.arn
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
   deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
 }
 
-module "frontend" {
-  source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_frontend_domain
-  certificate     = module.certificate.arn
-  deploy_account  = var.deploy_account
+module "r2020" {
+  source           = "./modules/ractf"
+  deployment_name  = "2020"
+  root_domain      = var.root_domain
+  backend_endpoint = var.ractf_host
+  deploy_account   = var.deploy_account
 }
 
-module "elite-frontend" {
-  source          = "./modules/aws/frontend"
-  deployment_name = var.ractf_elite_domain
-  certificate     = module.elite-certificate.arn
-  deploy_account  = var.deploy_account
-}
-
-module "certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_frontend_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "homepage-certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "elite-certificate" {
-  source = "./modules/aws/certificate"
-  domain = var.ractf_elite_domain
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "static" {
-  source      = "./modules/aws/static"
-  bucket_name = "files.${var.ractf_domain}"
-}
-
-module "elite-static" {
-  source      = "./modules/aws/static"
-  bucket_name = "elite-files.${var.ractf_domain}"
+module "elite" {
+  source           = "./modules/ractf"
+  deployment_name  = "elite"
+  root_domain      = var.root_domain
+  backend_endpoint = var.ractf_host
+  deploy_account   = var.deploy_account
 }
 
 module "ses" {
-  source = "./modules/aws/ses"
-  domain = var.ractf_domain
+  source = "./modules/support/ses"
+  domain = var.root_domain
 }
 
 module "dns" {
-  source                  = "./modules/cloudflare/dns"
-  domain                  = var.ractf_domain
-  homepage_endpoint       = module.homepage.endpoint
-  backend_endpoint        = var.ractf_host
-  elite_backend_endpoint  = var.ractf_host
-  mail_endpoint           = var.mail_host
-  files_endpoint          = module.static.bucket_endpoint
-  elite_files_endpoint    = module.elite-static.bucket_endpoint
-  frontend_endpoint       = module.frontend.endpoint
-  elite_frontend_endpoint = module.elite-frontend.endpoint
-  github_token            = var.github_token
-  google_token            = var.google_token
-  staging_endpoint        = var.staging_endpoint
-  status_endpoint         = var.status_endpoint
-  h1_token_production     = var.h1_token_production
-  h1_token_staging        = var.h1_token_staging
-  ses_token               = module.ses.domain_token
-  ses_dkim_records        = module.ses.dkim_records
-  dkim_key                = var.dkim_key
+  source              = "./modules/support/dns"
+  domain              = var.root_domain
+  mail_endpoint       = var.mail_host
+  github_token        = var.github_token
+  google_token        = var.google_token
+  staging_endpoint    = var.staging_endpoint
+  status_endpoint     = var.status_endpoint
+  h1_token_production = var.h1_token_production
+  h1_token_staging    = var.h1_token_staging
+  ses_token           = module.ses.domain_token
+  ses_dkim_records    = module.ses.dkim_records
+  dkim_key            = var.dkim_key
 }
 
 module "shortener_dns" {
-  source   = "./modules/cloudflare/shortener"
+  source   = "./modules/support/shortener"
   domain   = var.ractf_shortener_domain
   endpoint = var.shortener_endpoint
 }
 
 module "dns_settings" {
-  source = "./modules/cloudflare/settings"
+  source = "./modules/support/settings"
   zone   = module.dns.zone
-  domain = var.ractf_domain
+  domain = var.root_domain
 }
 
 module "shortener_settings" {
-  source    = "./modules/cloudflare/settings"
+  source    = "./modules/support/settings"
   zone      = module.shortener_dns.zone
   domain    = var.ractf_shortener_domain
   shortener = true

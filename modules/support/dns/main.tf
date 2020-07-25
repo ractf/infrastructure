@@ -2,42 +2,6 @@ resource "cloudflare_zone" "ractf-root-domain" {
   zone = var.domain
 }
 
-resource "cloudflare_record" "homepage" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "@"
-  value   = var.homepage_endpoint
-  type    = "CNAME"
-  ttl     = 1
-  proxied = false
-}
-
-resource "cloudflare_record" "www" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "www"
-  value   = var.backend_endpoint
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "api" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "api"
-  value   = var.backend_endpoint
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "elite-api" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "elite-api"
-  value   = var.elite_backend_endpoint
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
-
 resource "cloudflare_record" "staging" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "staging"
@@ -45,40 +9,6 @@ resource "cloudflare_record" "staging" {
   type    = "A"
   ttl     = 1
   proxied = true
-}
-
-resource "cloudflare_record" "files" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "files"
-  value   = var.files_endpoint
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "elite-files" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "elite-files"
-  value   = var.elite_files_endpoint
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "frontend" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "2020"
-  value   = var.frontend_endpoint
-  type    = "CNAME"
-  proxied = false
-}
-
-resource "cloudflare_record" "elite-frontend" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = "elite"
-  value   = var.elite_frontend_endpoint
-  type    = "CNAME"
-  proxied = false
 }
 
 resource "cloudflare_record" "status" {
