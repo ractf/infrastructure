@@ -2,6 +2,15 @@ resource "cloudflare_zone" "ractf-root-domain" {
   zone = var.domain
 }
 
+resource "cloudflare_record" "home" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "@"
+  value   = "1.1.1.1"
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "staging" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "staging"

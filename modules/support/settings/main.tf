@@ -37,7 +37,7 @@ resource "cloudflare_page_rule" "redirect_www" {
 
   actions {
     forwarding_url {
-      url = "https://www.${var.domain}"
+      url         = "https://www.${var.domain}"
       status_code = "302"
     }
   }
