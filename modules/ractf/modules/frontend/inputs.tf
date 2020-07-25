@@ -9,6 +9,6 @@ variable "deploy_account" {
 }
 
 variable "root_domain" {
-  type = string
+  type        = string
   description = "The root domain for the RACTF deployment"
 }

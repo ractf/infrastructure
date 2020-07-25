@@ -1,6 +1,6 @@
 variable "endpoint" {
-    type = string
-    description = "The endpoint for Cloudfront"
+  type        = string
+  description = "The endpoint for Cloudfront"
 }
 
 variable "deployment_name" {
@@ -9,6 +9,6 @@ variable "deployment_name" {
 }
 
 variable "root_domain" {
-  type = string
+  type        = string
   description = "The root domain for the RACTF deployment"
 }

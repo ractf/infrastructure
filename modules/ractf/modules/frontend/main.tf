@@ -98,7 +98,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
-    Deployment = var.deployment_name
+    Deployment  = var.deployment_name
   }
 
   viewer_certificate {
@@ -120,8 +120,8 @@ module "certificate" {
 }
 
 module "dns" {
-  source = "./modules/dns"
-  endpoint = aws_cloudfront_distribution.frontend_distribution.domain_name
+  source          = "./modules/dns"
+  endpoint        = aws_cloudfront_distribution.frontend_distribution.domain_name
   deployment_name = var.deployment_name
-  root_domain = var.root_domain
+  root_domain     = var.root_domain
 }

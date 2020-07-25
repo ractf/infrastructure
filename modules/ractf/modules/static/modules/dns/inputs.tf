@@ -1,5 +1,5 @@
 variable "root_domain" {
-  type = string
+  type        = string
   description = "The root domain for the RACTF deployment"
 }
 
@@ -9,6 +9,6 @@ variable "deployment_name" {
 }
 
 variable "bucket_endpoint" {
-    type = string
-    description = "The endpoint for the bucket"
+  type        = string
+  description = "The endpoint for the bucket"
 }
