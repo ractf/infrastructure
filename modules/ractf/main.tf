@@ -17,7 +17,7 @@ module "static" {
 
 resource "cloudflare_record" "api" {
   zone_id = cloudflare_zone.root-domain.id
-  name    = "${var.deployment_name}.api"
+  name    = "api-${var.deployment_name}"
   value   = var.backend_endpoint
   type    = "A"
   ttl     = 1

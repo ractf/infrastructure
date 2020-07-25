@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "static_files" {
-  bucket = "${var.deployment_name}.${var.root_domain}"
+  bucket = "files-${var.deployment_name}.${var.root_domain}"
 
   website {
     index_document = "index.html"
