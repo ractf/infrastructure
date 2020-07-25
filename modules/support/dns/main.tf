@@ -5,8 +5,8 @@ resource "cloudflare_zone" "ractf-root-domain" {
 resource "cloudflare_record" "home" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "@"
-  value   = "1.1.1.1"
-  type    = "A"
+  value   = "example.com"
+  type    = "CNAME"
   ttl     = 1
   proxied = true
 }
