@@ -6,6 +6,7 @@ module "frontend" {
   source = "./modules/frontend"
   root_domain = var.ractf_domain
   deployment_name = var.deployment_name
+  deploy_account = var.deploy_account
 }
 
 module "static" {

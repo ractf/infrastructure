@@ -10,6 +10,7 @@ module "r2020" {
   deployment_name = "2020"
   root_domain = var.ractf_domain
   backend_endpoint = var.ractf_host
+  deploy_account = var.deploy_account
 }
 
 module "elite" {
@@ -17,6 +18,7 @@ module "elite" {
   deployment_name = "elite"
   root_domain = var.ractf_domain
   backend_endpoint = var.ractf_host
+  deploy_account = var.deploy_account
 }
 
 module "ses" {

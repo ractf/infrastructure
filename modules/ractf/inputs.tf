@@ -12,3 +12,8 @@ variable "backend_endpoint" {
     type = string
     description = "The IP address of the RACTF backend"
 }
+
+variable "deploy_account" {
+  type        = string
+  description = "The ARN of the S3 deploy account"
+}
