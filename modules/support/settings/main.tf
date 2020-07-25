@@ -36,7 +36,7 @@ resource "cloudflare_page_rule" "redirect_www" {
   priority = 2
 
   actions {
-    forwarding_url = {
+    forwarding_url {
       url = "www.${var.domain}"
       status_code = "302"
     }
