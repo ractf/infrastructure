@@ -3,12 +3,14 @@ module "frontend" {
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
   deploy_account  = var.deploy_account
+  zone            = var.zone
 }
 
 module "static" {
   source          = "./modules/static"
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
+  zone            = var.zone
 }
 
 resource "cloudflare_record" "api" {
