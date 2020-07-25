@@ -3,6 +3,7 @@ module "homepage" {
   deployment_name = "www"
   deploy_account  = var.deploy_account
   root_domain     = var.root_domain
+  zone            = module.dns.zone
 }
 
 module "r2020" {
@@ -11,6 +12,7 @@ module "r2020" {
   root_domain      = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account
+  zone             = module.dns.zone
 }
 
 module "elite" {
@@ -19,6 +21,7 @@ module "elite" {
   root_domain      = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account
+  zone             = module.dns.zone
 }
 
 module "ses" {

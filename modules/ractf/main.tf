@@ -1,22 +1,20 @@
-resource "cloudflare_zone" "root-domain" {
-  zone = var.root_domain
-}
-
 module "frontend" {
   source          = "./modules/frontend"
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
   deploy_account  = var.deploy_account
+  zone            = var.zone
 }
 
 module "static" {
   source          = "./modules/static"
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
+  zone            = var.zone
 }
 
 resource "cloudflare_record" "api" {
-  zone_id = cloudflare_zone.root-domain.id
+  zone_id = var.zone
   name    = "api-${var.deployment_name}"
   value   = var.backend_endpoint
   type    = "A"
