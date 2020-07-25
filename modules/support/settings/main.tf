@@ -21,11 +21,24 @@ resource "cloudflare_zone_settings_override" "settings" {
 
 resource "cloudflare_page_rule" "files_ssl" {
   zone_id  = var.zone
-  target   = "*files.${var.domain}/*"
+  target   = "files-*.${var.domain}/*"
   priority = 1
 
   actions {
     ssl = "flexible"
   }
   count = var.shortener ? 0 : 1
+}
+
+resource "cloudflare_page_rule" "redirect_www" {
+  zone_id  = var.zone
+  target   = "${var.domain}/*"
+  priority = 2
+
+  actions {
+    forwarding_url {
+      url = "www.${var.domain}"
+      status_code = "302"
+    }
+  }
 }
