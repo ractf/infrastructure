@@ -118,9 +118,6 @@ module "certificate" {
   source = "./modules/certificate"
   root_domain = var.root_domain
   deployment_name = var.deployment_name
-  providers = {
-    aws = aws.cert
-  }
 }
 
 module "dns" {
