@@ -21,7 +21,7 @@ resource "cloudflare_zone_settings_override" "settings" {
 
 resource "cloudflare_page_rule" "files_ssl" {
   zone_id  = var.zone
-  target   = "*files.${var.domain}/*"
+  target   = "files-*.${var.domain}/*"
   priority = 1
 
   actions {
