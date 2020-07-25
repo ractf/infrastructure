@@ -1,8 +1,8 @@
 module "homepage" {
   source          = "./modules/ractf/modules/frontend"
   deployment_name = "www"
-  certificate     = module.homepage-certificate.arn
   deploy_account  = var.deploy_account
+  root_domain     = var.ractf_domain
 }
 
 module "r2020" {
