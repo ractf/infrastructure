@@ -3,7 +3,7 @@ resource "cloudflare_zone" "root-domain" {
 }
 
 resource "aws_acm_certificate" "certificate" {
-  domain_name       = "${var.domain}.ractf.co.uk"
+  domain_name       = "${var.domain}.${var.base_domain}"
   validation_method = "DNS"
 
   tags = {
@@ -23,7 +23,7 @@ resource "cloudflare_record" "certificate-validation" {
   proxied = false
 }
 
-resource "aws_acm_certificate_validation" "cert" {
+resource "aws_acm_certificate_validation" "certificate" {
   certificate_arn         = aws_acm_certificate.certificate.arn
   validation_record_fqdns = [cloudflare_record.certificate-validation.hostname]
 }
