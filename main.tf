@@ -2,13 +2,13 @@ module "homepage" {
   source          = "./modules/ractf/modules/frontend"
   deployment_name = "www"
   deploy_account  = var.deploy_account
-  root_domain     = var.ractf_domain
+  root_domain     = var.root_domain
 }
 
 module "r2020" {
   source = "./modules/ractf"
   deployment_name = "2020"
-  root_domain = var.ractf_domain
+  root_domain = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account = var.deploy_account
 }
@@ -16,19 +16,19 @@ module "r2020" {
 module "elite" {
   source = "./modules/ractf"
   deployment_name = "elite"
-  root_domain = var.ractf_domain
+  root_domain = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account = var.deploy_account
 }
 
 module "ses" {
   source = "./modules/support/ses"
-  domain = var.ractf_domain
+  domain = var.root_domain
 }
 
 module "dns" {
   source                  = "./modules/support/dns"
-  domain                  = var.ractf_domain
+  domain                  = var.root_domain
   mail_endpoint           = var.mail_host
   github_token            = var.github_token
   google_token            = var.google_token
@@ -50,7 +50,7 @@ module "shortener_dns" {
 module "dns_settings" {
   source = "./modules/support/settings"
   zone   = module.dns.zone
-  domain = var.ractf_domain
+  domain = var.root_domain
 }
 
 module "shortener_settings" {

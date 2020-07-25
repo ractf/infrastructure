@@ -4,14 +4,14 @@ resource "cloudflare_zone" "root-domain" {
 
 module "frontend" {
   source = "./modules/frontend"
-  root_domain = var.ractf_domain
+  root_domain = var.root_domain
   deployment_name = var.deployment_name
   deploy_account = var.deploy_account
 }
 
 module "static" {
   source = "./modules/static"
-  root_domain = var.ractf_domain
+  root_domain = var.root_domain
   deployment_name = var.deployment_name
 }
 
