@@ -49,4 +49,5 @@ module "dns" {
   deployment_name = var.deployment_name
   bucket_endpoint = aws_s3_bucket.static_files.website_endpoint
   root_domain     = var.root_domain
+  zone            = var.zone
 }
