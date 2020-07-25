@@ -1,4 +1,4 @@
-variable "root_domain" {
+variable "ractf_domain" {
   type = string
 }
 
