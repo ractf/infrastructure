@@ -1,6 +1,6 @@
 resource "cloudflare_record" "files" {
   zone_id = var.zone
-  name    = var.deployment_name
+  name    = "files-${var.deployment_name}"
   value   = var.bucket_endpoint
   type    = "CNAME"
   ttl     = 1
