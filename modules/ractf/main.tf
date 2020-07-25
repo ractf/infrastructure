@@ -7,9 +7,6 @@ module "frontend" {
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
   deploy_account  = var.deploy_account
-  providers = {
-    aws.cert = aws.cert
-  }
 }
 
 module "static" {
