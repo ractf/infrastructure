@@ -3,6 +3,9 @@ module "homepage" {
   deployment_name = "www"
   deploy_account  = var.deploy_account
   root_domain     = var.root_domain
+  providers = {
+    aws.cert = aws.cert
+  }
 }
 
 module "r2020" {
@@ -11,6 +14,9 @@ module "r2020" {
   root_domain      = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account
+  providers = {
+    aws.cert = aws.cert
+  }
 }
 
 module "elite" {
@@ -19,6 +25,9 @@ module "elite" {
   root_domain      = var.root_domain
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account
+  providers = {
+    aws.cert = aws.cert
+  }
 }
 
 module "ses" {
