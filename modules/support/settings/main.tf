@@ -29,3 +29,16 @@ resource "cloudflare_page_rule" "files_ssl" {
   }
   count = var.shortener ? 0 : 1
 }
+
+resource "cloudflare_page_rule" "redirect_www" {
+  zone_id  = var.zone
+  target   = "${var.domain}/*"
+  priority = 2
+
+  actions {
+    forwarding_url = {
+      url = "www.${var.domain}"
+      status_code = "302"
+    }
+  }
+}
