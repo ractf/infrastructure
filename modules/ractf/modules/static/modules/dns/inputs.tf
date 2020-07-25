@@ -12,3 +12,8 @@ variable "bucket_endpoint" {
   type        = string
   description = "The endpoint for the bucket"
 }
+
+variable "zone" {
+  type        = string
+  description = "The Cloudflare Zone ID"
+}
