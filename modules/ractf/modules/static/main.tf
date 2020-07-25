@@ -44,5 +44,6 @@ resource "aws_s3_bucket_object" "static_homepage" {
 module "dns" {
   source = "./modules/dns"
   deployment_name = var.deployment_name
-  bucket_name = aws_s3_bucket.static_files.bucket_endpoint
+  bucket_endpoint = aws_s3_bucket.static_files.bucket_endpoint
+  root_domain = var.root_domain
 }
