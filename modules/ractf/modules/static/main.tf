@@ -44,6 +44,17 @@ resource "aws_s3_bucket_object" "static_homepage" {
   }
 }
 
+resource "aws_s3_bucket_object" "static_robots" {
+  bucket       = aws_s3_bucket.static_files.id
+  key          = "robots.txt"
+  source       = "${path.module}/robots.txt"
+  etag         = filemd5("${path.module}/robots.txt")
+  content_type = "text/plain"
+  tags = {
+    Deployment = var.deployment_name
+  }
+}
+
 module "dns" {
   source          = "./modules/dns"
   deployment_name = var.deployment_name
