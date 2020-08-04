@@ -20,6 +20,15 @@ resource "cloudflare_record" "staging" {
   proxied = true
 }
 
+resource "cloudflare_record" "staging-ephemeral" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "staging-ephemeral"
+  value   = var.staging_endpoint
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "status" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "status"
