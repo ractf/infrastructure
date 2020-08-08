@@ -6,6 +6,14 @@ module "homepage" {
   zone            = module.dns.zone
 }
 
+module "install" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "install"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
 module "r2020" {
   source           = "./modules/ractf"
   deployment_name  = "2020"
