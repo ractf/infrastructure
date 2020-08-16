@@ -6,7 +6,7 @@ The infrastructure-as-code which runs the cloud components of RACTF.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
+| terraform | >= 0.13 |
 | aws | ~> 2.0 |
 | aws | ~> 2.0 |
 | cloudflare | ~> 2.0 |
