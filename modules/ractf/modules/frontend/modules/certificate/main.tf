@@ -13,14 +13,21 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 resource "cloudflare_record" "certificate-validation" {
+  for_each = {
+    for dvo in aws_acm_certificate.certificate.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+  name    = each.value.name
+  value   = each.value.record
+  type    = each.value.type
   zone_id = var.zone
-  name    = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_name
-  value   = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_value
-  type    = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_type
   proxied = false
 }
 
 resource "aws_acm_certificate_validation" "certificate" {
   certificate_arn         = aws_acm_certificate.certificate.arn
-  validation_record_fqdns = [cloudflare_record.certificate-validation.hostname]
+  validation_record_fqdns = [for record in cloudflare_record.certificate-validation : record.hostname]
 }
