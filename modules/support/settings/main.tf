@@ -11,6 +11,7 @@ resource "cloudflare_zone_settings_override" "settings" {
     websockets               = "on"
     opportunistic_onion      = "on"
     rocket_loader            = "on"
+		min_tls_version					 = "1.2"
     minify {
       css  = "on"
       js   = "on"
