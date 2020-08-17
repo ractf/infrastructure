@@ -2,6 +2,10 @@ variable "root_domain" {
   type = string
 }
 
+variable "cloud_domain" {
+  type = string
+}
+
 variable "ractf_frontend_domain" {
   type = string
 }
