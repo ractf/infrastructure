@@ -109,7 +109,6 @@ resource "cloudflare_record" "staging-h1" {
 
 resource "cloudflare_record" "ses-verify" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  count = var.ses_token != "" ? 1 : 0
   name    = var.domain
   value   = var.ses_token
   type    = "TXT"

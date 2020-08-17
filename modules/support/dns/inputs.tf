@@ -24,7 +24,6 @@ variable "google_token" {
 variable "ses_token" {
   type        = string
   description = "The verification token for Amazon SES"
-  default = ""
 }
 
 variable "staging_endpoint" {
