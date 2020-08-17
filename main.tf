@@ -74,13 +74,13 @@ module "dns" {
 }
 
 module "cloud_dns" {
-  source              = "./modules/support/dns"
-  domain              = var.cloud_domain
-  mail_endpoint       = var.mail_host
-  github_token        = var.github_token
-  staging_endpoint    = var.staging_endpoint
-  ses_token           = module.cloud_ses.domain_token
-  ses_dkim_records    = module.cloud_ses.dkim_records
+  source           = "./modules/support/dns"
+  domain           = var.cloud_domain
+  mail_endpoint    = var.mail_host
+  github_token     = var.github_token
+  staging_endpoint = var.staging_endpoint
+  ses_token        = module.cloud_ses.domain_token
+  ses_dkim_records = module.cloud_ses.dkim_records
 }
 
 module "shortener_dns" {
