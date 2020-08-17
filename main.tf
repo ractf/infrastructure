@@ -22,6 +22,14 @@ module "docs" {
   zone            = module.dns.zone
 }
 
+module "cloud_homepage" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.dns.zone
+}
+
 module "r2020" {
   source           = "./modules/ractf"
   deployment_name  = "2020"
@@ -45,6 +53,11 @@ module "ses" {
   domain = var.root_domain
 }
 
+module "cloud_ses" {
+  source = "./modules/support/ses"
+  domain = var.cloud_domain
+}
+
 module "dns" {
   source              = "./modules/support/dns"
   domain              = var.root_domain
@@ -60,6 +73,16 @@ module "dns" {
   dkim_key            = var.dkim_key
 }
 
+module "cloud_dns" {
+  source           = "./modules/support/dns"
+  domain           = var.cloud_domain
+  mail_endpoint    = var.mail_host
+  github_token     = var.github_token
+  staging_endpoint = var.staging_endpoint
+  ses_token        = module.cloud_ses.domain_token
+  ses_dkim_records = module.cloud_ses.dkim_records
+}
+
 module "shortener_dns" {
   source   = "./modules/support/shortener"
   domain   = var.ractf_shortener_domain
@@ -70,6 +93,12 @@ module "dns_settings" {
   source = "./modules/support/settings"
   zone   = module.dns.zone
   domain = var.root_domain
+}
+
+module "cloud_settings" {
+  source = "./modules/support/settings"
+  zone   = module.cloud_dns.zone
+  domain = var.cloud_domain
 }
 
 module "shortener_settings" {
