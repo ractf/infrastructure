@@ -16,6 +16,7 @@ The infrastructure-as-code which runs the cloud components of RACTF.
 |------|-------------|------|---------|:--------:|
 | cloudflare\_api\_key | n/a | `string` | n/a | yes |
 | cloudflare\_email | n/a | `string` | n/a | yes |
+| cloud\_domain | n/a | `string` | n/a | yes |
 | deploy\_account | The ARN of the S3 deploy account | `string` | n/a | yes |
 | github\_token | GitHub verification token | `string` | n/a | yes |
 | google\_token | Google verification token | `string` | n/a | yes |
