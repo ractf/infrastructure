@@ -30,6 +30,14 @@ module "cloud_homepage" {
   zone            = module.cloud_dns.zone
 }
 
+module "cloud_wildcard" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "*"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.cloud_dns.zone
+}
+
 module "r2020" {
   source           = "./modules/ractf"
   deployment_name  = "2020"
