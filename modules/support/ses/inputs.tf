@@ -3,7 +3,7 @@ variable "domains" {
   description = "The domain names to use when sending email"
 }
 
-variable "zone" {
+variable "zones" {
   type        = list(string)
   description = "The Zone IDs to use when setting DNS"
 }
