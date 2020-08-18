@@ -2,7 +2,7 @@ module "deployment" {
   source   = "./modules/deployment"
   for_each = var.domains
   domain   = each.value
-  zone_id  = var.zones[each.index]
+  zone_id  = var.zones[each.key]
   user     = aws_iam_user.backend_ses.arn
 }
 
