@@ -41,7 +41,7 @@ resource "aws_s3_bucket_policy" "frontend_distribution" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = "${var.deployment_name}.${var.root_domain}" ? var.deployment_name != "*" : "wildcard.${var.root_domain}"
+  bucket = var.deployment_name != "*" ? "${var.deployment_name}.${var.root_domain}" : "wildcard.${var.root_domain}"
   acl    = "private"
 
   tags = {
