@@ -4,7 +4,7 @@ resource "aws_acm_certificate" "certificate" {
 
   tags = {
     Environment = "production"
-    Deployment  = var.deployment_name
+    Deployment = var.deployment_name != "*" ? var.deployment_name : "wildcard"
   }
 
   lifecycle {
