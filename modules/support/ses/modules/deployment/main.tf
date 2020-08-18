@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "email_backend" {
     resources = [aws_ses_domain_identity.email.arn]
 
     principals {
-      identifiers = [var.iam_user]
+      identifiers = [var.user]
       type        = "AWS"
     }
   }
