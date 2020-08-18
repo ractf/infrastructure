@@ -27,7 +27,7 @@ module "cloud_homepage" {
   deployment_name = "www"
   deploy_account  = var.deploy_account
   root_domain     = var.cloud_domain
-  zone            = module.dns.zone
+  zone            = module.cloud_dns.zone
 }
 
 module "r2020" {
