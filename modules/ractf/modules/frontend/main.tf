@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "frontend_bucket" {
   acl    = "private"
 
   tags = {
-    Deployment = var.deployment_name
+    Deployment = var.deployment_name != "*" ? var.deployment_name : "wildcard"
   }
 }
 
@@ -98,7 +98,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
-    Deployment  = var.deployment_name
+    Deployment = var.deployment_name != "*" ? var.deployment_name : "wildcard"
   }
 
   viewer_certificate {
