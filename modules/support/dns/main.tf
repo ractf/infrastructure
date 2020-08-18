@@ -41,16 +41,6 @@ resource "cloudflare_record" "status" {
   proxied = false
 }
 
-resource "cloudflare_record" "ses_dkim" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.ses_dkim_records != [""] ? 3 : 0
-  name    = "${element(var.ses_dkim_records, count.index)}._domainkey"
-  value   = "${element(var.ses_dkim_records, count.index)}.dkim.amazonses.com"
-  type    = "CNAME"
-  ttl     = 1
-  proxied = false
-}
-
 resource "cloudflare_record" "mail" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.mail_endpoint != "" ? 1 : 0
@@ -104,13 +94,6 @@ resource "cloudflare_record" "staging-h1" {
   count   = var.h1_token_staging != "" ? 1 : 0
   name    = "staging"
   value   = var.h1_token_staging
-  type    = "TXT"
-}
-
-resource "cloudflare_record" "ses-verify" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  name    = var.domain
-  value   = var.ses_token
   type    = "TXT"
 }
 

@@ -1,4 +1,4 @@
-variable "domain" {
-  type        = string
-  description = "The domain name to use when sending email"
+variable "domains" {
+  type        = map(string)
+  description = "The domain names to use when sending email"
 }
