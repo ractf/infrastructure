@@ -7,3 +7,8 @@ variable "zone_id" {
   type        = string
   description = "The Zone ID to use when setting DNS"
 }
+
+variable "user" {
+  type        = string
+  description = "The ARN of the IAM user to grant email permissions to"
+}
