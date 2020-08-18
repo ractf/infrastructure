@@ -51,7 +51,7 @@ module "elite" {
 module "ses" {
   source = "./modules/support/ses"
   domain = [var.root_domain, var.cloud_domain]
-  zones = [module.dns.zone, module.cloud_dns.zone]
+  zones  = [module.dns.zone, module.cloud_dns.zone]
 }
 
 module "dns" {

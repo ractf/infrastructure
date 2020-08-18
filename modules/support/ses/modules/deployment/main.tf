@@ -25,13 +25,13 @@ resource "aws_ses_identity_policy" "email_backend" {
 }
 
 resource "cloudflare_record" "ses_dkim" {
-  zone_id = var.zone_id
+  zone_id  = var.zone_id
   for_each = aws_ses_domain_dkim.email.dkim_tokens
-  name    = "${each.value}._domainkey"
-  value   = "${each.value}.dkim.amazonses.com"
-  type    = "CNAME"
-  ttl     = 1
-  proxied = false
+  name     = "${each.value}._domainkey"
+  value    = "${each.value}.dkim.amazonses.com"
+  type     = "CNAME"
+  ttl      = 1
+  proxied  = false
 }
 
 resource "cloudflare_record" "ses_verify" {
