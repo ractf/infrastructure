@@ -78,7 +78,8 @@ module "cloud_dns" {
   source           = "./modules/support/dns"
   domain           = var.cloud_domain
   mail_endpoint    = var.mail_host
-  github_token     = var.github_token
+  github_token     = var.cloud_github_token
+  google_token     = var.cloud_google_token
   staging_endpoint = var.staging_endpoint
 }
 
