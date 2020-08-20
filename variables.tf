@@ -85,3 +85,13 @@ variable "dkim_key" {
   type        = string
   description = "DKIM token from mail server"
 }
+
+variable "cloud_google_token" {
+  type        = string
+  description = "Google verification token for Cloud"
+}
+
+variable "cloud_github_token" {
+  type        = string
+  description = "GitHub verification token for Cloud"
+}
