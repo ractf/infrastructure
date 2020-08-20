@@ -56,10 +56,6 @@ module "elite" {
   zone             = module.dns.zone
 }
 
-module "ses" {
-  source  = "./modules/support/ses"
-  domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
-}
 
 module "dns" {
   source              = "./modules/support/dns"
@@ -106,4 +102,9 @@ module "shortener_settings" {
   zone      = module.shortener_dns.zone
   domain    = var.ractf_shortener_domain
   shortener = true
+}
+
+module "ses" {
+  source  = "./modules/support/ses"
+  domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
 }
