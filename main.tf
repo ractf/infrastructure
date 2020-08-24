@@ -64,10 +64,6 @@ module "bsidesncl" {
   deploy_account   = var.deploy_account
   zone             = module.dns.zone
 }
-module "ses" {
-  source  = "./modules/support/ses"
-  domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
-}
 
 module "dns" {
   source              = "./modules/support/dns"
@@ -86,7 +82,8 @@ module "cloud_dns" {
   source           = "./modules/support/dns"
   domain           = var.cloud_domain
   mail_endpoint    = var.mail_host
-  github_token     = var.github_token
+  github_token     = var.cloud_github_token
+  google_token     = var.cloud_google_token
   staging_endpoint = var.staging_endpoint
 }
 
@@ -113,4 +110,9 @@ module "shortener_settings" {
   zone      = module.shortener_dns.zone
   domain    = var.ractf_shortener_domain
   shortener = true
+}
+
+module "ses" {
+  source  = "./modules/support/ses"
+  domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
 }
