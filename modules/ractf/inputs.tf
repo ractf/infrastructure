@@ -22,3 +22,9 @@ variable "zone" {
   type        = string
   description = "The Cloudflare Zone ID"
 }
+
+variable "container_registry" {
+  type        = bool
+  description = "Should this deployment include a container registry?"
+  default     = false
+}
