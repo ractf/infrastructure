@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "registry" {
-  name                 = var.deployment_name
+  name = var.deployment_name
   tags = {
     Deployment = var.deployment_name
   }

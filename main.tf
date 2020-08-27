@@ -57,12 +57,12 @@ module "elite" {
 }
 
 module "bsidesncl" {
-  source           = "./modules/ractf"
-  deployment_name  = "bsidesncl"
-  root_domain      = var.root_domain
-  backend_endpoint = var.ractf_host
-  deploy_account   = var.deploy_account
-  zone             = module.dns.zone
+  source             = "./modules/ractf"
+  deployment_name    = "bsidesncl"
+  root_domain        = var.root_domain
+  backend_endpoint   = var.ractf_host
+  deploy_account     = var.deploy_account
+  zone               = module.dns.zone
   container_registry = true
 }
 
