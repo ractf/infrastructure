@@ -37,7 +37,7 @@ resource "aws_iam_user" "user" {
 
 data "aws_iam_policy_document" "policy" {
   statement {
-    sid = "PushToECR"
+    sid    = "PushToECR"
     effect = "Allow"
     actions = [
       "ecr:GetDownloadUrlForLayer",
