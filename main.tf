@@ -63,6 +63,7 @@ module "bsidesncl" {
   backend_endpoint = var.ractf_host
   deploy_account   = var.deploy_account
   zone             = module.dns.zone
+  container_registry = true
 }
 
 module "dns" {
