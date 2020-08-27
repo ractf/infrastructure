@@ -98,7 +98,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
-    Deployment = var.deployment_name != "*" ? var.deployment_name : "wildcard"
+    Deployment  = var.deployment_name != "*" ? var.deployment_name : "wildcard"
   }
 
   viewer_certificate {
