@@ -28,3 +28,37 @@ resource "aws_ecr_lifecycle_policy" "policy" {
 }
 EOF
 }
+
+resource "aws_iam_user" "user" {
+  name = "registry-${var.deployment_name}"
+  path = "/registry/"
+}
+
+data "aws_iam_policy_document" "policy" {
+  statement {
+    actions = [
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:BatchGetImage",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:PutImage",
+      "ecr:InitiateLayerUpload",
+      "ecr:UploadLayerPart",
+      "ecr:CompleteLayerUpload",
+      "ecr:BatchDeleteImage"
+    ]
+
+    resources = [
+      aws_ecr_repository.registry.arn,
+    ]
+
+    principals {
+      type        = "AWS"
+      identifiers = [aws_iam_user.user.arn]
+    }
+  }
+}
+
+resource "aws_ecr_repository_policy" "policy" {
+  repository = aws_ecr_repository.registry.name
+  policy     = aws_iam_policy_document.policy.json
+}
