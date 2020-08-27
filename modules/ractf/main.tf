@@ -13,6 +13,12 @@ module "static" {
   zone            = var.zone
 }
 
+module "registry" {
+  source = "./modules/container"
+  deployment_name = var.deployment_name
+  count = var.container_registry ? 1 : 0
+}
+
 resource "cloudflare_record" "api" {
   zone_id = var.zone
   name    = "api-${var.deployment_name}"
