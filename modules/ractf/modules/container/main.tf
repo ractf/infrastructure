@@ -38,7 +38,6 @@ resource "aws_iam_user" "user" {
 data "aws_iam_policy_document" "policy" {
   statement {
     sid    = "PushToECR"
-    effect = "Allow"
     actions = [
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
@@ -48,10 +47,6 @@ data "aws_iam_policy_document" "policy" {
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
       "ecr:BatchDeleteImage"
-    ]
-
-    resources = [
-      aws_ecr_repository.registry.arn,
     ]
 
     principals {
