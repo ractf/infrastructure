@@ -50,7 +50,7 @@ resource "aws_iam_user" "push" {
 
 data "aws_iam_policy_document" "push" {
   statement {
-    sid    = "PushToECR"
+    sid = "PushToECR"
     actions = [
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
@@ -82,7 +82,7 @@ resource "aws_iam_user" "pull" {
 
 data "aws_iam_policy_document" "pull" {
   statement {
-    sid    = "PullFromECR"
+    sid = "PullFromECR"
     actions = [
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
