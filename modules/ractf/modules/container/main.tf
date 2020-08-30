@@ -16,26 +16,26 @@ resource "aws_ecr_lifecycle_policy" "policy" {
           "rulePriority": 1,
           "description": "Expire images older than 14 days",
           "selection": {
-              "tagStatus": "any",
-              "countType": "sinceImagePushed",
-              "countUnit": "days",
-              "countNumber": 14
+            "tagStatus": "any",
+            "countType": "sinceImagePushed",
+            "countUnit": "days",
+            "countNumber": 14
           },
           "action": {
-              "type": "expire"
+            "type": "expire"
           }
         },
         {
           "rulePriority": 2,
           "description": "Expire untagged images older than 1 day",
           "selection": {
-              "tagStatus": "untagged",
-              "countType": "sinceImagePushed",
-              "countUnit": "days",
-              "countNumber": 1
+            "tagStatus": "untagged",
+            "countType": "sinceImagePushed",
+            "countUnit": "days",
+            "countNumber": 1
           },
           "action": {
-              "type": "expire"
+            "type": "expire"
           }
         }
     ]
