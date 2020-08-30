@@ -59,7 +59,8 @@ data "aws_iam_policy_document" "push" {
       "ecr:InitiateLayerUpload",
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
-      "ecr:BatchDeleteImage"
+      "ecr:BatchDeleteImage",
+      "ecr:GetAuthorizationToken"
     ]
 
     principals {
