@@ -118,8 +118,7 @@ resource "aws_iam_policy" "login" {
   policy      = data.aws_iam_policy_document.login.json
 }
 
-
 resource "aws_iam_user_policy_attachment" "login-attach" {
-  user       = [aws_iam_user.push.name, aws_iam_user.pull.name]
+  user       = aws_iam_user.push.name
   policy_arn = aws_iam_policy.login.arn
 }
