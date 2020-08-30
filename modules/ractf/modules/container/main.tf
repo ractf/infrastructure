@@ -122,3 +122,4 @@ resource "aws_iam_policy" "login" {
   description = "Allow logging in to ECR"
 
   policy = data.aws_iam_policy_document.login.json
+}
