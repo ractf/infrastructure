@@ -108,11 +108,6 @@ data "aws_iam_policy_document" "login" {
     ]
 
     resources = ["*"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [aws_iam_user.push.arn, aws_iam_user.pull.arn]
-    }
   }
 }
 
