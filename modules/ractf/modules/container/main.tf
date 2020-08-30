@@ -59,8 +59,7 @@ data "aws_iam_policy_document" "push" {
       "ecr:InitiateLayerUpload",
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
-      "ecr:BatchDeleteImage",
-      "ecr:GetAuthorizationToken"
+      "ecr:BatchDeleteImage"
     ]
 
     principals {
@@ -99,4 +98,27 @@ data "aws_iam_policy_document" "pull" {
 resource "aws_ecr_repository_policy" "pull" {
   repository = aws_ecr_repository.registry.name
   policy     = data.aws_iam_policy_document.pull.json
+}
+
+data "aws_iam_policy_document" "login" {
+  statement {
+    sid = "LoginToECR"
+    actions = [
+      "ecr:GetAuthorizationToken"
+    ]
+
+    resources = ["*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = [aws_iam_user.push.arn, aws_iam_user.pull.arn]
+    }
+  }
+}
+
+resource "aws_iam_policy" "login" {
+  name        = "${var.deployment_name}EcrLogin"
+  path        = "/registry"
+  description = "Allow logging in to ECR"
+  policy      = data.aws_iam_policy_document.login.json
 }
