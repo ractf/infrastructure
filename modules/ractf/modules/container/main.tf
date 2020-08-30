@@ -120,6 +120,5 @@ resource "aws_iam_policy" "login" {
   name        = "${var.deployment_name}EcrLogin"
   path        = "/registry"
   description = "Allow logging in to ECR"
-
-  policy = data.aws_iam_policy_document.login.json
+  policy      = data.aws_iam_policy_document.login.json
 }
