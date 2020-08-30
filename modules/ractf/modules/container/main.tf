@@ -108,11 +108,6 @@ data "aws_iam_policy_document" "login" {
     ]
 
     resources = ["*"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [aws_iam_user.push.arn, aws_iam_user.pull.arn]
-    }
   }
 }
 
@@ -121,4 +116,9 @@ resource "aws_iam_policy" "login" {
   path        = "/registry/"
   description = "Allow logging in to ECR"
   policy      = data.aws_iam_policy_document.login.json
+}
+
+resource "aws_iam_user_policy_attachment" "login-attach" {
+  user       = aws_iam_user.push.name
+  policy_arn = aws_iam_policy.login.arn
 }
