@@ -13,17 +13,30 @@ resource "aws_ecr_lifecycle_policy" "policy" {
 {
     "rules": [
         {
-            "rulePriority": 1,
-            "description": "Expire images older than 14 days",
-            "selection": {
-                "tagStatus": "untagged",
-                "countType": "sinceImagePushed",
-                "countUnit": "days",
-                "countNumber": 14
-            },
-            "action": {
-                "type": "expire"
-            }
+          "rulePriority": 1,
+          "description": "Expire images older than 14 days",
+          "selection": {
+            "tagStatus": "any",
+            "countType": "sinceImagePushed",
+            "countUnit": "days",
+            "countNumber": 14
+          },
+          "action": {
+            "type": "expire"
+          }
+        },
+        {
+          "rulePriority": 2,
+          "description": "Expire untagged images older than 1 day",
+          "selection": {
+            "tagStatus": "untagged",
+            "countType": "sinceImagePushed",
+            "countUnit": "days",
+            "countNumber": 1
+          },
+          "action": {
+            "type": "expire"
+          }
         }
     ]
 }
@@ -37,7 +50,7 @@ resource "aws_iam_user" "push" {
 
 data "aws_iam_policy_document" "push" {
   statement {
-    sid    = "PushToECR"
+    sid = "PushToECR"
     actions = [
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
@@ -46,7 +59,8 @@ data "aws_iam_policy_document" "push" {
       "ecr:InitiateLayerUpload",
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
-      "ecr:BatchDeleteImage"
+      "ecr:BatchDeleteImage",
+      "ecr:GetAuthorizationToken"
     ]
 
     principals {
@@ -68,7 +82,7 @@ resource "aws_iam_user" "pull" {
 
 data "aws_iam_policy_document" "pull" {
   statement {
-    sid    = "PullFromECR"
+    sid = "PullFromECR"
     actions = [
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
