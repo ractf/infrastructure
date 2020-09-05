@@ -38,6 +38,13 @@ module "cloud_wildcard" {
   zone            = module.cloud_dns.zone
 }
 
+module "djangotesting" {
+  source          = "./modules/ractf/modules/static"
+  deployment_name = "djangotesting"
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
 module "r2020" {
   source           = "./modules/ractf"
   deployment_name  = "2020"
