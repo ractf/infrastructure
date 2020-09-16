@@ -22,6 +22,14 @@ module "docs" {
   zone            = module.dns.zone
 }
 
+module "keygen" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "keygen"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
 module "cloud_homepage" {
   source          = "./modules/ractf/modules/frontend"
   deployment_name = "www"
@@ -57,12 +65,13 @@ module "elite" {
 }
 
 module "bsidesncl" {
-  source           = "./modules/ractf"
-  deployment_name  = "bsidesncl"
-  root_domain      = var.root_domain
-  backend_endpoint = var.ractf_host
-  deploy_account   = var.deploy_account
-  zone             = module.dns.zone
+  source             = "./modules/ractf"
+  deployment_name    = "bsidesncl"
+  root_domain        = var.root_domain
+  backend_endpoint   = var.ractf_host
+  deploy_account     = var.deploy_account
+  zone               = module.dns.zone
+  container_registry = true
 }
 
 module "dns" {
