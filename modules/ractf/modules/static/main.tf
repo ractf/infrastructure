@@ -55,6 +55,17 @@ resource "aws_s3_bucket_object" "static_robots" {
   }
 }
 
+resource "aws_s3_bucket_object" "static_favicon" {
+  bucket       = aws_s3_bucket.static_files.id
+  key          = "favicon.ico"
+  source       = "${path.module}/favicon.ico"
+  etag         = filemd5("${path.module}/favicon.ico")
+  content_type = "image/vnd.microsoft.ico"
+  tags = {
+    Deployment = var.deployment_name
+  }
+}
+
 module "dns" {
   source          = "./modules/dns"
   deployment_name = var.deployment_name
