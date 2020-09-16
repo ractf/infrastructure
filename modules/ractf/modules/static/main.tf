@@ -36,8 +36,8 @@ data "aws_iam_policy_document" "static_files_cloudflare" {
 resource "aws_s3_bucket_object" "static_homepage" {
   bucket       = aws_s3_bucket.static_files.id
   key          = "index.html"
-  source       = "${path.module}/index.html"
-  etag         = filemd5("${path.module}/index.html")
+  source       = "${path.module}/assets/index.html"
+  etag         = filemd5("${path.module}/assets/index.html")
   content_type = "text/html"
   tags = {
     Deployment = var.deployment_name
@@ -47,8 +47,8 @@ resource "aws_s3_bucket_object" "static_homepage" {
 resource "aws_s3_bucket_object" "static_robots" {
   bucket       = aws_s3_bucket.static_files.id
   key          = "robots.txt"
-  source       = "${path.module}/robots.txt"
-  etag         = filemd5("${path.module}/robots.txt")
+  source       = "${path.module}/assets/robots.txt"
+  etag         = filemd5("${path.module}/assets/robots.txt")
   content_type = "text/plain"
   tags = {
     Deployment = var.deployment_name
@@ -58,8 +58,8 @@ resource "aws_s3_bucket_object" "static_robots" {
 resource "aws_s3_bucket_object" "static_favicon" {
   bucket       = aws_s3_bucket.static_files.id
   key          = "favicon.ico"
-  source       = "${path.module}/favicon.ico"
-  etag         = filemd5("${path.module}/favicon.ico")
+  source       = "${path.module}/assets/favicon.ico"
+  etag         = filemd5("${path.module}/assets/favicon.ico")
   content_type = "image/vnd.microsoft.ico"
   tags = {
     Deployment = var.deployment_name
