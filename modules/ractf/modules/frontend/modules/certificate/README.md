@@ -2,17 +2,21 @@
 
 Generate a certificate for use in Cloudfront
 
-## Providers
+## Requirements
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| terraform | >= 0.13 |
+| aws | ~> 3.2 |
+| cloudflare | 2.9.0 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| domain | The domain name to use when deploying the frontend | `string` | n/a | yes |
+| deployment\_name | The name of the RACTF deployment | `string` | n/a | yes |
+| root\_domain | The root domain for the RACTF deployment | `string` | n/a | yes |
+| zone | The Cloudflare Zone ID | `string` | n/a | yes |
 
 ## Outputs
 

@@ -2,11 +2,12 @@
 
 Set Cloudflare settings.
 
-## Providers
+## Requirements
 
 | Name | Version |
 |------|---------|
-| cloudflare | n/a |
+| terraform | >= 0.13 |
+| cloudflare | 2.9.0 |
 
 ## Inputs
 
