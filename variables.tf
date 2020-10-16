@@ -97,6 +97,6 @@ variable "cloud_github_token" {
 }
 
 variable "vault_bucket" {
-  type = string
+  type        = string
   description = "The name of the bucket for Vault"
 }
