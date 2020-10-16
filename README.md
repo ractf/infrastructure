@@ -35,3 +35,4 @@ The infrastructure-as-code which runs the cloud components of RACTF.
 | shortener\_endpoint | The IP of the host the RACTF shortener is running on | `string` | n/a | yes |
 | staging\_endpoint | The IP of the staging server | `string` | n/a | yes |
 | status\_endpoint | The DNS name of the statuspage | `string` | n/a | yes |
+| vault\_bucket | The name of the bucket for Vault | `string` | n/a | yes |

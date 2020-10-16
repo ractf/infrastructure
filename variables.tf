@@ -95,3 +95,8 @@ variable "cloud_github_token" {
   type        = string
   description = "GitHub verification token for Cloud"
 }
+
+variable "vault_bucket" {
+  type        = string
+  description = "The name of the bucket for Vault"
+}
