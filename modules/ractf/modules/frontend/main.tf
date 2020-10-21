@@ -114,17 +114,17 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 }
 
+resource "cloudflare_record" "frontend" {
+  zone_id = var.zone
+  name    = var.deployment_name
+  value   = aws_cloudfront_distribution.frontend_distribution.domain_name
+  type    = "CNAME"
+  proxied = false
+}
+
 module "certificate" {
   source          = "./modules/certificate"
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
-  zone            = var.zone
-}
-
-module "dns" {
-  source          = "./modules/dns"
-  endpoint        = aws_cloudfront_distribution.frontend_distribution.domain_name
-  deployment_name = var.deployment_name
-  root_domain     = var.root_domain
   zone            = var.zone
 }
