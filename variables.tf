@@ -6,14 +6,6 @@ variable "cloud_domain" {
   type = string
 }
 
-variable "ractf_frontend_domain" {
-  type = string
-}
-
-variable "ractf_elite_domain" {
-  type = string
-}
-
 variable "ractf_shortener_domain" {
   type = string
 }
