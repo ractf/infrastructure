@@ -30,5 +30,5 @@ resource "cloudflare_record" "api" {
   value   = var.backend_endpoint
   type    = "A"
   ttl     = 1
-  proxied = true
+  proxied = false
 }
