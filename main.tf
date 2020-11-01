@@ -1,3 +1,81 @@
+module "homepage" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+    providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "install" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "install"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "docs" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "docs"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "keygen" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "keygen"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "cloud_homepage" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.cloud_dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "cloud_wildcard" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "*"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.cloud_dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
 module "deployment" {
   for_each           = var.deployments
   source             = "./modules/ractf"
@@ -8,8 +86,8 @@ module "deployment" {
   zone               = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
   container_registry = each.value.container_registry
   providers = {
-    aws        = aws
-    aws.cert   = aws.cert
+    aws = aws
+    aws.cert = aws.cert
     cloudflare = cloudflare
   }
 }
