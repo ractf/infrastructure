@@ -1,13 +1,16 @@
 variable "root_domain" {
-  type = string
+  type        = string
+  description = "The RACTF root domain"
 }
 
 variable "cloud_domain" {
-  type = string
+  type        = string
+  description = "The RACTF Cloud domain"
 }
 
 variable "ractf_shortener_domain" {
-  type = string
+  type        = string
+  description = "The RACTF Shortener domain"
 }
 
 variable "aws_region" {
@@ -91,4 +94,9 @@ variable "cloud_github_token" {
 variable "vault_bucket" {
   type        = string
   description = "The name of the bucket for Vault"
+}
+
+variable "deployments" {
+  type        = map(object({ name = string, domain = string, container_registry = bool }))
+  description = "Events running on the RACTF site"
 }
