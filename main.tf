@@ -46,32 +46,15 @@ module "cloud_wildcard" {
   zone            = module.cloud_dns.zone
 }
 
-module "r2020" {
-  source           = "./modules/ractf"
-  deployment_name  = "2020"
-  root_domain      = var.root_domain
-  backend_endpoint = var.ractf_host
-  deploy_account   = var.deploy_account
-  zone             = module.dns.zone
-}
-
-module "elite" {
-  source           = "./modules/ractf"
-  deployment_name  = "elite"
-  root_domain      = var.root_domain
-  backend_endpoint = var.ractf_host
-  deploy_account   = var.deploy_account
-  zone             = module.dns.zone
-}
-
-module "bsidesncl" {
+module "deployment" {
+  for_each           = var.deployments
   source             = "./modules/ractf"
-  deployment_name    = "bsidesncl"
-  root_domain        = var.root_domain
+  deployment_name    = each.value.name
+  root_domain        = each.value.domain
   backend_endpoint   = var.ractf_host
   deploy_account     = var.deploy_account
-  zone               = module.dns.zone
-  container_registry = true
+  zone               = each.value.domain == var.ractf_domain ? module.dns.zone : module.cloud_dns.zone
+  container_registry = each.value.container_registry
 }
 
 module "dns" {

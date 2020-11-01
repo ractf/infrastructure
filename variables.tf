@@ -93,12 +93,7 @@ variable "vault_bucket" {
   description = "The name of the bucket for Vault"
 }
 
-variable "main_deployments" {
+variable "deployments" {
   type        = list(map(string))
   description = "Events running on the main RACTF site"
-}
-
-variable "cloud_deployments" {
-  type        = list(map(string))
-  description = "Events running on the RACTF Cloud site"
 }
