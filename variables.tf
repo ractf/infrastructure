@@ -1,13 +1,16 @@
 variable "root_domain" {
   type = string
+  description = "The RACTF root domain"
 }
 
 variable "cloud_domain" {
   type = string
+  description = "The RACTF Cloud domain"
 }
 
 variable "ractf_shortener_domain" {
   type = string
+  description = "The RACTF Shortener domain"
 }
 
 variable "aws_region" {
