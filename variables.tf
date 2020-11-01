@@ -94,6 +94,6 @@ variable "vault_bucket" {
 }
 
 variable "deployments" {
-  type        = list(map(string))
+  type        = map(object({name=string,domain=string,container_registry=bool}))
   description = "Events running on the main RACTF site"
 }

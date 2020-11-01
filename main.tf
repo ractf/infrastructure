@@ -1,3 +1,62 @@
+module "homepage" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
+module "install" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "install"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
+module "docs" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "docs"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
+module "keygen" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "keygen"
+  deploy_account  = var.deploy_account
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+}
+
+module "cloud_homepage" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "www"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.cloud_dns.zone
+}
+
+module "cloud_wildcard" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "*"
+  deploy_account  = var.deploy_account
+  root_domain     = var.cloud_domain
+  zone            = module.cloud_dns.zone
+}
+
+module "deployment" {
+  for_each           = var.deployments
+  source             = "./modules/ractf"
+  deployment_name    = each.value.name
+  root_domain        = each.value.domain
+  backend_endpoint   = var.ractf_host
+  deploy_account     = var.deploy_account
+  zone               = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
+  container_registry = each.value.container_registry
+}
+
 module "dns" {
   source              = "./modules/support/dns"
   domain              = var.root_domain
