@@ -10,7 +10,6 @@ resource "aws_acm_certificate" "certificate" {
   lifecycle {
     create_before_destroy = true
   }
-  provider = aws.cert
 }
 
 resource "cloudflare_record" "certificate-validation" {
@@ -31,5 +30,4 @@ resource "cloudflare_record" "certificate-validation" {
 resource "aws_acm_certificate_validation" "certificate" {
   certificate_arn         = aws_acm_certificate.certificate.arn
   validation_record_fqdns = [for record in cloudflare_record.certificate-validation : record.hostname]
-  provider = aws.cert
 }
