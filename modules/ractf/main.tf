@@ -4,6 +4,11 @@ module "frontend" {
   deployment_name = var.deployment_name
   deploy_account  = var.deploy_account
   zone            = var.zone
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
 }
 
 module "static" {
