@@ -95,5 +95,5 @@ variable "vault_bucket" {
 
 variable "deployments" {
   type        = map(object({name=string,domain=string,container_registry=bool}))
-  description = "Events running on the main RACTF site"
+  description = "Events running on the RACTF site"
 }
