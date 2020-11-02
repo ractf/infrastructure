@@ -21,7 +21,7 @@ resource "cloudflare_record" "certificate-validation" {
     }
   }
   name    = each.value.name
-  value   = each.value.record
+  value   = trimsuffix(each.value.record, ".")
   type    = each.value.type
   zone_id = var.zone
   proxied = false
