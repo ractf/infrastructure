@@ -40,7 +40,7 @@ module "docs" {
 module "bentestbucket" {
   source          = "./modules/ractf/modules/frontend"
   deployment_name = "bentestbucket"
-  deploy_account  = var.deploy_account
+  deploy_account  = aws_iam_user.bentestuser.arn
   root_domain     = var.root_domain
   zone            = module.dns.zone
   providers = {
