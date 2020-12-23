@@ -37,6 +37,24 @@ module "docs" {
   }
 }
 
+module "bentestbucket" {
+  source          = "./modules/ractf/modules/frontend"
+  deployment_name = "bentestbucket"
+  deploy_account  = aws_iam_user.bentestuser.arn
+  root_domain     = var.root_domain
+  zone            = module.dns.zone
+  providers = {
+    aws = aws
+    aws.cert = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+resource "aws_iam_user" "bentestuser" {
+  name = "bentestuser"
+  path = "/testing/"
+}
+
 module "keygen" {
   source          = "./modules/ractf/modules/frontend"
   deployment_name = "keygen"
