@@ -15,6 +15,7 @@ module "static" {
   source          = "./modules/static"
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
+  backend_account = var.backend_account
   zone            = var.zone
 }
 

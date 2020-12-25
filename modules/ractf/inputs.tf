@@ -28,3 +28,9 @@ variable "container_registry" {
   description = "Should this deployment include a container registry?"
   default     = false
 }
+
+variable "backend_account" {
+  type        = string
+  description = "The ARN of the S3 deploy account"
+  default     = ""
+}
