@@ -33,6 +33,30 @@ data "aws_iam_policy_document" "static_files_cloudflare" {
   }
 }
 
+resource "aws_s3_bucket_policy" "static_files_backend" {
+  bucket = aws_s3_bucket.static_files.id
+  policy = data.aws_iam_policy_document.static_files_backend.json
+}
+
+data "aws_iam_policy_document" "static_files_backend" {
+  policy_id = "static_files_backend"
+  statement {
+    sid       = "BackendAllow"
+    effect    = "Allow"
+    actions   = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:PutObjectAcl",
+      "s3:DeleteObject"
+    ]
+    resources = ["${aws_s3_bucket.static_files.arn}/challenge-files/*"]
+    principals {
+      type        = "AWS"
+      identifiers = [var.backend_account]
+    }
+  }
+}
+
 resource "aws_s3_bucket_object" "static_homepage" {
   bucket       = aws_s3_bucket.static_files.id
   key          = "index.html"

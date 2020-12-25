@@ -12,3 +12,9 @@ variable "zone" {
   type        = string
   description = "The Cloudflare Zone ID"
 }
+
+variable "backend_account" {
+  type        = string
+  description = "The ARN of the S3 deploy account"
+  default     = ""
+}

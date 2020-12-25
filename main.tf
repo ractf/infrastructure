@@ -103,6 +103,7 @@ module "deployment" {
   deploy_account     = var.deploy_account
   zone               = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
   container_registry = each.value.container_registry
+  backend_account    = module.ses.backend_account
   providers = {
     aws = aws
     aws.cert = aws.cert
