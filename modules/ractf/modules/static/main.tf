@@ -9,13 +9,13 @@ resource "aws_s3_bucket" "static_files" {
 
 data "cloudflare_ip_ranges" "cloudflare" {}
 
-resource "aws_s3_bucket_policy" "static_files_cloudflare" {
+resource "aws_s3_bucket_policy" "static_files" {
   bucket = aws_s3_bucket.static_files.id
-  policy = data.aws_iam_policy_document.static_files_cloudflare.json
+  policy = data.aws_iam_policy_document.static_files.json
 }
 
-data "aws_iam_policy_document" "static_files_cloudflare" {
-  policy_id = "static_files_cloudflare"
+data "aws_iam_policy_document" "static_files" {
+  policy_id = "static_files"
   statement {
     sid       = "CloudflareAllow"
     effect    = "Allow"
@@ -31,15 +31,7 @@ data "aws_iam_policy_document" "static_files_cloudflare" {
       values   = data.cloudflare_ip_ranges.cloudflare.cidr_blocks
     }
   }
-}
 
-resource "aws_s3_bucket_policy" "static_files_backend" {
-  bucket = aws_s3_bucket.static_files.id
-  policy = data.aws_iam_policy_document.static_files_backend.json
-}
-
-data "aws_iam_policy_document" "static_files_backend" {
-  policy_id = "static_files_backend"
   statement {
     sid       = "BackendAllow"
     effect    = "Allow"
