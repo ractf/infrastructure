@@ -11,20 +11,20 @@ resource "cloudflare_record" "home" {
   proxied = true
 }
 
-resource "cloudflare_record" "infra-consul" {
+resource "cloudflare_record" "consul" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
-  name    = "consul"
+  name    = "infra-consul"
   value   = var.consul_host
   type    = "CNAME"
   ttl     = 1
   proxied = true
 }
 
-resource "cloudflare_record" "infra-nomad" {
+resource "cloudflare_record" "nomad" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
-  name    = "nomad"
+  name    = "infra-nomad"
   value   = var.consul_host
   type    = "CNAME"
   ttl     = 1
