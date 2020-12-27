@@ -48,7 +48,7 @@ resource "aws_iam_user" "push" {
   path = "/registry/"
 }
 
-data "aws_iam_policy_document" "push" {
+data "aws_iam_policy_document" "policy" {
   statement {
     sid = "PushToECR"
     actions = [
@@ -67,19 +67,7 @@ data "aws_iam_policy_document" "push" {
       identifiers = [aws_iam_user.push.arn]
     }
   }
-}
 
-resource "aws_ecr_repository_policy" "push" {
-  repository = aws_ecr_repository.registry.name
-  policy     = data.aws_iam_policy_document.push.json
-}
-
-resource "aws_iam_user" "pull" {
-  name = "pull-${var.deployment_name}"
-  path = "/registry/"
-}
-
-data "aws_iam_policy_document" "pull" {
   statement {
     sid = "PullFromECR"
     actions = [
@@ -95,9 +83,14 @@ data "aws_iam_policy_document" "pull" {
   }
 }
 
-resource "aws_ecr_repository_policy" "pull" {
+resource "aws_ecr_repository_policy" "policy" {
   repository = aws_ecr_repository.registry.name
-  policy     = data.aws_iam_policy_document.pull.json
+  policy     = data.aws_iam_policy_document.policy.json
+}
+
+resource "aws_iam_user" "pull" {
+  name = "pull-${var.deployment_name}"
+  path = "/registry/"
 }
 
 data "aws_iam_policy_document" "login" {
