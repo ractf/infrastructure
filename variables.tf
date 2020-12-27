@@ -106,3 +106,21 @@ variable "consul_host" {
   description = "The host running the Consul and Nomad proxies"
   default     = ""
 }
+
+variable "consul_address" {
+  type        = string
+  description = "The host running the Consul"
+  default     = ""
+}
+
+variable "consul_token" {
+  type        = string
+  description = "ACL token for Consul"
+  default     = ""
+}
+
+variable "consul_auth" {
+  type        = string
+  description = "HTTP Auth credentials for Consul"
+  default     = ""
+}
