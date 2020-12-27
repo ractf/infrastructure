@@ -31,6 +31,16 @@ resource "cloudflare_record" "nomad" {
   proxied = false
 }
 
+resource "cloudflare_record" "blog" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.consul_host != "" ? 1 : 0
+  name    = "blog"
+  value   = var.consul_host
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "staging" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.staging_endpoint != "" ? 1 : 0
