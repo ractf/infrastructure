@@ -168,3 +168,15 @@ module "ses" {
   source  = "./modules/support/ses"
   domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
 }
+
+# This is a terrible hack and I'm going to remove it ASAP
+
+resource "local_file" "consul_cert" {
+  sensitive_content = var.consul_cert
+  filename          = "/opt/consul_cert.key"
+}
+
+resource "local_file" "consul_key" {
+  sensitive_content = var.consul_key
+  filename          = "/opt/consul_key.key"
+}

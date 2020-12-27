@@ -20,3 +20,15 @@ provider "consul" {
   http_auth  = var.consul_auth
   token      = var.consul_token
 }
+
+provider "nomad" {
+  address    = var.nomad_address
+  cert_file  = "/opt/consul_cert.crt"
+  key_file   = "/opt/consul_key.key"
+  secret_id  = var.nomad_token
+  depends_on = [local_file.consul_cert, local_file.consul_key] # No this is bad
+}
+
+provider "local" {
+  
+}
