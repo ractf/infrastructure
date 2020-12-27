@@ -28,7 +28,7 @@ resource "cloudflare_record" "nomad" {
   value   = var.consul_host
   type    = "CNAME"
   ttl     = 1
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "staging" {
