@@ -15,5 +15,9 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "2.9.0"
     }
+    consul = {
+      source = "hashicorp/consul"
+      version = "2.10.1"
+    }
   }
 }
