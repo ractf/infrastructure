@@ -11,7 +11,7 @@ resource "cloudflare_record" "home" {
   proxied = true
 }
 
-resource "cloudflare_record" "consul" {
+resource "cloudflare_record" "infra-consul" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
   name    = "consul"
@@ -21,7 +21,7 @@ resource "cloudflare_record" "consul" {
   proxied = true
 }
 
-resource "cloudflare_record" "nomad" {
+resource "cloudflare_record" "infra-nomad" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
   name    = "nomad"
