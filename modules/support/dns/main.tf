@@ -13,6 +13,7 @@ resource "cloudflare_record" "home" {
 
 resource "cloudflare_record" "consul" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.consul_host != "" ? 1 : 0
   name    = "consul"
   value   = var.consul_host
   type    = "CNAME"
@@ -22,6 +23,7 @@ resource "cloudflare_record" "consul" {
 
 resource "cloudflare_record" "nomad" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.consul_host != "" ? 1 : 0
   name    = "nomad"
   value   = var.consul_host
   type    = "CNAME"
