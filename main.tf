@@ -122,6 +122,7 @@ module "dns" {
   h1_token_production = var.h1_token_production
   h1_token_staging    = var.h1_token_staging
   dkim_key            = var.dkim_key
+  consul_host         = var.consul_host
 }
 
 module "cloud_dns" {

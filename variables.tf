@@ -100,3 +100,9 @@ variable "deployments" {
   type        = map(object({ name = string, domain = string, container_registry = bool }))
   description = "Events running on the RACTF site"
 }
+
+variable "consul_host" {
+  type        = string
+  description = "The host running the Consul and Nomad proxies"
+  default     = ""
+}

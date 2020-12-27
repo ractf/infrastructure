@@ -50,3 +50,9 @@ variable "dkim_key" {
   description = "DKIM token from mail server"
   default     = ""
 }
+
+variable "consul_host" {
+  type        = string
+  description = "The host running the Consul and Nomad proxies"
+  default     = ""
+}
