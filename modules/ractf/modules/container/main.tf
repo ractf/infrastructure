@@ -43,11 +43,6 @@ resource "aws_ecr_lifecycle_policy" "policy" {
 EOF
 }
 
-resource "aws_iam_user" "push" {
-  name = "push-${var.deployment_name}"
-  path = "/registry/"
-}
-
 data "aws_iam_policy_document" "policy" {
   statement {
     sid = "PushToECR"
@@ -90,6 +85,11 @@ resource "aws_ecr_repository_policy" "policy" {
 
 resource "aws_iam_user" "pull" {
   name = "pull-${var.deployment_name}"
+  path = "/registry/"
+}
+
+resource "aws_iam_user" "push" {
+  name = "push-${var.deployment_name}"
   path = "/registry/"
 }
 
