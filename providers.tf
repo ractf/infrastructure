@@ -14,3 +14,9 @@ provider "cloudflare" {
   email   = var.cloudflare_email
   api_key = var.cloudflare_api_key
 }
+
+provider "consul" {
+  address    = var.consul_address
+  http_auth  = var.consul_auth
+  token      = var.consul_token
+}
