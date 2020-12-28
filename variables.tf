@@ -124,3 +124,15 @@ variable "consul_auth" {
   description = "HTTP Auth credentials for Consul"
   default     = ""
 }
+
+variable "consul_cert" {
+  type        = string
+  description = "PEM encoded certificate for mTLS"
+  default     = ""
+}
+
+variable "consul_key" {
+  type        = string
+  description = "PEM encoded key for mTLS"
+  default     = ""
+}
