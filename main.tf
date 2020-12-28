@@ -172,3 +172,7 @@ module "ses" {
 module "consul" {
   source = "./modules/support/consul"
 }
+
+module "nomad" {
+  source = "./modules/support/nomad"
+}
