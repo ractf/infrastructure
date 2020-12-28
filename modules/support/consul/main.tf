@@ -28,3 +28,25 @@ resource "consul_intention" "production_gateway" {
   destination_name = "traefik-api"
   action           = "allow"
 }
+
+resource "consul_acl_policy" "production_gateway" {
+  name  = "production_gateway"
+  rules = <<-RULE
+    service "production_gateway" {
+      policy = "write"
+    }
+
+    service_prefix "" {
+      policy = "read"
+    }
+
+    node_prefix "" {
+      policy = "read"
+    }
+    RULE
+}
+
+resource "consul_acl_token" "production_gateway" {
+  description = "Consul Connect gateway"
+  policies = [consul_acl_policy.production_gateway.name]
+}
