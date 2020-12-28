@@ -13,9 +13,13 @@ resource "consul_config_entry" "production_gateway" {
   kind = "ingress-gateway"
   name = "production-gateway"
   config_json = jsonencode({
+    TLS = {
+      Enabled = false
+    }
+
     Listeners  = [{
       Port     = 80
-      Protocol = "TCP"
+      Protocol = "tcp"
       Services = [{
         Name = "traefik-api"
       }]
@@ -27,4 +31,26 @@ resource "consul_intention" "production_gateway" {
   source_name      = "production-gateway"
   destination_name = "traefik-api"
   action           = "allow"
+}
+
+resource "consul_acl_policy" "production_gateway" {
+  name  = "production_gateway"
+  rules = <<-RULE
+    service "production_gateway" {
+      policy = "write"
+    }
+
+    service_prefix "" {
+      policy = "read"
+    }
+
+    node_prefix "" {
+      policy = "read"
+    }
+    RULE
+}
+
+resource "consul_acl_token" "production_gateway" {
+  description = "Consul Connect gateway"
+  policies = [consul_acl_policy.production_gateway.name]
 }
