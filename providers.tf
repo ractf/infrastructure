@@ -19,4 +19,6 @@ provider "consul" {
   address    = var.consul_address
   http_auth  = var.consul_auth
   token      = var.consul_token
+  cert_pem   = var.consul_cert
+  key_pem    = var.consul_key
 }
