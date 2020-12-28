@@ -24,6 +24,6 @@ provider "consul" {
 }
 
 provider "nomad" {
-  address = var.nomad_address
-  token   = var.nomad_token
+  address   = var.nomad_address
+  secret_id = var.nomad_token
 }
