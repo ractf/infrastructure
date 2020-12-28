@@ -13,9 +13,13 @@ resource "consul_config_entry" "production_gateway" {
   kind = "ingress-gateway"
   name = "production-gateway"
   config_json = jsonencode({
+    TLS = {
+      Enabled = false
+    }
+
     Listeners  = [{
       Port     = 80
-      Protocol = "TCP"
+      Protocol = "tcp"
       Services = [{
         Name = "traefik-api"
       }]
