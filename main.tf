@@ -168,3 +168,7 @@ module "ses" {
   source  = "./modules/support/ses"
   domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
 }
+
+module "consul" {
+  source = "./modules/support/consul"
+}
