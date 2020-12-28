@@ -47,6 +47,10 @@ resource "consul_acl_policy" "production_gateway" {
     node_prefix "" {
       policy = "read"
     }
+
+    agent_prefix "ix2gateway" {
+      policy = "write"
+    }
     RULE
 }
 
