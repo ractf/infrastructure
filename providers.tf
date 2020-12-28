@@ -26,4 +26,6 @@ provider "consul" {
 provider "nomad" {
   address   = var.nomad_address
   secret_id = var.nomad_token
+  cert_file = var.consul_cert
+  key_file  = var.consul_key
 }
