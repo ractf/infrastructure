@@ -21,7 +21,7 @@ resource "consul_config_entry" "production_gateway" {
       Port     = 80
       Protocol = "tcp"
       Services = [{
-        Name = "nginx"
+        Name = "traefik-api"
       }]
     }]
   })
@@ -29,7 +29,7 @@ resource "consul_config_entry" "production_gateway" {
 
 resource "consul_intention" "production_gateway" {
   source_name      = "production-gateway"
-  destination_name = "nginx"
+  destination_name = "traefik-api"
   action           = "allow"
 }
 
