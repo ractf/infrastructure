@@ -19,7 +19,7 @@ resource "consul_config_entry" "production_gateway" {
 
     Listeners  = [{
       Port     = 80
-      Protocol = "http"
+      Protocol = "tcp"
       Services = [{
         Name = "traefik-api"
       }]
