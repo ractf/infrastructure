@@ -34,9 +34,9 @@ resource "consul_intention" "production_gateway" {
 }
 
 resource "consul_acl_policy" "production_gateway" {
-  name  = "production_gateway"
+  name  = "production-gateway"
   rules = <<-RULE
-    service "production_gateway" {
+    service "production-gateway" {
       policy = "write"
     }
 
