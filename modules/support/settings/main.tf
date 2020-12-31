@@ -44,14 +44,3 @@ resource "cloudflare_page_rule" "files_ssl" {
   }
   count = var.shortener ? 0 : 1
 }
-
-resource "cloudflare_page_rule" "infra_ssl" {
-  zone_id  = var.zone
-  target   = "infra-*.${var.domain}/*"
-  priority = 3
-
-  actions {
-    ssl = "flexible"
-  }
-  count = var.shortener ? 0 : 1
-}

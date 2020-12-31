@@ -34,7 +34,7 @@ resource "cloudflare_record" "nomad" {
 resource "cloudflare_record" "keycloak" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
-  name    = "infra-sso"
+  name    = "sso"
   value   = var.consul_host
   type    = "CNAME"
   ttl     = 1
