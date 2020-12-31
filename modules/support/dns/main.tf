@@ -38,7 +38,7 @@ resource "cloudflare_record" "keycloak" {
   value   = var.consul_host
   type    = "CNAME"
   ttl     = 1
-  proxied = false
+  proxied = true
 }
 
 resource "cloudflare_record" "blog" {
