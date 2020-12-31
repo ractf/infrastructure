@@ -31,6 +31,16 @@ resource "cloudflare_record" "nomad" {
   proxied = false
 }
 
+resource "cloudflare_record" "keycloak" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.consul_host != "" ? 1 : 0
+  name    = "infra-keycloak"
+  value   = var.consul_host
+  type    = "CNAME"
+  ttl     = 1
+  proxied = false
+}
+
 resource "cloudflare_record" "blog" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
