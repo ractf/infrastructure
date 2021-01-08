@@ -109,7 +109,7 @@ variable "consul_host" {
 
 variable "consul_address" {
   type        = string
-  description = "The host running the Consul"
+  description = "The host running Consul"
   default     = ""
 }
 
@@ -134,5 +134,17 @@ variable "consul_cert" {
 variable "consul_key" {
   type        = string
   description = "PEM encoded key for mTLS"
+  default     = ""
+}
+
+variable "nomad_address" {
+  type        = string
+  description = "The host running Nomad"
+  default     = ""
+}
+
+variable "nomad_token" {
+  type        = string
+  description = "ACL token for Consul"
   default     = ""
 }

@@ -22,3 +22,8 @@ provider "consul" {
   cert_pem   = var.consul_cert
   key_pem    = var.consul_key
 }
+
+provider "nomad" {
+  address   = var.nomad_address
+  secret_id = var.nomad_token
+}
