@@ -5,3 +5,5 @@ provider "aws" {
 provider "aws" {}
 
 provider "cloudflare" {}
+
+provider "newrelic" {}

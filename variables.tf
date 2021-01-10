@@ -148,3 +148,21 @@ variable "nomad_token" {
   description = "ACL token for Consul"
   default     = ""
 }
+
+variable "new_relic_id" {
+  type        = number
+  description = "ID of New Relic account"
+  default     = 1
+}
+
+variable "new_relic_key" {
+  type        = string
+  description = "Key for New Relic account"
+  default     = ""
+}
+
+variable "discord_url" {
+  type        = string
+  description = "Webhook for Discord alerting"
+  default     = ""
+}
