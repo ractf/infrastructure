@@ -19,16 +19,16 @@ module "static" {
   zone            = var.zone
 }
 
+module "backend" {
+  source           = "./modules/backend"
+  root_domain      = var.root_domain
+  deployment_name  = var.deployment_name
+  backend_endpoint = var.backend_endpoint
+  zone             = var.zone
+}
+
 module "registry" {
   source          = "./modules/container"
   deployment_name = var.deployment_name
   count           = var.container_registry ? 1 : 0
-}
-
-module "backend" {
-  source           = "./modules/backend"
-  deployment_name  = var.deployment_name
-  zone             = var.zone
-  backend_endpoint = var.backend_endpoint
-  root_domain      = var.root_domain
 }
