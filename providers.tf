@@ -27,3 +27,9 @@ provider "nomad" {
   address   = var.nomad_address
   secret_id = var.nomad_token
 }
+
+provider "newrelic" {
+  account_id = var.new_relic_id
+  api_key    = var.new_relic_key
+  region     = "EU"
+}

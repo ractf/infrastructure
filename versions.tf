@@ -23,5 +23,9 @@ terraform {
       source = "hashicorp/nomad"
       version = "1.4.11"
     }
+    newrelic = {
+      source = "newrelic/newrelic"
+      version = "2.14.0"
+    }
   }
 }
