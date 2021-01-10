@@ -172,3 +172,8 @@ module "ses" {
 module "consul" {
   source = "./modules/support/consul"
 }
+
+module "newrelic" {
+  source      = "./modules/support/newrelic"
+  discord_url = var.discord_url
+}

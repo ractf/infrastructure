@@ -160,3 +160,9 @@ variable "new_relic_key" {
   description = "Key for New Relic account"
   default     = ""
 }
+
+variable "discord_url" {
+  type        = string
+  description = "Webhook for Discord alerting"
+  default     = ""
+}
