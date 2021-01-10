@@ -95,15 +95,15 @@ module "cloud_wildcard" {
 }
 
 module "deployment" {
-  for_each           = var.deployments
-  source             = "./modules/ractf"
-  deployment_name    = each.value.name
-  root_domain        = each.value.domain
-  backend_endpoint   = var.ractf_host
-  deploy_account     = var.deploy_account
-  zone               = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
-  container_registry = each.value.container_registry
-  backend_account    = module.ses.backend_account
+  for_each            = var.deployments
+  source              = "./modules/ractf"
+  deployment_name     = each.value.name
+  root_domain         = each.value.domain
+  backend_endpoint    = var.ractf_host
+  deploy_account      = var.deploy_account
+  zone                = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
+  container_registry  = each.value.container_registry
+  backend_account     = module.ses.backend_account
   new_relic_policy_id = module.newrelic.policy_id
   providers = {
     aws        = aws

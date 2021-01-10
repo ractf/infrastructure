@@ -20,11 +20,12 @@ module "static" {
 }
 
 module "backend" {
-  source           = "./modules/backend"
-  root_domain      = var.root_domain
-  deployment_name  = var.deployment_name
-  backend_endpoint = var.backend_endpoint
-  zone             = var.zone
+  source              = "./modules/backend"
+  root_domain         = var.root_domain
+  deployment_name     = var.deployment_name
+  backend_endpoint    = var.backend_endpoint
+  zone                = var.zone
+  new_relic_policy_id = var.new_relic_policy_id
 }
 
 module "registry" {
