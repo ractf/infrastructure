@@ -104,10 +104,12 @@ module "deployment" {
   zone               = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
   container_registry = each.value.container_registry
   backend_account    = module.ses.backend_account
+  new_relic_policy_id = module.newrelic.policy_id
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
+    newrelic   = newrelic
   }
 }
 

@@ -18,3 +18,9 @@ resource "newrelic_synthetics_monitor" "stats" {
   verify_ssl        = true
   depends_on        = [cloudflare_record.api]
 }
+
+resource "newrelic_synthetics_alert_condition" "stats" {
+  policy_id   = var.new_relic_policy_id
+  name        = "${var.deployment_name} Alert Condition"
+  monitor_id  = newrelic_synthetics_monitor.stats.id
+}

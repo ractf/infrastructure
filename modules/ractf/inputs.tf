@@ -34,3 +34,8 @@ variable "backend_account" {
   description = "The ARN of the S3 deploy account"
   default     = ""
 }
+
+variable "new_relic_policy_id" {
+  type        = string
+  description = "New Relic Policy ID for Alerting"
+}

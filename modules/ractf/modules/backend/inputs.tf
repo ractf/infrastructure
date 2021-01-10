@@ -17,3 +17,8 @@ variable "root_domain" {
   type        = string
   description = "The root domain for the RACTF deployment"
 }
+
+variable "new_relic_policy_id" {
+  type        = string
+  description = "New Relic Policy ID for Alerting"
+}
