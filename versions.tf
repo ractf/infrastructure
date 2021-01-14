@@ -16,15 +16,15 @@ terraform {
       version = "2.9.0"
     }
     consul = {
-      source = "hashicorp/consul"
+      source  = "hashicorp/consul"
       version = "2.10.1"
     }
     nomad = {
-      source = "hashicorp/nomad"
+      source  = "hashicorp/nomad"
       version = "1.4.11"
     }
     newrelic = {
-      source = "newrelic/newrelic"
+      source  = "newrelic/newrelic"
       version = "2.14.0"
     }
   }

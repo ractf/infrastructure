@@ -7,53 +7,53 @@ module "homepage" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
 
 module "install" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "install"
-  deploy_account  = var.deploy_account
-  root_domain     = var.root_domain
-  zone            = module.dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "install"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
 
 module "docs" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "docs"
-  deploy_account  = var.deploy_account
-  root_domain     = var.root_domain
-  zone            = module.dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "docs"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
 
 module "bentestbucket" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "bentestbucket"
-  deploy_account  = aws_iam_user.bentestuser.arn
-  root_domain     = var.root_domain
-  zone            = module.dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "bentestbucket"
+  deploy_account      = aws_iam_user.bentestuser.arn
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
@@ -64,46 +64,46 @@ resource "aws_iam_user" "bentestuser" {
 }
 
 module "keygen" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "keygen"
-  deploy_account  = var.deploy_account
-  root_domain     = var.root_domain
-  zone            = module.dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "keygen"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
 
 module "cloud_homepage" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "www"
-  deploy_account  = var.deploy_account
-  root_domain     = var.cloud_domain
-  zone            = module.cloud_dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "www"
+  deploy_account      = var.deploy_account
+  root_domain         = var.cloud_domain
+  zone                = module.cloud_dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }
 
 module "cloud_wildcard" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "*"
-  deploy_account  = var.deploy_account
-  root_domain     = var.cloud_domain
-  zone            = module.cloud_dns.zone
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "*"
+  deploy_account      = var.deploy_account
+  root_domain         = var.cloud_domain
+  zone                = module.cloud_dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
-    aws = aws
-    aws.cert = aws.cert
+    aws        = aws
+    aws.cert   = aws.cert
     cloudflare = cloudflare
   }
 }

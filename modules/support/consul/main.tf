@@ -17,7 +17,7 @@ resource "consul_config_entry" "production_gateway" {
       Enabled = false
     }
 
-    Listeners  = [{
+    Listeners = [{
       Port     = 80
       Protocol = "tcp"
       Services = [{
@@ -56,5 +56,5 @@ resource "consul_acl_policy" "production_gateway" {
 
 resource "consul_acl_token" "production_gateway" {
   description = "Consul Connect gateway"
-  policies = [consul_acl_policy.production_gateway.name]
+  policies    = [consul_acl_policy.production_gateway.name]
 }

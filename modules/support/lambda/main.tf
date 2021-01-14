@@ -9,13 +9,13 @@ resource "aws_iam_role" "lambda_role" {
 
 data "aws_iam_policy_document" "lambda_role" {
   statement {
-      sid = "cloudfront_role"
+    sid = "cloudfront_role"
 
-      actions = [ "sts:AssumeRole" ]
-      principals {
-        type = "Service"
-        identifiers = [ "lambda.amazonaws.com", "edgelambda.amazonaws.com" ]
-      }
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com", "edgelambda.amazonaws.com"]
+    }
   }
 }
 
@@ -33,9 +33,9 @@ resource "aws_iam_policy" "lambda_logging" {
 
 data "aws_iam_policy_document" "lambda_logging" {
   statement {
-    sid = "lambda_logging"
-    actions = [ "logs:CreateLogGroup", "logs:Cre3ateLogStream", "logs:PutLogEvents" ]
-    resources = [ "arn:aws:logs:*:*:*" ] # TODO
+    sid       = "lambda_logging"
+    actions   = ["logs:CreateLogGroup", "logs:Cre3ateLogStream", "logs:PutLogEvents"]
+    resources = ["arn:aws:logs:*:*:*"] # TODO
   }
 }
 
