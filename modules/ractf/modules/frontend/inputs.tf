@@ -19,7 +19,17 @@ variable "zone" {
 }
 
 variable "indexflatten" {
-  type    = bool
+  type        = bool
   description = "Apply a Lambda add index.html"
-  default = false
+  default     = false
+}
+
+variable "origin-response-arn" {
+  type        = string
+  description = "ARN of the Origin Response Lambda"
+}
+
+variable "viewer-request-arn" {
+  type        = string
+  description = "ARN of the Viewer Request Lambda"
 }
