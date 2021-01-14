@@ -17,3 +17,9 @@ variable "zone" {
   type        = string
   description = "The Cloudflare Zone ID"
 }
+
+variable "indexflatten" {
+  type    = bool
+  description = "Apply a Lambda add index.html"
+  default = false
+}

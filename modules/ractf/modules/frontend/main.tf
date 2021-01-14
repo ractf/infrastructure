@@ -51,6 +51,8 @@ resource "aws_s3_bucket" "frontend_bucket" {
 
 locals {
   s3_origin_id = "frontendS3Origin"
+  viewer_request_lambda  = "viewer_request_lambda"
+  origin_response_lambda = "origin_response_lambda"
 }
 
 resource "aws_cloudfront_distribution" "frontend_distribution" {
