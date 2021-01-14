@@ -27,5 +27,9 @@ terraform {
       source  = "newrelic/newrelic"
       version = "2.14.0"
     }
+    archive = {
+      source = "hashicorp/archive"
+      version = "2.0.0"
+    }
   }
 }

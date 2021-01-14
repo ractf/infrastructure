@@ -33,3 +33,5 @@ provider "newrelic" {
   api_key    = var.new_relic_key
   region     = "EU"
 }
+
+provider "archive" {}
