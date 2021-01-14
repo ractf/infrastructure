@@ -1,9 +1,11 @@
 module "frontend" {
-  source          = "./modules/frontend"
-  root_domain     = var.root_domain
-  deployment_name = var.deployment_name
-  deploy_account  = var.deploy_account
-  zone            = var.zone
+  source              = "./modules/frontend"
+  root_domain         = var.root_domain
+  deployment_name     = var.deployment_name
+  deploy_account      = var.deploy_account
+  zone                = var.zone
+  origin_response_arn = var.origin_response_arn
+  viewer_request_arn  = var.viewer_request_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert

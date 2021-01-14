@@ -16,11 +16,11 @@ provider "cloudflare" {
 }
 
 provider "consul" {
-  address    = var.consul_address
-  http_auth  = var.consul_auth
-  token      = var.consul_token
-  cert_pem   = var.consul_cert
-  key_pem    = var.consul_key
+  address   = var.consul_address
+  http_auth = var.consul_auth
+  token     = var.consul_token
+  cert_pem  = var.consul_cert
+  key_pem   = var.consul_key
 }
 
 provider "nomad" {
@@ -33,3 +33,5 @@ provider "newrelic" {
   api_key    = var.new_relic_key
   region     = "EU"
 }
+
+provider "archive" {}

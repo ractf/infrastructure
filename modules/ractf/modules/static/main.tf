@@ -33,9 +33,9 @@ data "aws_iam_policy_document" "static_files" {
   }
 
   statement {
-    sid       = "BackendAllow"
-    effect    = "Allow"
-    actions   = [
+    sid    = "BackendAllow"
+    effect = "Allow"
+    actions = [
       "s3:GetObject",
       "s3:PutObject",
       "s3:PutObjectAcl",

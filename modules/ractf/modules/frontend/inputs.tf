@@ -17,3 +17,19 @@ variable "zone" {
   type        = string
   description = "The Cloudflare Zone ID"
 }
+
+variable "indexflatten" {
+  type        = bool
+  description = "Apply a Lambda add index.html"
+  default     = false
+}
+
+variable "origin_response_arn" {
+  type        = string
+  description = "ARN of the Origin Response Lambda"
+}
+
+variable "viewer_request_arn" {
+  type        = string
+  description = "ARN of the Viewer Request Lambda"
+}

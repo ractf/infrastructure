@@ -50,7 +50,9 @@ resource "aws_s3_bucket" "frontend_bucket" {
 }
 
 locals {
-  s3_origin_id = "frontendS3Origin"
+  s3_origin_id           = "frontendS3Origin"
+  viewer_request_lambda  = "viewer_request_lambda"
+  origin_response_lambda = "origin_response_lambda"
 }
 
 resource "aws_cloudfront_distribution" "frontend_distribution" {
@@ -88,6 +90,18 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     default_ttl            = 3600
     max_ttl                = 86400
     compress               = true
+
+    lambda_function_association {
+      event_type   = "origin-response"
+      lambda_arn   = var.origin_response_arn
+      include_body = false
+    }
+
+    lambda_function_association {
+      event_type   = "viewer-request"
+      lambda_arn   = var.viewer_request_arn
+      include_body = false
+    }
   }
 
   restrictions {

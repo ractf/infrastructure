@@ -39,3 +39,13 @@ variable "new_relic_policy_id" {
   type        = string
   description = "New Relic Policy ID for Alerting"
 }
+
+variable "origin_response_arn" {
+  type        = string
+  description = "ARN of the Origin Response Lambda"
+}
+
+variable "viewer_request_arn" {
+  type        = string
+  description = "ARN of the Viewer Request Lambda"
+}
