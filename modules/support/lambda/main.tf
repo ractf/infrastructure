@@ -34,7 +34,7 @@ resource "aws_iam_policy" "lambda_logging" {
 data "aws_iam_policy_document" "lambda_logging" {
   statement {
     sid       = "lambdalogging"
-    actions   = ["logs:CreateLogGroup", "logs:Cre3ateLogStream", "logs:PutLogEvents"]
+    actions   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["arn:aws:logs:*:*:*"] # TODO
   }
 }
