@@ -19,8 +19,13 @@ data "aws_iam_policy_document" "lambda_role" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "terraform_lambda_edge_python_log_group" {
-  name              = "/aws/lambda/eu-west-2.terraform_lambda_edge_python"
+resource "aws_cloudwatch_log_group" "viewer_request" {
+  name              = "/aws/lambda/us-east-1.viewer_request_lambda"
+  retention_in_days = 3
+}
+
+resource "aws_cloudwatch_log_group" "origin_response" {
+  name              = "/aws/lambda/us-east-1.origin_response_lambda"
   retention_in_days = 3
 }
 
