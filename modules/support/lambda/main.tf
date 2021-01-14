@@ -4,7 +4,7 @@ locals {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  assume_role_policy = aws_iam_policy_document.lambda_role.json
+  assume_role_policy = data.aws_iam_policy_document.lambda_role.json
 }
 
 data "aws_iam_policy_document" "lambda_role" {
@@ -28,7 +28,7 @@ resource "aws_iam_policy" "lambda_logging" {
   path        = "/"
   description = "IAM policy for logging from a lambda"
 
-  policy = aws_iam_policy_document.lambda_logging.json
+  policy = data.aws_iam_policy_document.lambda_logging.json
 }
 
 data "aws_iam_policy_document" "lambda_logging" {
