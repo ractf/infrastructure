@@ -4,8 +4,8 @@ module "frontend" {
   deployment_name     = var.deployment_name
   deploy_account      = var.deploy_account
   zone                = var.zone
-  origin_response_arn = module.lambda.origin_response_arn
-  viewer_request_arn  = module.lambda.viewer_request_arn
+  origin_response_arn = var.origin_response_arn
+  viewer_request_arn  = var.viewer_request_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
