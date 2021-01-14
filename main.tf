@@ -1,10 +1,12 @@
 module "homepage" {
-  source          = "./modules/ractf/modules/frontend"
-  deployment_name = "www"
-  deploy_account  = var.deploy_account
-  root_domain     = var.root_domain
-  zone            = module.dns.zone
-    providers = {
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "www"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
+  providers = {
     aws = aws
     aws.cert = aws.cert
     cloudflare = cloudflare
@@ -17,6 +19,8 @@ module "install" {
   deploy_account  = var.deploy_account
   root_domain     = var.root_domain
   zone            = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -30,6 +34,8 @@ module "docs" {
   deploy_account  = var.deploy_account
   root_domain     = var.root_domain
   zone            = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -43,6 +49,8 @@ module "bentestbucket" {
   deploy_account  = aws_iam_user.bentestuser.arn
   root_domain     = var.root_domain
   zone            = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -61,6 +69,8 @@ module "keygen" {
   deploy_account  = var.deploy_account
   root_domain     = var.root_domain
   zone            = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -74,6 +84,8 @@ module "cloud_homepage" {
   deploy_account  = var.deploy_account
   root_domain     = var.cloud_domain
   zone            = module.cloud_dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -87,6 +99,8 @@ module "cloud_wildcard" {
   deploy_account  = var.deploy_account
   root_domain     = var.cloud_domain
   zone            = module.cloud_dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws = aws
     aws.cert = aws.cert
@@ -105,6 +119,8 @@ module "deployment" {
   container_registry  = each.value.container_registry
   backend_account     = module.ses.backend_account
   new_relic_policy_id = module.newrelic.policy_id
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -178,4 +194,8 @@ module "consul" {
 module "newrelic" {
   source      = "./modules/support/newrelic"
   discord_url = var.discord_url
+}
+
+module "lambda" {
+  source = "./modules/support/lambda"
 }
