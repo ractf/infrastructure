@@ -199,6 +199,6 @@ module "newrelic" {
 module "lambda" {
   source = "./modules/support/lambda"
   providers = {
-    "aws" = aws.cert
+    aws = aws.cert
   }
 }
