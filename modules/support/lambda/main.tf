@@ -9,7 +9,7 @@ resource "aws_iam_role" "lambda_role" {
 
 data "aws_iam_policy_document" "lambda_role" {
   statement {
-    sid = "cloudfront_role"
+    sid = "cloudfrontrole"
 
     actions = ["sts:AssumeRole"]
     principals {
@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "lambda_role" {
 
 resource "aws_cloudwatch_log_group" "terraform_lambda_edge_python_log_group" {
   name              = "/aws/lambda/eu-west-2.terraform_lambda_edge_python"
-  retention_in_days = 2
+  retention_in_days = 3
 }
 
 resource "aws_iam_policy" "lambda_logging" {
@@ -33,7 +33,7 @@ resource "aws_iam_policy" "lambda_logging" {
 
 data "aws_iam_policy_document" "lambda_logging" {
   statement {
-    sid       = "lambda_logging"
+    sid       = "lambdalogging"
     actions   = ["logs:CreateLogGroup", "logs:Cre3ateLogStream", "logs:PutLogEvents"]
     resources = ["arn:aws:logs:*:*:*"] # TODO
   }
