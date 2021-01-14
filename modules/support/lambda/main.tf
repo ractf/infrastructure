@@ -46,7 +46,7 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
 
 data "archive_file" "origin_response_lambda" {
   type        = "zip"
-  source_file = "${path.module}/scripts/originresponse.js"
+  source_file = "${path.module}/scripts/origin_response.js"
   output_path = "origin_response_lambda.zip"
 }
 
@@ -66,7 +66,7 @@ resource "aws_lambda_function" "origin_response_lambda" {
 
 data "archive_file" "viewer_request_lambda" {
   type        = "zip"
-  source_file = "${path.module}/scripts/viewerrequest.js"
+  source_file = "${path.module}/scripts/viewer_request.js"
   output_path = "viewer_request_lambda.zip"
 }
 
