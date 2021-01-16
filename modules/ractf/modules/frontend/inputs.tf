@@ -18,9 +18,9 @@ variable "zone" {
   description = "The Cloudflare Zone ID"
 }
 
-variable "indexflatten" {
+variable "react" {
   type        = bool
-  description = "Apply a Lambda add index.html"
+  description = "If the site being deployed uses React Router"
   default     = false
 }
 
