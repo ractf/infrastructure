@@ -100,7 +100,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
     dynamic "lambda_function_association" {
       for_each = local.react_array
-      content = {
+      content {
         event_type   = "viewer-request"
         lambda_arn   = var.viewer_request_arn
         include_body = false
