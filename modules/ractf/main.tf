@@ -6,6 +6,7 @@ module "frontend" {
   zone                = var.zone
   origin_response_arn = var.origin_response_arn
   viewer_request_arn  = var.viewer_request_arn
+  react               = true
   providers = {
     aws        = aws
     aws.cert   = aws.cert

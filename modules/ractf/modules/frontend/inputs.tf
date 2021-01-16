@@ -18,9 +18,9 @@ variable "zone" {
   description = "The Cloudflare Zone ID"
 }
 
-variable "indexflatten" {
+variable "react" {
   type        = bool
-  description = "Apply a Lambda add index.html"
+  description = "If the site being deployed uses React Router"
   default     = false
 }
 
@@ -32,4 +32,10 @@ variable "origin_response_arn" {
 variable "viewer_request_arn" {
   type        = string
   description = "ARN of the Viewer Request Lambda"
+}
+
+variable "error_page" {
+  type        = string
+  description = "The path of the document to serve as the error page"
+  default     = "/index.html"
 }

@@ -53,6 +53,7 @@ locals {
   s3_origin_id           = "frontendS3Origin"
   viewer_request_lambda  = "viewer_request_lambda"
   origin_response_lambda = "origin_response_lambda"
+  react_array            = var.react ? [] : [0]
 }
 
 resource "aws_cloudfront_distribution" "frontend_distribution" {
@@ -97,10 +98,13 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
       include_body = false
     }
 
-    lambda_function_association {
-      event_type   = "viewer-request"
-      lambda_arn   = var.viewer_request_arn
-      include_body = false
+    dynamic "lambda_function_association" {
+      for_each = local.react_array
+      content {
+        event_type   = "viewer-request"
+        lambda_arn   = var.viewer_request_arn
+        include_body = false
+      }
     }
   }
 
@@ -122,9 +126,10 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   custom_error_response {
-    error_code         = "404"
-    response_code      = "200"
-    response_page_path = "/index.html"
+    error_caching_min_ttl = 0
+    error_code            = "404"
+    response_code         = var.react ? "200" : "404"
+    response_page_path    = var.error_page
   }
 }
 
