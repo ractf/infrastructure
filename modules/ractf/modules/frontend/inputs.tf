@@ -35,7 +35,7 @@ variable "viewer_request_arn" {
 }
 
 variable "error_page" {
-  type = string
+  type        = string
   description = "The path of the document to serve as the error page"
-  default = "/index.html"
+  default     = "/index.html"
 }
