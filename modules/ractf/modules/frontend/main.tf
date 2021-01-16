@@ -1,3 +1,7 @@
+locals {
+  react_array = var.react ? [] : [0]
+}
+
 resource "aws_cloudfront_origin_access_identity" "frontend_distribution" {
 }
 
@@ -97,10 +101,13 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
       include_body = false
     }
 
-    lambda_function_association {
-      event_type   = "viewer-request"
-      lambda_arn   = var.viewer_request_arn
-      include_body = false
+    dynamic "lambda_function_association" {
+      for_each = local.react_array
+      content = {
+        event_type   = "viewer-request"
+        lambda_arn   = var.viewer_request_arn
+        include_body = false
+      }
     }
   }
 
