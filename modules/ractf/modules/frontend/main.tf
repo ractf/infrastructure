@@ -122,6 +122,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
   }
 
   custom_error_response {
+    error_caching_min_ttl = 0
     error_code         = "404"
     response_code      = var.react ? "200" : "404"
     response_page_path = var.error_page
