@@ -123,9 +123,8 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   custom_error_response {
     error_code         = "404"
-    response_code      = "200"
-    response_page_path = "/index.html"
-    count              = var.react ? 1 : 0
+    response_code      = var.react ? "200" : "404"
+    response_page_path = var.error_page
   }
 }
 
