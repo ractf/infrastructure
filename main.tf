@@ -203,3 +203,7 @@ module "lambda" {
     aws = aws.cert
   }
 }
+
+module "nomad" {
+  source = "./modules/support/nomad"
+}
