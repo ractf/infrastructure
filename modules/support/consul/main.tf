@@ -21,7 +21,7 @@ resource "consul_config_entry" "production_gateway" {
       Port     = 80
       Protocol = "tcp"
       Services = [{
-        Name = "traefik-api"
+        Name = "redis-cache"
       }]
     }]
   })
@@ -29,7 +29,7 @@ resource "consul_config_entry" "production_gateway" {
 
 resource "consul_intention" "production_gateway" {
   source_name      = "production-gateway"
-  destination_name = "traefik-api"
+  destination_name = "redis-cache"
   action           = "allow"
 }
 
