@@ -29,6 +29,12 @@ resource "consul_config_entry" "production_gateway" {
 
 resource "consul_intention" "production_gateway" {
   source_name      = "production-gateway"
+  destination_name = "traefik-api"
+  action           = "allow"
+}
+
+resource "consul_intention" "redis_gateway" {
+  source_name      = "production-gateway"
   destination_name = "redis-cache"
   action           = "allow"
 }
