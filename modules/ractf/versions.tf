@@ -5,12 +5,12 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "2.9.0"
+      version = "2.18.0"
     }
     newrelic = {
       source  = "newrelic/newrelic"
-      version = "2.14.0"
+      version = "2.19.0"
     }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
 }
