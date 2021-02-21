@@ -6,6 +6,7 @@ module "homepage" {
   zone                = module.dns.zone
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
+  error_page          = "/404.html"
   providers = {
     aws        = aws
     aws.cert   = aws.cert
