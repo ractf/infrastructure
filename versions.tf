@@ -14,7 +14,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "2.18.0"
+      version = "2.15.0"
     }
     consul = {
       source  = "hashicorp/consul"
