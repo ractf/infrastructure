@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 0.13"
   backend "remote" {
     organization = "ractf"
 
@@ -10,27 +10,26 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "3.29.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "2.18.0"
+      version = "2.9.0"
     }
     consul = {
       source  = "hashicorp/consul"
-      version = "2.11.0"
+      version = "2.10.1"
     }
     nomad = {
       source  = "hashicorp/nomad"
-      version = "1.4.13"
+      version = "1.4.11"
     }
     newrelic = {
       source  = "newrelic/newrelic"
-      version = "2.19.0"
+      version = "2.14.0"
     }
     archive = {
       source  = "hashicorp/archive"
-      version = "2.1.0"
+      version = "2.0.0"
     }
   }
 }
