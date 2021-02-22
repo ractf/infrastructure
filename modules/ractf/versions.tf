@@ -5,7 +5,6 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "2.18.0"
     }
     newrelic = {
       source  = "newrelic/newrelic"
