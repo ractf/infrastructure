@@ -54,10 +54,11 @@ locals {
   viewer_request_lambda  = "viewer_request_lambda"
   origin_response_lambda = "origin_response_lambda"
   react_array            = var.react ? [] : [0]
+  nice_deployment_name   = var.deployment_name != "*" ? var.deployment_name : "wildcard"
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "${var.deployment_name}-policy"
+  name        = "ractf-${var.deployment_name}-policy"
   comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
   default_ttl = 86400
   max_ttl     = 604800
@@ -100,14 +101,6 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     target_origin_id = local.s3_origin_id
     cache_policy_id  = aws_cloudfront_cache_policy.cache_policy.id
 
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
@@ -138,7 +131,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   tags = {
     Environment = "production"
-    Deployment  = var.deployment_name != "*" ? var.deployment_name : "wildcard"
+    Deployment  = local.nice_deployment_name
   }
 
   viewer_certificate {
