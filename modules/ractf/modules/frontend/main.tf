@@ -58,8 +58,8 @@ locals {
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-${var.deployment_name}-policy"
-  comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
+  name        = "ractf-production-${local.nice_deployment_name}-policy"
+  comment     = "Policy for ${local.nice_deployment_name}.${var.root_domain}"
   default_ttl = 86400
   max_ttl     = 604800
   min_ttl     = 1
