@@ -55,10 +55,11 @@ locals {
   origin_response_lambda = "origin_response_lambda"
   react_array            = var.react ? [] : [0]
   nice_deployment_name   = var.deployment_name != "*" ? var.deployment_name : "wildcard"
+  nice_root_domain       = replace(var.root_domain, '.', '-')
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-${local.nice_deployment_name}-policy"
+  name        = "ractf-${local.nice_deployment_name}-${local.nioce_root_domain}-policy"
   comment     = "Policy for ${local.nice_deployment_name}.${var.root_domain}"
   default_ttl = 86400
   max_ttl     = 604800
