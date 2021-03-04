@@ -57,26 +57,26 @@ locals {
   nice_deployment_name   = var.deployment_name != "*" ? var.deployment_name : "wildcard"
 }
 
-resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-${var.deployment_name}-policy"
-  comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
-  default_ttl = 86400
-  max_ttl     = 604800
-  min_ttl     = 1
-  parameters_in_cache_key_and_forwarded_to_origin {
-    cookies_config {
-      cookie_behavior = "none"
-    }
-    headers_config {
-      header_behavior = "none"
-    }
-    query_strings_config {
-      query_string_behavior = "none"
-    }
-    enable_accept_encoding_brotli = true
-    enable_accept_encoding_gzip   = true
-  }
-}
+#resource "aws_cloudfront_cache_policy" "cache_policy" {
+#  name        = "ractf-${var.deployment_name}-policy"
+#  comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
+#  default_ttl = 86400
+#  max_ttl     = 604800
+#  min_ttl     = 1
+#  parameters_in_cache_key_and_forwarded_to_origin {
+#    cookies_config {
+#      cookie_behavior = "none"
+#    }
+#    headers_config {
+#      header_behavior = "none"
+#    }
+#    query_strings_config {
+#      query_string_behavior = "none"
+#    }
+#    enable_accept_encoding_brotli = true
+#    enable_accept_encoding_gzip   = true
+#  }
+#}
 
 #resource "aws_cloudfront_distribution" "frontend_distribution" {
 #  origin {
