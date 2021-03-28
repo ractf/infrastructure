@@ -27,11 +27,13 @@ variable "react" {
 variable "origin_response_arn" {
   type        = string
   description = "ARN of the Origin Response Lambda"
+  default     = ""
 }
 
 variable "viewer_request_arn" {
   type        = string
   description = "ARN of the Viewer Request Lambda"
+  default     = ""
 }
 
 variable "error_page" {

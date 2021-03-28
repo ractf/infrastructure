@@ -54,6 +54,7 @@ locals {
   viewer_request_lambda  = "viewer_request_lambda"
   origin_response_lambda = "origin_response_lambda"
   react_array            = var.react ? [] : [0]
+  header_array           = var.origin_response_arn == "" ? [] : [0]
   nice_deployment_name   = var.deployment_name != "*" ? var.deployment_name : "wildcard"
   nice_root_domain       = replace(var.root_domain, ".", "-")
 }
@@ -105,10 +106,13 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
 
-    lambda_function_association {
-      event_type   = "origin-response"
-      lambda_arn   = var.origin_response_arn
-      include_body = false
+    dynamic "lambda_function_association" {
+      for_each = local.header_array
+      content {
+        event_type   = "origin-response"
+        lambda_arn   = var.origin_response_arn
+        include_body = false
+      }
     }
 
     dynamic "lambda_function_association" {

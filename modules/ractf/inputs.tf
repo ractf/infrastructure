@@ -43,9 +43,11 @@ variable "new_relic_policy_id" {
 variable "origin_response_arn" {
   type        = string
   description = "ARN of the Origin Response Lambda"
+  default     = ""
 }
 
 variable "viewer_request_arn" {
   type        = string
   description = "ARN of the Viewer Request Lambda"
+  default     = ""
 }
