@@ -47,7 +47,7 @@ module "docs" {
 
 module "ui_kit" {
   source              = "./modules/ractf/modules/frontend"
-  deployment_name     = "ui_kit"
+  deployment_name     = "ui-kit"
   deploy_account      = var.deploy_account
   root_domain         = var.root_domain
   zone                = module.dns.zone
