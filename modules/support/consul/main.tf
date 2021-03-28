@@ -58,3 +58,21 @@ resource "consul_acl_token" "production_gateway" {
   description = "Consul Connect gateway"
   policies    = [consul_acl_policy.production_gateway.name]
 }
+
+resource "consul_acl_policy" "polaris" {
+  name  = "polaris"
+  rules = <<-RULE
+    key_prefix "polaris/" {
+      policy = "write"
+    }
+
+    service "polaris-controller" {
+      policy = "write"
+    }
+    RULE
+}
+
+resource "consul_acl_token" "polaris" {
+  description = "Polaris"
+  policies    = [consul_acl_policy.polaris.name]
+}
