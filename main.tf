@@ -51,7 +51,6 @@ module "ui_kit" {
   deploy_account      = var.deploy_account
   root_domain         = var.root_domain
   zone                = module.dns.zone
-  origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   react               = true
   providers = {
