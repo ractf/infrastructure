@@ -159,12 +159,14 @@ resource "cloudflare_record" "dkim_atlassian1" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "s1._domainkey"
   value   = "s1._domainkey.atlassian.net."
-  type    = "TXT"
+  type    = "CNAME"
+  proxied = false
 }
 
 resource "cloudflare_record" "dkim_atlassian2" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "s2._domainkey"
   value   = "s2._domainkey.atlassian.net."
-  type    = "TXT"
+  type    = "CNAME"
+  proxied = false
 }
