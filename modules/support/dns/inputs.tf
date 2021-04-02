@@ -9,6 +9,12 @@ variable "mail_endpoint" {
   default     = ""
 }
 
+variable "mail_frontend" {
+  type        = string
+  description = "The IP of the host the RACTF mail frontend is running on"
+  default     = ""
+}
+
 variable "github_token" {
   type        = string
   description = "The verification token for GitHub"
