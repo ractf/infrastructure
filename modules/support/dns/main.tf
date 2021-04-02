@@ -64,7 +64,7 @@ resource "cloudflare_record" "staging" {
 resource "cloudflare_record" "mail_frontend" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.mail_frontend != "" ? 1 : 0
-  name    = "staging"
+  name    = "mail"
   value   = var.mail_frontend
   type    = "A"
   ttl     = 1
