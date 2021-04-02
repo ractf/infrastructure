@@ -108,6 +108,7 @@ module "dns" {
   h1_token_staging    = var.h1_token_staging
   dkim_key            = var.dkim_key
   consul_host         = var.consul_host
+  mail_frontend       = var.mail_frontend
 }
 
 module "cloud_dns" {

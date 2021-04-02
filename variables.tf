@@ -166,3 +166,9 @@ variable "discord_url" {
   description = "Webhook for Discord alerting"
   default     = ""
 }
+
+variable "mail_frontend" {
+  type        = string
+  description = "The IP of the host the RACTF mail frontend is running on"
+  default     = ""
+}

@@ -61,6 +61,16 @@ resource "cloudflare_record" "staging" {
   proxied = true
 }
 
+resource "cloudflare_record" "mail_frontend" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.mail_frontend != "" ? 1 : 0
+  name    = "mail"
+  value   = var.mail_frontend
+  type    = "A"
+  ttl     = 1
+  proxied = false
+}
+
 resource "cloudflare_record" "staging-ephemeral" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.staging_endpoint != "" ? 1 : 0
