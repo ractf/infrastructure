@@ -119,7 +119,7 @@ resource "cloudflare_record" "spf" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.mail_endpoint != "" ? 1 : 0
   name    = var.domain
-  value   = "v=spf1 a mx a:${var.mail_endpoint} include:amazonses.com -all"
+  value   = "v=spf1 a mx a:${var.mail_endpoint} include:amazonses.com include:_spf.atlassian.net -all"
   type    = "TXT"
 }
 
@@ -153,4 +153,20 @@ resource "cloudflare_record" "dkim" {
   name    = "dkim._domainkey"
   value   = var.dkim_key
   type    = "TXT"
+}
+
+resource "cloudflare_record" "dkim_atlassian1" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "s1._domainkey"
+  value   = "s1._domainkey.atlassian.net."
+  type    = "CNAME"
+  proxied = false
+}
+
+resource "cloudflare_record" "dkim_atlassian2" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "s2._domainkey"
+  value   = "s2._domainkey.atlassian.net."
+  type    = "CNAME"
+  proxied = false
 }
