@@ -131,6 +131,14 @@ resource "cloudflare_record" "google-verify" {
   type    = "TXT"
 }
 
+resource "cloudflare_record" "atlassian-verify" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.google_token != "" ? 1 : 0
+  name    = var.domain
+  value   = var.atlassian_token
+  type    = "TXT"
+}
+
 resource "cloudflare_record" "production-h1" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.h1_token_production != "" ? 1 : 0
