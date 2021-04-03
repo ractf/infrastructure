@@ -27,6 +27,12 @@ variable "google_token" {
   default     = ""
 }
 
+variable "atlassian_token" {
+  type        = string
+  description = "The verification token for Atlassian"
+  default     = ""
+}
+
 variable "staging_endpoint" {
   type        = string
   description = "The IP of the staging server"

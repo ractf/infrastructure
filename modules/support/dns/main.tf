@@ -131,6 +131,14 @@ resource "cloudflare_record" "google-verify" {
   type    = "TXT"
 }
 
+resource "cloudflare_record" "atlassian-verify" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.google_token != "" ? 1 : 0
+  name    = var.domain
+  value   = var.atlassian_token
+  type    = "TXT"
+}
+
 resource "cloudflare_record" "production-h1" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.h1_token_production != "" ? 1 : 0
@@ -158,7 +166,7 @@ resource "cloudflare_record" "dkim" {
 resource "cloudflare_record" "dkim_atlassian1" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "s1._domainkey"
-  value   = "s1._domainkey.atlassian.net."
+  value   = "s1._domainkey.atlassian.net"
   type    = "CNAME"
   proxied = false
 }
@@ -166,7 +174,7 @@ resource "cloudflare_record" "dkim_atlassian1" {
 resource "cloudflare_record" "dkim_atlassian2" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   name    = "s2._domainkey"
-  value   = "s2._domainkey.atlassian.net."
+  value   = "s2._domainkey.atlassian.net"
   type    = "CNAME"
   proxied = false
 }

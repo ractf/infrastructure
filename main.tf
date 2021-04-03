@@ -109,6 +109,7 @@ module "dns" {
   dkim_key            = var.dkim_key
   consul_host         = var.consul_host
   mail_frontend       = var.mail_frontend
+  atlassian_token     = var.atlassian_token
 }
 
 module "cloud_dns" {

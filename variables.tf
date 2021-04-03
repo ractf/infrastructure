@@ -172,3 +172,9 @@ variable "mail_frontend" {
   description = "The IP of the host the RACTF mail frontend is running on"
   default     = ""
 }
+
+variable "atlassian_token" {
+  type        = string
+  description = "The verification token for Atlassian"
+  default     = ""
+}
