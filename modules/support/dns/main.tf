@@ -133,7 +133,7 @@ resource "cloudflare_record" "google-verify" {
 
 resource "cloudflare_record" "atlassian-verify" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.google_token != "" ? 1 : 0
+  count   = var.atlassian_token != "" ? 1 : 0
   name    = var.domain
   value   = var.atlassian_token
   type    = "TXT"
