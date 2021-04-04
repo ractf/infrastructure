@@ -110,6 +110,7 @@ module "dns" {
   consul_host         = var.consul_host
   mail_frontend       = var.mail_frontend
   atlassian_token     = var.atlassian_token
+  dmarc_record        = var.dmarc_record
 }
 
 module "cloud_dns" {
@@ -119,6 +120,7 @@ module "cloud_dns" {
   github_token     = var.cloud_github_token
   google_token     = var.cloud_google_token
   staging_endpoint = var.staging_endpoint
+  dmarc_record     = var.dmarc_record
 }
 
 module "shortener_dns" {
