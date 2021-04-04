@@ -68,3 +68,9 @@ variable "consul_host" {
   description = "The host running the Consul and Nomad proxies"
   default     = ""
 }
+
+variable "dmarc_record" {
+  type        = string
+  description = "The DMARC record"
+  default     = ""
+}

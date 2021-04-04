@@ -178,3 +178,11 @@ resource "cloudflare_record" "dkim_atlassian2" {
   type    = "CNAME"
   proxied = false
 }
+
+resource "cloudflare_record" "dmarc" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.dmarc_record != "" ? 1 : 0
+  name    = "_dmarc"
+  value   = var.dmarc_record
+  type    = "TXT"
+}

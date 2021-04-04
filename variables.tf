@@ -178,3 +178,9 @@ variable "atlassian_token" {
   description = "The verification token for Atlassian"
   default     = ""
 }
+
+variable "dmarc_record" {
+  type        = string
+  description = "The DMARC record"
+  default     = ""
+}
