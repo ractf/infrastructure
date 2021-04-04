@@ -29,6 +29,36 @@ module "install" {
   }
 }
 
+module "javadoc_api" {
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "polaris-api"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
+module "javadoc_controller" {
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "polaris-controller"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
 module "docs" {
   source              = "./modules/ractf/modules/frontend"
   deployment_name     = "docs"
