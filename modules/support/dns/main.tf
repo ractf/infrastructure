@@ -124,11 +124,11 @@ resource "cloudflare_record" "spf" {
 }
 
 resource "cloudflare_record" "google-verify" {
-  zone_id  = cloudflare_zone.ractf-root-domain.id
-  for_each = var.google_token
-  name     = var.domain
-  value    = each.value
-  type     = "TXT"
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = length(var.google_token)
+  name    = var.domain
+  value   = var.google_token[count.index]
+  type    = "TXT"
 }
 
 resource "cloudflare_record" "atlassian-verify" {
