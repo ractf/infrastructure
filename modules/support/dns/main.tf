@@ -186,3 +186,10 @@ resource "cloudflare_record" "dmarc" {
   value   = var.dmarc_record
   type    = "TXT"
 }
+
+resource "cloudflare_record" "bimi" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "default._bimi"
+  value   = "v=BIMI1; l=https://www.ractf.co.uk/static/img/tiny.svg; a=;"
+  type    = "TXT"
+}
