@@ -125,9 +125,9 @@ resource "cloudflare_record" "spf" {
 
 resource "cloudflare_record" "google-verify" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.google_token != "" ? 1 : 0
+  count   = length(var.google_token)
   name    = var.domain
-  value   = var.google_token
+  value   = var.google_token[count.index]
   type    = "TXT"
 }
 

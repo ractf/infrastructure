@@ -22,9 +22,9 @@ variable "github_token" {
 }
 
 variable "google_token" {
-  type        = string
+  type        = list(string)
   description = "The verification token for Google"
-  default     = ""
+  default     = []
 }
 
 variable "atlassian_token" {
