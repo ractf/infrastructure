@@ -42,7 +42,7 @@ variable "mail_host" {
 }
 
 variable "google_token" {
-  type        = string
+  type        = list(string)
   description = "Google verification token"
 }
 
