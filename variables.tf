@@ -82,7 +82,7 @@ variable "dkim_key" {
 }
 
 variable "cloud_google_token" {
-  type        = string
+  type        = list(string)
   description = "Google verification token for Cloud"
 }
 
