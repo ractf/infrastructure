@@ -4,6 +4,7 @@ resource "cloudflare_zone" "ractf-root-domain" {
 
 resource "cloudflare_record" "home" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.create_home ? 1 : 0
   name    = "@"
   value   = "example.com"
   type    = "CNAME"
@@ -51,16 +52,6 @@ resource "cloudflare_record" "blog" {
   proxied = true
 }
 
-resource "cloudflare_record" "staging" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.staging_endpoint != "" ? 1 : 0
-  name    = "staging"
-  value   = var.staging_endpoint
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
-
 resource "cloudflare_record" "mail_frontend" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.mail_frontend != "" ? 1 : 0
@@ -71,15 +62,6 @@ resource "cloudflare_record" "mail_frontend" {
   proxied = false
 }
 
-resource "cloudflare_record" "staging-ephemeral" {
-  zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.staging_endpoint != "" ? 1 : 0
-  name    = "staging-ephemeral"
-  value   = var.staging_endpoint
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
 
 resource "cloudflare_record" "status" {
   zone_id = cloudflare_zone.ractf-root-domain.id

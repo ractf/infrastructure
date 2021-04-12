@@ -153,6 +153,17 @@ module "cloud_dns" {
   dmarc_record     = var.dmarc_record
 }
 
+module "staging_dns" {
+  source           = "./modules/support/dns"
+  domain           = var.staging_domain
+  mail_endpoint    = var.mail_host
+  github_token     = var.cloud_github_token
+  google_token     = var.cloud_google_token
+  staging_endpoint = var.staging_endpoint
+  dmarc_record     = var.dmarc_record
+  create_home      = false
+}
+
 module "shortener_dns" {
   source   = "./modules/support/shortener"
   domain   = var.ractf_shortener_domain
@@ -176,6 +187,12 @@ module "shortener_settings" {
   zone      = module.shortener_dns.zone
   domain    = var.ractf_shortener_domain
   shortener = true
+}
+
+module "staging" {
+  source           = "./modules/support/staging"
+  zone             = module.staging_dns.zone
+  staging_endpoint = var.staging_endpoint
 }
 
 module "vault" {

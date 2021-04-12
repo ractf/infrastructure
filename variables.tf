@@ -8,6 +8,11 @@ variable "cloud_domain" {
   description = "The RACTF Cloud domain"
 }
 
+variable "staging_domain" {
+  type        = string
+  description = "The RACTF staging domain"
+}
+
 variable "ractf_shortener_domain" {
   type        = string
   description = "The RACTF Shortener domain"
