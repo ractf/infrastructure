@@ -4,6 +4,7 @@ resource "cloudflare_zone" "ractf-root-domain" {
 
 resource "cloudflare_record" "home" {
   zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.create_home ? 1 : 0
   name    = "@"
   value   = "example.com"
   type    = "CNAME"

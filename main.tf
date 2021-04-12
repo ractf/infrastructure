@@ -161,6 +161,7 @@ module "staging_dns" {
   google_token     = var.cloud_google_token
   staging_endpoint = var.staging_endpoint
   dmarc_record     = var.dmarc_record
+  create_home      = false
 }
 
 module "shortener_dns" {

@@ -74,3 +74,9 @@ variable "dmarc_record" {
   description = "The DMARC record"
   default     = ""
 }
+
+variable "create_home" {
+  type        = bool
+  description = "Should the home record be created"
+  default     = true
+}
