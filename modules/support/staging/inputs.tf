@@ -1,4 +1,4 @@
-variable "staging_host" {
+variable "staging_endpoint" {
   type        = string
   description = "The host running RACTF Staging"
 }
