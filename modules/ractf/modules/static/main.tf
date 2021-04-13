@@ -55,8 +55,8 @@ resource "aws_s3_bucket_policy" "files_distribution" {
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-files-${local.deployment_name}-${local.nice_root_domain}-policy"
-  comment     = "Policy for ${local.deployment_name}.${var.root_domain}"
+  name        = "ractf-files-${var.deployment_name}-${local.nice_root_domain}-policy"
+  comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
   default_ttl = 86400
   max_ttl     = 604800
   min_ttl     = 1
@@ -135,7 +135,7 @@ resource "aws_cloudfront_distribution" "files_distribution" {
 
 
 resource "aws_s3_bucket_object" "static_homepage" {
-  bucket       = aws_s3_bucket.static_files.id
+  bucket       = aws_s3_bucket.files_bucket.id
   key          = "index.html"
   source       = "${path.module}/assets/index.html"
   etag         = filemd5("${path.module}/assets/index.html")
@@ -146,7 +146,7 @@ resource "aws_s3_bucket_object" "static_homepage" {
 }
 
 resource "aws_s3_bucket_object" "static_robots" {
-  bucket       = aws_s3_bucket.static_files.id
+  bucket       = aws_s3_bucket.files_bucket.id
   key          = "robots.txt"
   source       = "${path.module}/assets/robots.txt"
   etag         = filemd5("${path.module}/assets/robots.txt")
@@ -157,7 +157,7 @@ resource "aws_s3_bucket_object" "static_robots" {
 }
 
 resource "aws_s3_bucket_object" "static_favicon" {
-  bucket       = aws_s3_bucket.static_files.id
+  bucket       = aws_s3_bucket.files_bucket.id
   key          = "favicon.ico"
   source       = "${path.module}/assets/favicon.ico"
   etag         = filemd5("${path.module}/assets/favicon.ico")
