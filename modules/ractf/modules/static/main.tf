@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "files_distribution" {
     actions = ["s3:ListBucket"]
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.files_distribution.iam_arn, var.deploy_account]
+      identifiers = [aws_cloudfront_origin_access_identity.files_distribution.iam_arn]
     }
     resources = [aws_s3_bucket.files_bucket.arn]
   }
