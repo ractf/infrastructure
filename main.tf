@@ -8,7 +8,7 @@ module "homepage" {
   viewer_request_arn  = module.lambda.viewer_request_arn
   error_page          = "/404.html"
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -25,7 +25,7 @@ module "install" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -42,7 +42,7 @@ module "javadoc_api" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -59,7 +59,7 @@ module "javadoc_controller" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -77,7 +77,7 @@ module "docs" {
   viewer_request_arn  = module.lambda.viewer_request_arn
   react               = true
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -94,7 +94,7 @@ module "ui_kit" {
   viewer_request_arn  = module.lambda.viewer_request_arn
   react               = true
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -111,7 +111,7 @@ module "cloud_homepage" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -133,7 +133,7 @@ module "deployment" {
   origin_response_arn = module.lambda.origin_response_arn
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
-  cache_policy        = module.lamba.cache_policy_arn
+  cache_policy        = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert
