@@ -181,7 +181,7 @@ locals {
 }
 
 resource "cloudflare_record" "caa" {
-  for_each = len(local.caa_records)
+  for_each = local.caa_records
   zone_id  = cloudflare_zone.ractf-root-domain.id
   name     = "@"
   type     = "CAA"
