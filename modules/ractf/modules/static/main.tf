@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "static_files" {
+resource "aws_s3_bucket" "files_bucket" {
   bucket = "files-${var.deployment_name}.${var.root_domain}"
   acl    = "private"
 
@@ -8,7 +8,8 @@ resource "aws_s3_bucket" "static_files" {
 }
 
 locals {
-  s3_origin_id           = "frontendS3Origin"
+  s3_origin_id     = "frontendS3Origin"
+  nice_root_domain = replace(var.root_domain, ".", "-")
 }
 
 resource "aws_cloudfront_origin_access_identity" "files_distribution" {
@@ -54,8 +55,8 @@ resource "aws_s3_bucket_policy" "files_distribution" {
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-files-${local.nice_deployment_name}-${local.nice_root_domain}-policy"
-  comment     = "Policy for ${local.nice_deployment_name}.${var.root_domain}"
+  name        = "ractf-files-${local.deployment_name}-${local.nice_root_domain}-policy"
+  comment     = "Policy for ${local.deployment_name}.${var.root_domain}"
   default_ttl = 86400
   max_ttl     = 604800
   min_ttl     = 1
