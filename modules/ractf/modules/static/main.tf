@@ -35,17 +35,19 @@ data "aws_iam_policy_document" "files_distribution" {
   }
 
   statement {
+    sid    = "BackendAllow"
+    effect = "Allow"
     actions = [
       "s3:GetObject",
       "s3:PutObject",
       "s3:PutObjectAcl",
       "s3:DeleteObject"
     ]
+    resources = ["${aws_s3_bucket.static_files.arn}/challenge-files/*"]
     principals {
       type        = "AWS"
-      identifiers = [var.deploy_account]
+      identifiers = [var.backend_account]
     }
-    resources = ["${aws_s3_bucket.files_bucket.arn}/*"]
   }
 }
 
