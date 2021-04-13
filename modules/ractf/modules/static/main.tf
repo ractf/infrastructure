@@ -89,10 +89,10 @@ resource "aws_cloudfront_distribution" "files_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = var.deployment_name
+  comment             = "files-${var.deployment_name}"
   default_root_object = "index.html"
 
-  aliases = ["${var.deployment_name}.${var.root_domain}"]
+  aliases = ["files-${var.deployment_name}.${var.root_domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
