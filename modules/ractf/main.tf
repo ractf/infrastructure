@@ -7,6 +7,7 @@ module "frontend" {
   origin_response_arn = var.origin_response_arn
   viewer_request_arn  = var.viewer_request_arn
   react               = true
+  ractf_domains       = var.ractf_domains
   providers = {
     aws        = aws
     aws.cert   = aws.cert
