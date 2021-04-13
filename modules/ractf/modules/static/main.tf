@@ -175,7 +175,7 @@ resource "cloudflare_record" "files" {
 }
 
 module "certificate" {
-  source          = "../files/modules/certificate"
+  source          = "../frontend/modules/certificate"
   root_domain     = var.root_domain
   deployment_name = "files-${var.deployment_name}"
   zone            = var.zone
