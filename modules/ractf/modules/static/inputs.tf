@@ -18,3 +18,14 @@ variable "backend_account" {
   description = "The ARN of the S3 deploy account"
   default     = ""
 }
+
+variable "origin_response_arn" {
+  type        = string
+  description = "ARN of the Origin Response Lambda"
+  default     = ""
+}
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}

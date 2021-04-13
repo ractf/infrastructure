@@ -16,11 +16,18 @@ module "frontend" {
 }
 
 module "static" {
-  source          = "./modules/static"
-  root_domain     = var.root_domain
-  deployment_name = var.deployment_name
-  backend_account = var.backend_account
-  zone            = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
+  source              = "./modules/static"
+  root_domain         = var.root_domain
+  deployment_name     = var.deployment_name
+  backend_account     = var.backend_account
+  origin_response_arn = var.origin_response_arn
+  zone                = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
+  ractf_domains       = var.ractf_domains
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
 }
 
 module "backend" {
