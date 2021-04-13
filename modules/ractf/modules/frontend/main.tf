@@ -59,27 +59,6 @@ locals {
   nice_root_domain       = replace(var.root_domain, ".", "-")
 }
 
-resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-${local.nice_deployment_name}-${local.nice_root_domain}-policy"
-  comment     = "Policy for ${local.nice_deployment_name}.${var.root_domain}"
-  default_ttl = 86400
-  max_ttl     = 604800
-  min_ttl     = 1
-  parameters_in_cache_key_and_forwarded_to_origin {
-    cookies_config {
-      cookie_behavior = "none"
-    }
-    headers_config {
-      header_behavior = "none"
-    }
-    query_strings_config {
-      query_string_behavior = "none"
-    }
-    enable_accept_encoding_brotli = true
-    enable_accept_encoding_gzip   = true
-  }
-}
-
 resource "aws_cloudfront_distribution" "frontend_distribution" {
   origin {
     domain_name = aws_s3_bucket.frontend_bucket.bucket_regional_domain_name
@@ -101,7 +80,7 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
-    cache_policy_id  = aws_cloudfront_cache_policy.cache_policy.id
+    cache_policy_id  = var.cache_policy
 
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
