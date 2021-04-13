@@ -28,7 +28,7 @@ resource "cloudflare_record" "certificate-validation" {
   name    = each.value.name
   value   = trimsuffix(each.value.record, ".")
   type    = each.value.type
-  zone_id = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain.id
+  zone_id = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
   proxied = false
 }
 
