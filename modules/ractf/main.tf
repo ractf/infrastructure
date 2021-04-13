@@ -8,6 +8,7 @@ module "frontend" {
   viewer_request_arn  = var.viewer_request_arn
   react               = true
   ractf_domains       = var.ractf_domains
+  cache_policy        = var.cache_policy
   providers = {
     aws        = aws
     aws.cert   = aws.cert
@@ -23,6 +24,7 @@ module "static" {
   origin_response_arn = var.origin_response_arn
   zone                = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
   ractf_domains       = var.ractf_domains
+  cache_policy        = var.cache_policy
   providers = {
     aws        = aws
     aws.cert   = aws.cert

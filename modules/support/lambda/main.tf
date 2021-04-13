@@ -88,3 +88,24 @@ resource "aws_lambda_function" "viewer_request_lambda" {
 
   publish = true
 }
+
+resource "aws_cloudfront_cache_policy" "cache_policy" {
+  name        = "ractf-cache-policy"
+  comment     = "Policy for ractf"
+  default_ttl = 86400
+  max_ttl     = 604800
+  min_ttl     = 1
+  parameters_in_cache_key_and_forwarded_to_origin {
+    cookies_config {
+      cookie_behavior = "none"
+    }
+    headers_config {
+      header_behavior = "none"
+    }
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+    enable_accept_encoding_brotli = true
+    enable_accept_encoding_gzip   = true
+  }
+}

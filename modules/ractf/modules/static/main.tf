@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "files_bucket" {
+resource "aws_s3_bucket" "static_files" {
   bucket = "files-${var.deployment_name}.${var.root_domain}"
   acl    = "private"
 
@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "files_distribution" {
       type        = "AWS"
       identifiers = [aws_cloudfront_origin_access_identity.files_distribution.iam_arn]
     }
-    resources = ["${aws_s3_bucket.files_bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.static_files.arn}/*"]
   }
 
   statement {
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "files_distribution" {
       type        = "AWS"
       identifiers = [aws_cloudfront_origin_access_identity.files_distribution.iam_arn]
     }
-    resources = [aws_s3_bucket.files_bucket.arn]
+    resources = [aws_s3_bucket.static_files.arn]
   }
 
   statement {
@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "files_distribution" {
       "s3:PutObjectAcl",
       "s3:DeleteObject"
     ]
-    resources = ["${aws_s3_bucket.files_bucket.arn}/challenge-files/*"]
+    resources = ["${aws_s3_bucket.static_files.arn}/challenge-files/*"]
     principals {
       type        = "AWS"
       identifiers = [var.backend_account]
@@ -52,34 +52,13 @@ data "aws_iam_policy_document" "files_distribution" {
 }
 
 resource "aws_s3_bucket_policy" "files_distribution" {
-  bucket = aws_s3_bucket.files_bucket.id
+  bucket = aws_s3_bucket.static_files.id
   policy = data.aws_iam_policy_document.files_distribution.json
-}
-
-resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-files-${var.deployment_name}-${local.nice_root_domain}-policy"
-  comment     = "Policy for ${var.deployment_name}.${var.root_domain}"
-  default_ttl = 86400
-  max_ttl     = 604800
-  min_ttl     = 1
-  parameters_in_cache_key_and_forwarded_to_origin {
-    cookies_config {
-      cookie_behavior = "none"
-    }
-    headers_config {
-      header_behavior = "none"
-    }
-    query_strings_config {
-      query_string_behavior = "none"
-    }
-    enable_accept_encoding_brotli = true
-    enable_accept_encoding_gzip   = true
-  }
 }
 
 resource "aws_cloudfront_distribution" "files_distribution" {
   origin {
-    domain_name = aws_s3_bucket.files_bucket.bucket_regional_domain_name
+    domain_name = aws_s3_bucket.static_files.bucket_regional_domain_name
     origin_id   = local.s3_origin_id
 
     s3_origin_config {
@@ -89,16 +68,16 @@ resource "aws_cloudfront_distribution" "files_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = var.deployment_name
+  comment             = "files-${var.deployment_name}"
   default_root_object = "index.html"
 
-  aliases = ["${var.deployment_name}.${var.root_domain}"]
+  aliases = ["files-${var.deployment_name}.${var.root_domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
-    cache_policy_id  = aws_cloudfront_cache_policy.cache_policy.id
+    cache_policy_id  = var.cache_policy
 
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
@@ -137,7 +116,7 @@ resource "aws_cloudfront_distribution" "files_distribution" {
 
 
 resource "aws_s3_bucket_object" "static_homepage" {
-  bucket       = aws_s3_bucket.files_bucket.id
+  bucket       = aws_s3_bucket.static_files.id
   key          = "index.html"
   source       = "${path.module}/assets/index.html"
   etag         = filemd5("${path.module}/assets/index.html")
@@ -148,7 +127,7 @@ resource "aws_s3_bucket_object" "static_homepage" {
 }
 
 resource "aws_s3_bucket_object" "static_robots" {
-  bucket       = aws_s3_bucket.files_bucket.id
+  bucket       = aws_s3_bucket.static_files.id
   key          = "robots.txt"
   source       = "${path.module}/assets/robots.txt"
   etag         = filemd5("${path.module}/assets/robots.txt")
@@ -159,7 +138,7 @@ resource "aws_s3_bucket_object" "static_robots" {
 }
 
 resource "aws_s3_bucket_object" "static_favicon" {
-  bucket       = aws_s3_bucket.files_bucket.id
+  bucket       = aws_s3_bucket.static_files.id
   key          = "favicon.ico"
   source       = "${path.module}/assets/favicon.ico"
   etag         = filemd5("${path.module}/assets/favicon.ico")

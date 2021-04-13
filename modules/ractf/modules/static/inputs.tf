@@ -29,3 +29,8 @@ variable "ractf_domains" {
   type        = list(string)
   description = "A list of the RACTF domains"
 }
+
+variable "cache_policy" {
+  type        = string
+  description = "ID of RACTF cache policy"
+}
