@@ -12,11 +12,6 @@ resource "aws_acm_certificate" "certificate" {
   }
 }
 
-resource "cloudflare_zone" "domain" {
-  zone  = var.root_domain
-  count = contains(var.ractf_domains, var.root_domain) ? 0 : 1
-}
-
 resource "cloudflare_record" "certificate-validation" {
   for_each = {
     for dvo in aws_acm_certificate.certificate.domain_validation_options : dvo.domain_name => {
@@ -28,7 +23,7 @@ resource "cloudflare_record" "certificate-validation" {
   name    = each.value.name
   value   = trimsuffix(each.value.record, ".")
   type    = each.value.type
-  zone_id = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
+  zone_id = var.zone
   proxied = false
 }
 
