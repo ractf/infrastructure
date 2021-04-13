@@ -175,3 +175,20 @@ resource "cloudflare_record" "bimi" {
   value   = "v=BIMI1; l=https://www.ractf.co.uk/static/img/tiny.svg; a=;"
   type    = "TXT"
 }
+
+locals {
+  caa_records = ["amazon.com", "amazontrust.com", "awstrust.com", "amazonaws.com", "letsencrypt.org"]
+}
+
+resource "cloudflare_record" "caa" {
+  count   = len(local.caa_records)
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "@"
+  type    = "CAA"
+
+  data = {
+    flags = "0"
+    tags  = "issue"
+    value = local.caa_records[count.index]
+  }
+}
