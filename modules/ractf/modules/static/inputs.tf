@@ -24,3 +24,8 @@ variable "origin_response_arn" {
   description = "ARN of the Origin Response Lambda"
   default     = ""
 }
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}
