@@ -22,6 +22,11 @@ module "static" {
   backend_account     = var.backend_account
   origin_response_arn = var.origin_response_arn
   zone                = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
 }
 
 module "backend" {
