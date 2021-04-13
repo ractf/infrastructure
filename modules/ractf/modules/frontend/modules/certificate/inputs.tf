@@ -12,3 +12,8 @@ variable "zone" {
   type        = string
   description = "The Cloudflare Zone ID"
 }
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}

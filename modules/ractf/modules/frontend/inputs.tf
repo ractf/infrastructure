@@ -41,3 +41,8 @@ variable "error_page" {
   description = "The path of the document to serve as the error page"
   default     = "/index.html"
 }
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}

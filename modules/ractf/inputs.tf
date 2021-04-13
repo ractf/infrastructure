@@ -51,3 +51,8 @@ variable "viewer_request_arn" {
   description = "ARN of the Viewer Request Lambda"
   default     = ""
 }
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}

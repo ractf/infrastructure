@@ -189,3 +189,8 @@ variable "dmarc_record" {
   description = "The DMARC record"
   default     = ""
 }
+
+variable "ractf_domains" {
+  type        = list(string)
+  description = "A list of the RACTF domains"
+}
