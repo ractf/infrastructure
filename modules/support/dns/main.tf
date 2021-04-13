@@ -188,7 +188,7 @@ resource "cloudflare_record" "caa" {
 
   data = {
     flags = "0"
-    tags  = "issue"
+    tag   = "issue"
     value = local.caa_records[count.index]
   }
 }
