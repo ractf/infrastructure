@@ -181,14 +181,14 @@ locals {
 }
 
 resource "cloudflare_record" "caa" {
-  for_each = local.caa_records
-  zone_id  = cloudflare_zone.ractf-root-domain.id
-  name     = "@"
-  type     = "CAA"
+  count   = length(local.caa_records)
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  name    = "@"
+  type    = "CAA"
 
   data = {
     flags = "0"
     tags  = "issue"
-    value = each.value
+    value = local.caa_records[count.index]
   }
 }
