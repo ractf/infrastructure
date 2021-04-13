@@ -116,7 +116,7 @@ resource "aws_cloudfront_distribution" "files_distribution" {
 
   tags = {
     Environment = "production"
-    Deployment  = local.nice_deployment_name
+    Deployment  = var.deployment_name
   }
 
   viewer_certificate {
