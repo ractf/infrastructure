@@ -163,6 +163,7 @@ module "certificate" {
   root_domain     = var.root_domain
   deployment_name = var.deployment_name
   zone            = var.zone
+  ractf_domains   = var.ractf_domains
   providers = {
     aws        = aws.cert
     cloudflare = cloudflare
