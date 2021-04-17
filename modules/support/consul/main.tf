@@ -74,5 +74,5 @@ resource "consul_acl_policy" "polaris" {
 
 resource "consul_acl_token" "polaris" {
   description = "Polaris"
-  policies    = [consul_acl_policy.polaris.name]
+  policies    = [consul_acl_policy.polaris.name, "global-management"]
 }
