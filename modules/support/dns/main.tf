@@ -42,6 +42,16 @@ resource "cloudflare_record" "keycloak" {
   proxied = true
 }
 
+resource "cloudflare_record" "grafana" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.consul_host != "" ? 1 : 0
+  name    = "grafana"
+  value   = var.consul_host
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "blog" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
