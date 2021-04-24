@@ -67,6 +67,23 @@ module "javadoc_controller" {
   }
 }
 
+module "javadoc_client" {
+  source              = "./modules/ractf/modules/frontend"
+  deployment_name     = "polaris-apiclient"
+  deploy_account      = var.deploy_account
+  root_domain         = var.root_domain
+  zone                = module.dns.zone
+  origin_response_arn = module.lambda.origin_response_arn
+  viewer_request_arn  = module.lambda.viewer_request_arn
+  ractf_domains       = var.ractf_domains
+  cache_policy        = module.lambda.cache_policy_arn
+  providers = {
+    aws        = aws
+    aws.cert   = aws.cert
+    cloudflare = cloudflare
+  }
+}
+
 module "docs" {
   source              = "./modules/ractf/modules/frontend"
   deployment_name     = "docs"
