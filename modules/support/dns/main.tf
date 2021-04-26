@@ -54,7 +54,7 @@ resource "cloudflare_record" "grafana" {
 
 resource "cloudflare_record" "balloon" {
   zone_id = cloudflare_zone.ractf-root-domain.id
-  count   = var.balloonl_host != "" ? 1 : 0
+  count   = var.balloon_host != "" ? 1 : 0
   name    = "balloon"
   value   = var.balloon_host
   type    = "CNAME"
