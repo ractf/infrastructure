@@ -59,7 +59,7 @@ resource "cloudflare_record" "balloon" {
   value   = var.balloon_host
   type    = "CNAME"
   ttl     = 1
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "blog" {
