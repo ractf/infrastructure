@@ -174,6 +174,7 @@ module "dns" {
   mail_frontend       = var.mail_frontend
   atlassian_token     = var.atlassian_token
   dmarc_record        = var.dmarc_record
+  balloon_host        = var.consul_host
 }
 
 module "cloud_dns" {

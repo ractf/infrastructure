@@ -69,6 +69,12 @@ variable "consul_host" {
   default     = ""
 }
 
+variable "balloon_host" {
+  type        = string
+  description = "The host running the Balloon proxy"
+  default     = ""
+}
+
 variable "dmarc_record" {
   type        = string
   description = "The DMARC record"

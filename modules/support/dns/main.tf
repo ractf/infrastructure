@@ -52,6 +52,16 @@ resource "cloudflare_record" "grafana" {
   proxied = true
 }
 
+resource "cloudflare_record" "balloon" {
+  zone_id = cloudflare_zone.ractf-root-domain.id
+  count   = var.balloon_host != "" ? 1 : 0
+  name    = "balloon"
+  value   = var.balloon_host
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "blog" {
   zone_id = cloudflare_zone.ractf-root-domain.id
   count   = var.consul_host != "" ? 1 : 0
