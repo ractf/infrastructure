@@ -8,7 +8,7 @@ resource "cloudflare_record" "api" {
 }
 
 resource "newrelic_synthetics_monitor" "stats" {
-  name              = "${var.deployment_name} Stats"
+  name              = "${var.deployment_name}.${var.root_domain} Stats"
   type              = "SIMPLE"
   frequency         = 1
   status            = "ENABLED"
@@ -21,6 +21,6 @@ resource "newrelic_synthetics_monitor" "stats" {
 
 resource "newrelic_synthetics_alert_condition" "stats" {
   policy_id  = var.new_relic_policy_id
-  name       = "${var.deployment_name} Alert Condition"
+  name       = "${var.deployment_name}.${var.root_domain} Alert Condition"
   monitor_id = newrelic_synthetics_monitor.stats.id
 }
