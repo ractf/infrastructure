@@ -4,7 +4,7 @@ resource "cloudflare_record" "api" {
   value   = var.backend_endpoint
   type    = "A"
   ttl     = 1
-  proxied = false
+  proxied = true
 }
 
 resource "newrelic_synthetics_monitor" "stats" {
