@@ -194,3 +194,8 @@ variable "ractf_domains" {
   type        = list(string)
   description = "A list of the RACTF domains"
 }
+
+variable "careers_endpoint" {
+  type        = string
+  description = "The endpoint running the RACTF Careers site."
+}
