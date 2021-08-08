@@ -103,15 +103,15 @@ module "docs" {
 }
 
 module "ui_kit" {
-  source              = "./modules/ractf/modules/frontend"
-  deployment_name     = "ui-kit"
-  deploy_account      = var.deploy_account
-  root_domain         = var.root_domain
-  zone                = module.dns.zone
-  viewer_request_arn  = module.lambda.viewer_request_arn
-  react               = true
-  ractf_domains       = var.ractf_domains
-  cache_policy        = module.lambda.cache_policy_arn
+  source             = "./modules/ractf/modules/frontend"
+  deployment_name    = "ui-kit"
+  deploy_account     = var.deploy_account
+  root_domain        = var.root_domain
+  zone               = module.dns.zone
+  viewer_request_arn = module.lambda.viewer_request_arn
+  react              = true
+  ractf_domains      = var.ractf_domains
+  cache_policy       = module.lambda.cache_policy_arn
   providers = {
     aws        = aws
     aws.cert   = aws.cert

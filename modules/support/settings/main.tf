@@ -21,10 +21,21 @@ resource "cloudflare_zone_settings_override" "settings" {
   }
 }
 
+resource "cloudflare_page_rule" "allow_letsencrypt" {
+  zone_id  = var.zone
+  target   = "*${var.domain}/.well-known/acme-challenge/*"
+  priority = 1
+
+  actions {
+    automatic_https_rewrites = "off"
+    ssl                      = "off"
+  }
+}
+
 resource "cloudflare_page_rule" "redirect_www" {
   zone_id  = var.zone
   target   = "${var.domain}/*"
-  priority = 1
+  priority = 2
 
   actions {
     forwarding_url {
@@ -37,7 +48,7 @@ resource "cloudflare_page_rule" "redirect_www" {
 resource "cloudflare_page_rule" "files_ssl" {
   zone_id  = var.zone
   target   = "files-*.${var.domain}/*"
-  priority = 2
+  priority = 3
 
   actions {
     ssl = "flexible"
