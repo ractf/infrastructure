@@ -89,5 +89,6 @@ variable "create_home" {
 
 variable "careers_endpoint" {
   type        = string
-  description = "The endpoint running the RACTF Careers site."
+  description = "The endpoint running the RACTF Careers site"
+  default     = ""
 }
