@@ -86,3 +86,9 @@ variable "create_home" {
   description = "Should the home record be created"
   default     = true
 }
+
+variable "careers_endpoint" {
+  type        = string
+  description = "The endpoint running the RACTF Careers site"
+  default     = ""
+}

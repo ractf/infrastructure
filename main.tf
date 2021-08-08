@@ -175,6 +175,7 @@ module "dns" {
   atlassian_token     = var.atlassian_token
   dmarc_record        = var.dmarc_record
   balloon_host        = var.consul_host
+  careers_endpoint    = var.careers_endpoint
 }
 
 module "cloud_dns" {
