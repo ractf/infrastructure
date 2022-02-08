@@ -240,9 +240,9 @@ module "ses" {
   domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
 }
 
-module "consul" {
-  source = "./modules/support/consul"
-}
+#module "consul" {
+#  source = "./modules/support/consul"
+#}
 
 module "newrelic" {
   source      = "./modules/support/newrelic"
@@ -256,6 +256,6 @@ module "lambda" {
   }
 }
 
-module "nomad" {
-  source = "./modules/support/nomad"
-}
+#module "nomad" {
+#  source = "./modules/support/nomad"
+#}

@@ -77,3 +77,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/code,linux,windows,terraform
+.terraform.lock.hcl
+state.json
