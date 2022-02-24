@@ -32,7 +32,7 @@ resource "aws_ecr_lifecycle_policy" "policy" {
         "tagStatus": "any",
         "countType": "sinceImagePushed",
         "countUnit": "days",
-        "countNumber": 14
+        "countNumber": 30
       },
       "action": {
         "type": "expire"
