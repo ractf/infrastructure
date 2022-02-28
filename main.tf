@@ -236,8 +236,9 @@ module "vault" {
 }
 
 module "ses" {
-  source  = "./modules/support/ses"
-  domains = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
+  source           = "./modules/support/ses"
+  domains          = { (var.root_domain) = (module.dns.zone), (var.cloud_domain) = (module.cloud_dns.zone) }
+  backend_endpoint = var.ractf_host
 }
 
 #module "consul" {

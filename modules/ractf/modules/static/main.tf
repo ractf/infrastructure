@@ -48,6 +48,13 @@ data "aws_iam_policy_document" "files_distribution" {
       type        = "AWS"
       identifiers = [var.backend_account]
     }
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values = [
+        var.backend_endpoint
+      ]
+    }
   }
 }
 

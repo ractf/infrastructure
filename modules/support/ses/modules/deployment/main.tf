@@ -15,6 +15,13 @@ data "aws_iam_policy_document" "email_backend" {
       identifiers = [var.user]
       type        = "AWS"
     }
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values = [
+        var.backend_endpoint
+      ]
+    }
   }
 }
 
