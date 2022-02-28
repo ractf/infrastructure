@@ -34,3 +34,8 @@ variable "cache_policy" {
   type        = string
   description = "ID of RACTF cache policy"
 }
+
+variable "backend_endpoint" {
+  type        = string
+  description = "The IP address of the RACTF backend"
+}

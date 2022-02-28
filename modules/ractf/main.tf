@@ -25,6 +25,7 @@ module "static" {
   zone                = contains(var.ractf_domains, var.root_domain) ? var.zone : cloudflare_zone.domain[0].id
   ractf_domains       = var.ractf_domains
   cache_policy        = var.cache_policy
+  backend_endpoint    = var.backend_endpoint
   providers = {
     aws        = aws
     aws.cert   = aws.cert

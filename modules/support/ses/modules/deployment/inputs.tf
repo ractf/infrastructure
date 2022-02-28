@@ -12,3 +12,8 @@ variable "user" {
   type        = string
   description = "The ARN of the IAM user to grant email permissions to"
 }
+
+variable "backend_endpoint" {
+  type        = string
+  description = "The IP address of the RACTF backend"
+}
