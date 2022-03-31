@@ -151,6 +151,7 @@ module "deployment" {
   viewer_request_arn  = module.lambda.viewer_request_arn
   ractf_domains       = var.ractf_domains
   cache_policy        = module.lambda.cache_policy_arn
+  unique_name         = each.key
   providers = {
     aws        = aws
     aws.cert   = aws.cert

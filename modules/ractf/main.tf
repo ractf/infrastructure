@@ -44,7 +44,7 @@ module "backend" {
 
 module "registry" {
   source          = "./modules/container"
-  deployment_name = var.deployment_name
+  deployment_name = var.unique_name
   count           = var.container_registry ? 1 : 0
 }
 
