@@ -61,3 +61,8 @@ variable "cache_policy" {
   type        = string
   description = "ID of RACTF cache policy"
 }
+
+variable "unique_name" {
+  type        = string
+  description = "Unique name for RACTF Deployment"
+}
