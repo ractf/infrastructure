@@ -160,30 +160,6 @@ module "deployment" {
   }
 }
 
-module "deployment2" {
-  for_each            = var.deployments2
-  source              = "./modules/ractf"
-  deployment_name     = each.value.name
-  root_domain         = each.value.domain
-  backend_endpoint    = var.ractf_host
-  deploy_account      = var.deploy_account
-  zone                = each.value.domain == var.root_domain ? module.dns.zone : module.cloud_dns.zone
-  container_registry  = each.value.container_registry
-  backend_account     = module.ses.backend_account
-  new_relic_policy_id = module.newrelic.policy_id
-  origin_response_arn = module.lambda2.origin_response_arn
-  viewer_request_arn  = module.lambda2.viewer_request_arn
-  ractf_domains       = var.ractf_domains
-  cache_policy        = module.lambda2.cache_policy_arn
-  unique_name         = each.key
-  providers = {
-    aws        = aws
-    aws.cert   = aws.cert
-    cloudflare = cloudflare
-    newrelic   = newrelic
-  }
-}
-
 module "dns" {
   source              = "./modules/support/dns"
   domain              = var.root_domain
@@ -278,14 +254,6 @@ module "newrelic" {
 module "lambda" {
   source = "./modules/support/lambda"
   prefix = "ractf"
-  providers = {
-    aws = aws.cert
-  }
-}
-
-module "lambda2" {
-  source = "./modules/support/lambda"
-  prefix = "ractf2"
   providers = {
     aws = aws.cert
   }
