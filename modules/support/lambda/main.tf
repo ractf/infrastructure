@@ -20,12 +20,12 @@ data "aws_iam_policy_document" "lambda_role" {
 }
 
 resource "aws_cloudwatch_log_group" "viewer_request" {
-  name              = "/aws/lambda/us-east-1.viewer_request_lambda"
+  name              = "/aws/lambda/us-east-1.viewer_request_lambda_${var.prefix}"
   retention_in_days = 3
 }
 
 resource "aws_cloudwatch_log_group" "origin_response" {
-  name              = "/aws/lambda/us-east-1.origin_response_lambda"
+  name              = "/aws/lambda/us-east-1.origin_response_lambda_${var.prefix}"
   retention_in_days = 3
 }
 
@@ -58,7 +58,7 @@ data "archive_file" "origin_response_lambda" {
 resource "aws_lambda_function" "origin_response_lambda" {
   depends_on    = [aws_iam_role_policy_attachment.lambda_logs]
   filename      = data.archive_file.origin_response_lambda.output_path
-  function_name = local.origin_response_lambda
+  function_name = "${var.prefix}_local.origin_response_lambda"
   role          = aws_iam_role.lambda_role.arn
   handler       = "origin_response.handler"
 
@@ -78,7 +78,7 @@ data "archive_file" "viewer_request_lambda" {
 resource "aws_lambda_function" "viewer_request_lambda" {
   depends_on    = [aws_iam_role_policy_attachment.lambda_logs]
   filename      = data.archive_file.viewer_request_lambda.output_path
-  function_name = local.viewer_request_lambda
+  function_name = "${var.prefix}_local.viewer_request_lambda"
   role          = aws_iam_role.lambda_role.arn
   handler       = "viewer_request.handler"
 
