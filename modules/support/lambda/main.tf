@@ -40,7 +40,10 @@ data "aws_iam_policy_document" "lambda_logging" {
   statement {
     sid       = "lambdalogging"
     actions   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
-    resources = ["arn:aws:logs:*:*:*"] # TODO
+    resources = [
+      aws_cloudwatch_log_group.viewer_request.arn,
+      aws_cloudwatch_log_group.viewer_request.arn,
+    ]
   }
 }
 
