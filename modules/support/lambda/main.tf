@@ -90,7 +90,7 @@ resource "aws_lambda_function" "viewer_request_lambda" {
 }
 
 resource "aws_cloudfront_cache_policy" "cache_policy" {
-  name        = "ractf-cache-policy"
+  name        = "${var.prefix}-cache-policy"
   comment     = "Policy for ractf"
   default_ttl = 86400
   max_ttl     = 604800

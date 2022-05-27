@@ -277,6 +277,7 @@ module "newrelic" {
 
 module "lambda" {
   source = "./modules/support/lambda"
+  prefix = "ractf"
   providers = {
     aws = aws.cert
   }
@@ -284,6 +285,7 @@ module "lambda" {
 
 module "lambda2" {
   source = "./modules/support/lambda"
+  prefix = "ractf2"
   providers = {
     aws = aws.cert
   }
