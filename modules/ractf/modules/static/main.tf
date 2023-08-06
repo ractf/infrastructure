@@ -39,6 +39,7 @@ data "aws_iam_policy_document" "files_distribution" {
     effect = "Allow"
     actions = [
       "s3:GetObject",
+      "s3:GetObjectAcl",
       "s3:PutObject",
       "s3:PutObjectAcl",
       "s3:DeleteObject"
